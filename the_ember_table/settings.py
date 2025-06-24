@@ -50,8 +50,12 @@ INSTALLED_APPS = [
 
     # Third Party Apps
     'django_summernote',
+    'tailwind',
+    'theme',
     'django_browser_reload',
 ]
+
+TAILWIND_APP_NAME = 'theme'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -66,7 +70,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    # Optional for django-browser-reload
+    # django_browser_reload to auto reload browser
     'django_browser_reload.middleware.BrowserReloadMiddleware',
 ]
 
@@ -146,6 +150,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+NPM_BIN_PATH = (
+    os.getenv("NPM_BIN_PATH")
+    )
+TAILWIND_CSS_PATH = 'static/css/style.css'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
