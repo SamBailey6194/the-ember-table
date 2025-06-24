@@ -40,22 +40,36 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    # Default Django Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Third Party Apps
+    'django_summernote',
+    'tailwind',
+    'theme',
+    'django_browser_reload',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+
+    # WhiteNoise middleware for serving static files efficiently
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # Optional for django-browser-reload
+    'django_browser_reload.middleware.BrowserReloadMiddleware',
 ]
 
 ROOT_URLCONF = 'the_ember_table.urls'
@@ -133,6 +147,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Tell django-tailwind which app contains the Tailwind CSS config
+TAILWIND_APP_NAME = 'theme'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
