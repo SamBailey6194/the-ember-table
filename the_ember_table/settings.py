@@ -40,19 +40,19 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    # Default Django Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # Third Party Apps
+    'cloudinary_storage'
     'django_summernote',
+    'cloudinary',
+    'behave_django',
     'tailwind',
-    'theme',
     'django_browser_reload',
+    'theme',
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -97,11 +97,15 @@ WSGI_APPLICATION = 'the_ember_table.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    os.getenv("DATABASE_URL")
 }
 
 

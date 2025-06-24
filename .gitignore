@@ -17,8 +17,10 @@ db.sqlite3
 .env
 
 # Node files
-node_modules
-tools
+node_modules/
+
+# Testing Files
+screenshots/
 
 # macOS
 .DS_Store
