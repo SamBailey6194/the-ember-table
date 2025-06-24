@@ -13,7 +13,8 @@ def send_status_email(booking):
         message = (
             f"Dear {booking.customer.customer_fname},\n\n"
             "Thank you for sending a booking request to The Ember Table! "
-            f"We will seek to confirm your booking asap for {booking.date} at {booking.time}.\n\n"
+            f"We will seek to confirm your booking asap for {booking.date} at "
+            f"{booking.time}.\n\n"
             "Kind Regards, \nThe Ember Table Team"
         )
     elif booking.status == "confirmed":
