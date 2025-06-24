@@ -16,6 +16,9 @@ db.sqlite3
 # Environment variables
 .env
 
+# Node files
+node_modules
+
 # macOS
 .DS_Store
 

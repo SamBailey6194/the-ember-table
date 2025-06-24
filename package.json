@@ -1,0 +1,30 @@
+{
+  "name": "the-ember-table",
+  "version": "1.0.0",
+  "description": "**The Ember Table**",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "jest",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamBailey6194/the-ember-table.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/SamBailey6194/the-ember-table/issues"
+  },
+  "homepage": "https://github.com/SamBailey6194/the-ember-table#readme",
+  "devDependencies": {
+    "cypress": "^14.5.0",
+    "jest": "^30.0.2"
+  }
+}
