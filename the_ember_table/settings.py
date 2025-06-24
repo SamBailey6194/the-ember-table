@@ -50,8 +50,6 @@ INSTALLED_APPS = [
 
     # Third Party Apps
     'django_summernote',
-    'tailwind',
-    'theme',
     'django_browser_reload',
 ]
 
@@ -148,9 +146,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# Tell django-tailwind which app contains the Tailwind CSS config
-TAILWIND_APP_NAME = 'theme'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
