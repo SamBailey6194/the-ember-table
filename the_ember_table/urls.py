@@ -19,6 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('booking/', include('booking.urls')),
     path('summernote/', include('django_summernote.urls')),
     path("__reload__/", include("django_browser_reload.urls")),
     # path('', include(""), name=""), #home page link

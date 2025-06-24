@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'behave_django',
     'tailwind',
     'django_browser_reload',
+    'booking',
     'theme',
 ]
 
@@ -93,7 +94,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'the_ember_table.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
@@ -137,6 +137,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
