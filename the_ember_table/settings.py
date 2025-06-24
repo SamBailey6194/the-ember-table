@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 from dotenv import load_dotenv
 if os.path.exists('.env'):
     load_dotenv()
@@ -46,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cloudinary_storage'
+    'cloudinary_storage',
     'django_summernote',
     'cloudinary',
     'behave_django',
@@ -105,7 +106,7 @@ WSGI_APPLICATION = 'the_ember_table.wsgi.application'
 # }
 
 DATABASES = {
-    os.getenv("DATABASE_URL")
+    'default': dj_database_url.parse(os.getenv("DATABASE_URL"))
 }
 
 
