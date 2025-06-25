@@ -40,13 +40,48 @@ class AdminBookingActionsTest(TestCase):
         login = self.client.login(username="admin", password="password123")
         self.assertTrue(login)
 
+    def test_email_sent_for_pending_booking(self):
+        """
+        Test that an email is sent when a booking is created with status
+        'pending'
+        """
+        mail.outbox = []  # Clear any previous emails
+
+        send_status_email(self.booking)
+
+        self.assertEqual(len(mail.outbox), 1)
+        email = mail.outbox[0]
+
+        expected_subject = (
+            f"Booking Pending - Ref: {self.booking.reference_code}"
+            )
+        expected_first_name = (
+            self.booking.customer.username.first_name
+            if self.booking.customer.username
+            else self.booking.customer.customer_fname
+        )
+
+        self.assertEqual(email.subject, expected_subject)
+        self.assertIn(expected_first_name, email.body)
+        self.assertIn(str(self.booking.date), email.body)
+        self.assertIn(str(self.booking.time), email.body)
+        self.assertIn(self.booking.reference_code, email.body)
+        self.assertIn(self.customer.email, email.to)
+
     def test_admin_can_update_booking_status(self):
         """
         Testing admin can update booking status
         """
         transitions = [
-            ("pending", "confirmed", True, "Booking confirmation"),
-            ("pending", "unavailable", True, "Booking Unavailable"),
+            ("pending", "confirmed", True,
+             "Booking confirmation"
+             ),
+            ("pending", "unavailable", True,
+             "Booking Unavailable"
+             ),
+            ("confirmed", "cancelled", True,
+             "Booking Cancelled"
+             ),
             ("confirmed", "seated", True, None),
         ]
 
