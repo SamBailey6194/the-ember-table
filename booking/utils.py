@@ -1,4 +1,4 @@
-from django.core.mail import send_email
+from django.core.mail import send_mail
 
 
 def send_status_email(booking):
@@ -59,7 +59,7 @@ def send_status_email(booking):
     else:
         return
 
-    send_email(
+    send_mail(
         subject,
         message,
         "noreply@theembertable.com",
