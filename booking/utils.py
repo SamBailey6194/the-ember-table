@@ -14,7 +14,9 @@ def send_status_email(booking):
             f"Dear {booking.customer.customer_fname},\n\n"
             "Thank you for sending a booking request to The Ember Table! "
             f"We will seek to confirm your booking asap for {booking.date} at "
-            f"{booking.time}.\n\n"
+            f"{booking.time}.\nYour booking reference code is "
+            f"{booking.reference_code}. "
+            "You can use this to edit your booking if you need to.\n\n"
             "Kind Regards, \nThe Ember Table Team"
         )
     elif booking.status == "confirmed":
@@ -24,7 +26,7 @@ def send_status_email(booking):
             "Thank you for booking with The Ember Table! "
             f"Your reservation on {booking.date} at {booking.time} "
             "has been confirmed.\n\n"
-            "We look forward to welcoming you!"
+            "We look forward to welcoming you!\n\n"
             "Kind Regards, \nThe Ember Table Team"
         )
     elif booking.status == "unavailable":
@@ -37,10 +39,21 @@ def send_status_email(booking):
             "Please fill out the form again to find another suitable time.\n"
             "Kind Regards, \nThe Ember Table Team"
         )
+    elif booking.status == "confirmed":
+        subject = "Booking Cancelled"
+        message = (
+            f"Dear {booking.customer.customer_fname},\n\n"
+            "Thank you for booking with The Ember Table! "
+            f"Your reservation on {booking.date} at {booking.time} "
+            "has been cancelled as requested.\n"
+            "We are sad that you had to cancel. If you would like to "
+            "book for a different time please use the form.\n\n"
+            "Kind Regards, \nThe Ember Table Team"
+        )
     else:
         return
 
-    send_mail(
+    send_email(
         subject,
         message,
         "noreply@theembertable.com",
