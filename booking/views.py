@@ -1,17 +1,23 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required, user_passes_test
-from django.views.generic import ListView, DetailView, UpdateView, CreateView
+from django.views.generic import CreateView
 from django.urls import reverse_lazy
-from .models import Booking, Table, BookingManagement
+from .models import Booking
 
 
 # Create your views here.
-def is_staff_user(user):
+class BookingCreateView(CreateView):
     """
-    Checks user is a staff user
+    Display an individual :model:`booking.Booking`.
+
+    **Context**
+
+    ``booking``
+        An instance of :model:`booking.Booking`
+
+    **Template:**
+
+    :template: booking/booking_form.html
     """
-    return user.is_staff
-
-
-class BookingCreativeView(CreateView):
     model = Booking
+    fields = ['customer', 'party_size', 'date', 'time']
+    template_name = 'booking/booking_form.html'
+    success_url = reverse_lazy('booking-thanks')
