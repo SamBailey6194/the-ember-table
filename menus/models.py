@@ -28,7 +28,7 @@ class Menu(models.Model):
 
     def renew_for_next_year(self):
         """
-        Creates menu for next year with shifted dates automatically
+        Creates menu for next year with shifted dates when admin selects to
         """
         should_renew = (
             self.auto_renew_yearly and
