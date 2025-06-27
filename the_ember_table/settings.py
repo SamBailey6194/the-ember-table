@@ -112,6 +112,9 @@ MIDDLEWARE = [
 
     # django_browser_reload to auto reload browser
     'django_browser_reload.middleware.BrowserReloadMiddleware',
+
+    # allauth middleware
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
 ROOT_URLCONF = 'the_ember_table.urls'
