@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'tailwind',
     'django_browser_reload',
     'booking',
+    'menus',
     'theme',
 ]
 
