@@ -226,11 +226,11 @@ I have used the MoSCoW priority system and the fibonnachi story point sequence (
 **So that** I can register quickly.
 
 **Acceptance Criteria:**
-- OAuth login with Google and Facebook.
+- Login with Google, Facebook and X.
 - Social accounts link to internal user profile.
 
 **Tasks:**
-- Integrate Google/Facebook login using social-auth.
+- Integrate Google/Facebook/X login using User.
 - Map external profiles to internal user table.
 - Handle edge cases like multiple accounts.
 
