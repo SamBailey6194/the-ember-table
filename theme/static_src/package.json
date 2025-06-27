@@ -6,7 +6,7 @@
     "start": "npm run dev",
     "build": "npm run build:clean && npm run build:tailwind",
     "build:clean": "rimraf ../../static/css/style.css",
-    "build:tailwind": "cross-env NODE_ENV=production postcss ./src/style.css -o ../../static/css/style.css --minify",
+    "build:tailwind": "cross-env NODE_ENV=production postcss ./src/style.css -o ../../static/css/style.css",
     "dev": "cross-env NODE_ENV=development postcss ./src/style.css -o ../../static/css/style.css --watch",
     "test": "jest",
     "test:watch": "jest --watchAll",
