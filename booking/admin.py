@@ -39,7 +39,7 @@ class BookingManagementAdmin(SummernoteModelAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
-admin.register(Booking)
-admin.register(Table)
-admin.register(TableAssignment)
-admin.register(Customer)
+admin.site.register(Booking)
+admin.site.register(Table)
+admin.site.register(TableAssignment)
+admin.site.register(Customer)
