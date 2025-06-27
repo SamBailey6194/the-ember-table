@@ -30,7 +30,7 @@ def step_submit_valid_login(context):
     """
     context.browser.find_element(By.NAME, "username").send_keys("admin")
     context.browser.find_element(By.NAME, "password").send_keys("adminpass")
-    context.browser.find_element(By.XPATH, "//input[@type='submit']").click
+    context.browser.find_element(By.XPATH, "//input[@type='submit']").click()
 
 
 @when('submits the login form with incorrect credentials')

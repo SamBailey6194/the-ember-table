@@ -2,6 +2,7 @@ from behave import given, when, then
 from selenium.webdriver.common.by import By
 from django.core import mail
 from booking.models import Booking, Table, Customer
+from menus.models import Menu
 
 
 @given('a booking exists with status "{status}"')
@@ -16,10 +17,15 @@ def step_create_booking_with_status(context, status):
         email="testuser@example.com",
         phone="0123456789"
     )
+    try:
+        menu = Menu.objects.get(name=menu_name)
+    except Menu.DoesNotExist:
+        menu = Menu.objects.get(is_seasonal=False)
     context.booking = Booking.objects.create(
         customer=customer,
         date="2025-12-01",
         time="18:00",
+        menu=menu,
         party_size=2,
         status=status,
     )
@@ -33,7 +39,7 @@ def step_create_table(context, table_number):
     context.table = Table.objects.create(number=int(table_number), capacity=4)
 
 
-@when('teh admin selects the booking')
+@when('the admin selects the booking')
 def step_admin_selects_booking(context):
     """
     Open the admin change form for the test booking
