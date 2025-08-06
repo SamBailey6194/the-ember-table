@@ -10,23 +10,23 @@
     {% tailwind_css %}
   </head>
 
-  <body class="bg-gray-50 font-sans text-gray-900 leading-relaxed tracking-normal min-h-screen">
+  <body class="bg-charcoal-black font-sans text-white leading-relaxed tracking-normal min-h-screen">
     <div class="container mx-auto px-4 py-6">
       
-      	<nav class="bg-white shadow-md mb-6">
-			<div class="container mx-auto px-4 py-4 flex justify-between items-center">
-				<a href="/" class="text-xl font-semibold text-gray-900">Ember Table</a>
-				<div class="space-x-4">
-				{% if user.is_authenticated %}
-					<a href="/dashboard/" class="text-gray-700 hover:text-blue-600">Dashboard</a>
-					<a href="/accounts/logout/" class="text-red-600 hover:underline">Logout</a>
-				{% else %}
-					<a href="/accounts/login/" class="text-blue-600 hover:underline">Login</a>
-					<a href="/accounts/signup/" class="text-blue-600 hover:underline">Register</a>
-				{% endif %}
-				</div>
-			</div>
-		</nav>
+      <nav class="bg-ash-gray shadow-md mb-6">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+          <a href="/" class="text-xl font-semibold text-white">Ember Table</a>
+          <div class="space-x-4">
+          {% if user.is_authenticated %}
+            <a href="/dashboard/" class="text-white hover:text-blue-600">Dashboard</a>
+            <a href="/accounts/logout/" class="text-white hover:underline">Logout</a>
+          {% else %}
+            <a href="/accounts/login/" class=" text-white hover:underline">Login</a>
+            <a href="/accounts/signup/" class="text-white hover:underline">Register</a>
+          {% endif %}
+          </div>
+        </div>
+      </nav>
 
       {# Alerts for success/error/info messages #}
       {% include 'includes/alerts.html' %}

@@ -8,3 +8,12 @@
   * the scope of this path.
   */
 @source "../../../**/*.{html,py,js}";
+
+@theme {
+  --color-ember-red: #E25822;
+  --color-burnt-orange: #CC5500;
+  --color-fiery-yellow: #FBB03B;
+  --color-ash-gray: #666666;
+  --color-charcoal-black: #1C1C1C;
+  --color-molten-gold: #D4AF37;
+}
