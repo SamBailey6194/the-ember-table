@@ -1,7 +1,4 @@
 Feature: Update Booking Status
-    As an admin
-    I want to assign specific tables to bookings
-    So that I can better organize seating
 
 Background:
     Given an admin user is logged in

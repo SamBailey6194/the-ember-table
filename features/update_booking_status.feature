@@ -1,7 +1,4 @@
 Feature: Update Booking Status
-    As an admin
-    I want to update the status of a booking
-    So that I can track the progress accurately
 
 Background:
     Given an admin user is logged in

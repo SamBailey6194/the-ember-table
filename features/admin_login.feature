@@ -1,7 +1,4 @@
 Feature: Admin Login
-    As an admin 
-    I want to securely login to an admin dashboard
-    So that I can manage bookings and view restaurant reservations
 
 Background:
     Given an admin user exists with username "admin" and password "adminpass"
