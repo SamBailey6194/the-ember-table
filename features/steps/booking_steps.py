@@ -1,12 +1,13 @@
 from behave import given, when, then
 from selenium.webdriver.common.by import By
 from django.core import mail
+from django.contrib.auth.models import User
 from booking.models import Booking, Table, Customer
 from menus.models import Menu
 
 
-@given('a booking exists with status "{status}"')
-def step_create_booking_with_status(context, status):
+@given('a booking exists with status "{status}" and menu "{menu_name}"')
+def step_create_booking_with_status(context, status, menu_name):
     """
     Created fake customer and fake booking for tests
     """
@@ -23,7 +24,7 @@ def step_create_booking_with_status(context, status):
         menu = Menu.objects.get(is_seasonal=False)
     context.booking = Booking.objects.create(
         customer=customer,
-        date="01-12-2025",
+        date="2025-12-01",
         time="18:00",
         menu=menu,
         party_size=2,
@@ -62,7 +63,7 @@ def step_create_existing_booking(context):
     user = User.objects.get(email='customer@example.com')
     booking = Booking.objects.create(
         customer=user.customer,
-        date="15-08-2025",
+        date="2025-08-15",
         time="19:00",
         party_size=2,
         status='confirmed',
