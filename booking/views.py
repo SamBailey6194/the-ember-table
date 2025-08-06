@@ -1,9 +1,14 @@
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
+from django.shortcuts import render
 from .models import Booking
 
 
 # Create your views here.
+def home(request):
+    return render(request, 'booking/home.html')
+
+
 class BookingCreateView(CreateView):
     """
     Display an individual :model:`booking.Booking`.

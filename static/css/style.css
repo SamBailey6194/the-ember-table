@@ -13,6 +13,12 @@
     --color-gray-700: oklch(37.3% 0.034 259.733);
     --color-gray-900: oklch(21% 0.034 264.665);
     --color-white: #fff;
+    --ember-red: #E25822;
+    --burnt-orange: #CC5500;
+    --fiery-yellow: #FBB03B;
+    --ash-gray: #666666;
+    --charcoal-black: #1C1C1C;
+    --molten-gold: #D4AF37;
     --spacing: 0.25rem;
     --text-xl: 1.25rem;
     --text-xl--line-height: calc(1.75 / 1.25);
