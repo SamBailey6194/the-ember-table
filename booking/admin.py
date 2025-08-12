@@ -8,38 +8,3 @@ from .models import (
 
 
 # Register your models here.
-class CustomUserAdmin(UserAdmin):
-    """
-    Creating custom fields to be able to create staff users with all
-    relevant information
-    """
-    fieldsets = UserAdmin.fieldsets
-    add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': (
-                'username',
-                'email',
-                'first_name',
-                'last_name',
-                'password1',
-                'password2',
-            )
-        }),
-    )
-
-
-@admin.register(BookingManagement)
-class BookingManagementAdmin(SummernoteModelAdmin):
-    """
-    Adds relevant fields to summernote BookingManagement for admins
-    """
-    summernote_fields = ('notes',)
-
-
-admin.site.unregister(User)
-admin.site.register(User, CustomUserAdmin)
-admin.site.register(Booking)
-admin.site.register(Table)
-admin.site.register(TableAssignment)
-admin.site.register(Customer)

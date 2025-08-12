@@ -1,14 +1,21 @@
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth.models import User
 from datetime import date
-from ..models import Booking, Table
+from ..models import Booking
+from . import helpers
 
 
-class SearchBookingSlotsTests(TestCase):
+class BookingTestSetUp(TestCase):
     def setUp(self):
-        self.table = Table.objects.create(name="Table 1", seats=4)
+        self.reg_customer = helpers.create_fake_registered_customer()
+        self.guest_customer = helpers.create_fake_guest_customer()
+        self.table = helpers.create_fake_table()
+        self.booking = helpers.create_fake_booking()
+        self.reg_booking = helpers.create_fake_registered_booking()
+        self.guest_booking = helpers.create_fake_guest_booking()
 
+
+class SearchBookingSlotsTests(BookingTestSetUp):
     def test_get_available_slots(self):
         response = self.client.get(reverse("booking:search_slots"), {
             "date": date.today().strftime('%d-%m-%Y'),
@@ -18,13 +25,13 @@ class SearchBookingSlotsTests(TestCase):
         self.assertIn('available_slots', response.context)
 
 
-class MakeBookingTests(TestCase):
+class MakeBookingTests(BookingTestSetUp):
     def setUp(self):
-        self.user = User.objects.create_user(
-            username='testuser', password='pass'
+        super().setUp()
+        # Login the registered user for booking
+        self.client.login(
+            username=self.reg_customer.username.username, password='pass'
             )
-        self.table = Table.objects.create(name="Table 1", seats=4)
-        self.client.login(username="testuser", password="pass")
 
     def test_make_booking(self):
         response = self.client.post(reverse("booking:make_booking"), {
@@ -36,30 +43,32 @@ class MakeBookingTests(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Booking.objects.count(), 1)
         booking = Booking.objects.first()
-        self.assertEqual(booking.user, self.user)
+        self.assertEqual(booking.customer, self.reg_customer)
         self.assertEqual(booking.table, self.table)
 
+    def test_make_booking_unauthenticated(self):
+        self.client.logout()
+        response = self.client.post(reverse("booking:make_booking"), {
+            'date': '10-08-2025',
+            'time': '19:00',
+            'guests': 2,
+            'table_id': self.table.id
+        })
+        # Expect redirect to login or error
+        self.assertNotEqual(response.status_code, 200)
 
-class CancelBookingTests(TestCase):
+
+class CancelBookingTests(BookingTestSetUp):
     def setUp(self):
-        self.user = User.objects.create_user(
-            username='testuser', password='pass'
+        super().setUp()
+        self.client.login(
+            username=self.reg_customer.username.username, password='pass'
             )
-        self.table = Table.objects.create(name="Table 1", seats=4)
-        self.booking = Booking.objects.create(
-            user=self.user,
-            table=self.table,
-            date='2025-08-10',
-            time='19:00',
-            guests=2,
-            status='confirmed'
-        )
-        self.client.login(username='testuser', password='pass')
 
     def test_cancel_booking(self):
-        response = self.client.post(reverse(
-            'booking:cancel_booking', args=[self.booking.id]
-            ))
+        response = self.client.post(
+            reverse('booking:cancel_booking', args=[self.booking.id])
+            )
         self.assertEqual(response.status_code, 302)
         self.booking.refresh_from_db()
         self.assertEqual(self.booking.status, 'cancelled')
