@@ -313,6 +313,9 @@
   .min-h-screen {
     min-height: 100vh;
   }
+  .w-full {
+    width: 100%;
+  }
   .flex-shrink-0 {
     flex-shrink: 0;
   }
