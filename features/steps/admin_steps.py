@@ -40,7 +40,7 @@ def step_submit_invalid_login(context):
     """
     context.browser.find_element(By.NAME, "username").send_keys("admin")
     context.browser.find_element(By.NAME, "password").send_keys("wrongpass")
-    context.browser.find_element(By.XPATH, "//input[@type='submit']").click
+    context.browser.find_element(By.XPATH, "//input[@type='submit']").click()
 
 
 @then('the admin should be redirected to the dashboard')

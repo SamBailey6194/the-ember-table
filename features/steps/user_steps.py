@@ -68,7 +68,7 @@ def step_submit_login_form(context):
     """
     Login in form is submitted
     """
-    context.browser.find_element(By.XPATH, "//input[@type='submit']").click()
+    context.browser.find_element("xpath", "//input[@type='submit']")
 
 
 @then('they should be redirected to the dashboard')

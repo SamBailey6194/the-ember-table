@@ -95,9 +95,10 @@ def step_menu_should_include_item(context, menu_name, item_name, ingredients):
     """
     Checks menus hold the items information
     """
-    menu_section = context.browser.find_element_by_xpath(
-        f"//section[contains(., '{menu_name}')]"
+    menu_section = context.browser.find_element(
+        "xpath", f"//section[contains(., '{menu_name}')]"
         )
+
     assert item_name in menu_section.text
     assert ingredients in menu_section.text
 
