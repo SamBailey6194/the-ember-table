@@ -156,7 +156,7 @@ def step_verify_updated_status(context, expected_status):
     assert context.booking.status == expected_status
 
 
-@then('an email should be sent to the customer')
+@then('a booking confirmation email should be sent to the customer')
 def step_check_email_sent(context):
     """
     An email sent to confirm the booking
@@ -168,7 +168,7 @@ def step_check_email_sent(context):
     assert "Booking confirmed" in email.body
 
 
-@then('an email should be sent to the customer')
+@then('an apology email should be sent to the customer')
 def step_check_unavailable_email(context):
     """
     An email sent to apologise the booking is unavailable
