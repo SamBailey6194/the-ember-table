@@ -1,10 +1,30 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
-from django_summernote.admin import SummernoteModelAdmin
-from .models import (
-    Booking, BookingManagement, Table, TableAssignment, Customer
-    )
+from .models import Booking, Customer, Table
 
 
-# Register your models here.
+# Register your models here
+@admin.register(Customer)
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ['id', 'username', 'email', 'phone', 'is_guest']
+
+
+@admin.register(Table)
+class TableAdmin(admin.ModelAdmin):
+    list_display = ['number', 'capacity']
+
+
+@admin.register(Booking)
+class BookingAdmin(admin.ModelAdmin):
+    list_display = [
+        'reference_code',
+        'customer',
+        'date',
+        'time',
+        'party_size',
+        'status',
+        'table'
+        ]
+    list_filter = ['status', 'date']
+    search_fields = [
+        'reference_code', 'customer__username__username', 'customer__email'
+        ]

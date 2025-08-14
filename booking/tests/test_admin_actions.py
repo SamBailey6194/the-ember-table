@@ -29,7 +29,6 @@ class AdminBookingActionsTest(BookingTestSetUp):
     """
     Test suite for admin-related booking actions.
     """
-
     def test_admin_can_login(self):
         """Admin user should be able to log in successfully."""
         login_successful = self.client.login(
@@ -60,7 +59,7 @@ class AdminBookingActionsTest(BookingTestSetUp):
         self.assertIn(expected_first_name, email.body)
         self.assertIn(str(self.booking.date), email.body)
         self.assertIn(str(self.booking.time), email.body)
-        self.assertIn(self.booking.reference_code, email.body)
+        self.assertIn(str(self.booking.reference_code), email.body)
         self.assertIn(self.booking.customer.email, email.to)
 
     def test_admin_can_update_booking_status(self):
@@ -69,9 +68,15 @@ class AdminBookingActionsTest(BookingTestSetUp):
         according to the transition.
         """
         transitions = [
-            ("pending", "confirmed", True, "Booking confirmation"),
-            ("pending", "unavailable", True, "Booking Unavailable"),
-            ("confirmed", "cancelled", True, "Booking Cancelled"),
+            ("pending", "confirmed", True,
+             f"Booking Confirmed - Ref: {self.booking.reference_code}"
+             ),
+            ("pending", "unavailable", True,
+             f"Booking Unavailable - Ref: {self.booking.reference_code}"
+             ),
+            ("confirmed", "cancelled", True,
+             f"Booking Cancelled - Ref: {self.booking.reference_code}"
+             ),
             ("confirmed", "seated", False, None),
         ]
 

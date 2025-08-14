@@ -21,7 +21,6 @@ class SearchSlotsFormTests(BookingTestSetUp):
     """
     Tests for SearchSlotsForm validation.
     """
-
     def test_valid_date(self):
         form = SearchSlotsForm(data={'date': '2025-08-20'})
         self.assertTrue(form.is_valid())
@@ -36,7 +35,6 @@ class MakeBookingFormTests(BookingTestSetUp):
     """
     Tests for MakeBookingForm validation.
     """
-
     def test_valid_form(self):
         form_data = {
             'date': (date.today() + timedelta(days=1)).strftime('%Y-%m-%d'),
@@ -119,7 +117,6 @@ class CancelBookingFormTests(BookingTestSetUp):
     """
     Tests for CancelBookingForm validation.
     """
-
     def test_valid_reference_code(self):
         form = CancelBookingForm(
             data={'reference_code': self.booking.reference_code}

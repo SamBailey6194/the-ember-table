@@ -1,9 +1,16 @@
 from datetime import date, time, timedelta
 from django.contrib.auth.models import User
+import itertools
+import random
 from ..models import Booking, Customer, Table
 
 
-def create_fake_registered_customer(username='testuser', **kwargs):
+_user_counter = itertools.count(1)
+
+
+def create_fake_registered_customer(username=None, **kwargs):
+    if username is None:
+        username = f'testuser{next(_user_counter)}'
     user = User.objects.create_user(username=username, password='pass')
     defaults = {
         'username': user,
@@ -34,8 +41,9 @@ def create_fake_table(**kwargs):
     """
     Create and return a test Table instance.
     """
+    table_number = kwargs.get('number', random.randint(1, 1000))
     defaults = {
-        'number': 1,
+        'number': table_number,
         'capacity': 4,
     }
     defaults.update(kwargs)
@@ -64,10 +72,12 @@ def create_fake_booking(customer=None, table=None, **kwargs):
     return Booking.objects.create(**defaults)
 
 
-def create_fake_registered_booking(username='testuser', **kwargs):
+def create_fake_registered_booking(username=None, **kwargs):
     """
     Create a booking for a registered customer.
     """
+    if username is None:
+        username = f'testuser{next(_user_counter)}'
     customer = create_fake_registered_customer(username=username)
     table = create_fake_table()
     return create_fake_booking(customer=customer, table=table, **kwargs)
