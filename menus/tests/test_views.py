@@ -35,7 +35,7 @@ class MenuViewTests(TestCase):
         )
 
     def test_menu_page_shows_active_menus(self):
-        response = self.client.get(reverse('menu-list'))
+        response = self.client.get(reverse('menus:menu_list'))
         self.assertContains(response, "Menu")
         self.assertContains(response, "Summer Specials")
 
@@ -46,5 +46,5 @@ class MenuViewTests(TestCase):
             start_date=timezone.now().date(),
             end_date=timezone.now().date() + timedelta(days=60),
         )
-        response = self.client.get(reverse('menu-list'))
+        response = self.client.get(reverse('menus:menu_list'))
         self.assertNotContains(response, inactive_menu.name)

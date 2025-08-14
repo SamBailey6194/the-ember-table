@@ -27,12 +27,23 @@ class MenuModelTests(TestCase):
         self.assertTrue(self.standard_menu.is_active)
 
     def test_auto_renew_creates_new_menu(self):
-        self.seasonal_menu.auto_renew_if_needed()
-        new_menu_exists = Menu.objects.filter(
-            name=self.seasonal_menu.name,
-            start_date=self.seasonal_menu.start_date + timedelta(days=365),
-        ).exists()
-        self.assertTrue(new_menu_exists)
+        new_menu = self.seasonal_menu.auto_renew_if_needed()
+        self.assertIsNotNone(new_menu)
+        self.assertEqual(
+            new_menu.name, self.seasonal_menu.name + " (Next Year)"
+            )
+        self.assertEqual(
+            new_menu.start_date,
+            self.seasonal_menu.start_date.replace(
+                year=self.seasonal_menu.start_date.year + 1
+                )
+        )
+        self.assertEqual(
+            new_menu.end_date,
+            self.seasonal_menu.end_date.replace(
+                year=self.seasonal_menu.end_date.year + 1
+                )
+        )
 
     def test_menu_item_creation(self):
         item = MenuItem.objects.create(

@@ -53,6 +53,9 @@ class Menu(models.Model):
             )
         return None
 
+    def auto_renew_if_needed(self):
+        return self.renew_for_next_year()
+
 
 class MenuItem(models.Model):
     """

@@ -18,12 +18,18 @@ class AdminMenuTests(TestCase):
 
     def test_admin_can_toggle_menu_activation(self):
         response = self.client.post(
-            f'/admin/booking/menu/{self.menu.id}/change/',
+            f'/admin/menus/menu/{self.menu.id}/change/',
             {
                 'name': self.menu.name,
                 'is_active': False,
                 'start_date': self.menu.start_date,
                 'end_date': self.menu.end_date,
+                'auto_renew_yearly': self.menu.auto_renew_yearly,
+
+                'items-TOTAL_FORMS': 0,
+                'items-INITIAL_FORMS': 0,
+                'items-MIN_NUM_FORMS': 0,
+                'items-MAX_NUM_FORMS': 1000,
             }
         )
         self.assertEqual(response.status_code, 302)

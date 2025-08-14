@@ -18,7 +18,7 @@ def public_menu_list(request):
     """
     menus = Menu.objects.filter(is_active=True)
     active_menus = [menu for menu in menus if menu.is_currently_active()]
-    return render(request, 'menu/menu_list.html', {
+    return render(request, 'menus/menu_list.html', {
         'menus': active_menus
     })
 
@@ -37,4 +37,4 @@ def menu_detail(request, menu_id):
     :template:`menus/menu_display.html`
     """
     menu = get_object_or_404(Menu, id=menu_id, is_active=True)
-    return render(request, 'menu/menu_display.html', {'menu': menu})
+    return render(request, 'menus/menu_display.html', {'menu': menu})
