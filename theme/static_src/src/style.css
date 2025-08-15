@@ -19,9 +19,33 @@
   --color-ash-gray: oklch(0.5103 0 0);
   --color-charcoal-black: oklch(0.2264 0 0);
   --color-molten-gold: oklch(0.7665 0.1387 91.06);
+  --color-cool-dark-blue: oklch(0.177 0.120 259.5);
+  --color-cool-medium-blue: oklch(0.483 0.135 236.2);
+  --color-cool-light-blue: oklch(0.620 0.128 224.8);
+  --color-cool-sky-blue: oklch(0.780 0.130 218.0);
 }
 
 @layer utilities {
+  .bg-fire-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--color-ember-red),
+      var(--color-burnt-orange),
+      var(--color-fiery-yellow),
+      var(--color-molten-gold)
+    );
+  }
+
+  .bg-cool-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--color-cool-dark-blue),
+      var(--color-cool-medium-blue),
+      var(--color-cool-light-blue),
+      var(--color-cool-sky-blue)
+    );
+  }
+
   .bg-size-200 {
     background-size: 200% 200%;
   }
@@ -34,5 +58,14 @@
 
   .animate-gradientMove {
     animation: gradientMove 8s ease infinite;
+  }
+
+  .text-outline-shadow {
+    --outline-color: white;
+    text-shadow:
+      -2px -2px 0 var(--outline-color),
+       2px -2px 0 var(--outline-color),
+      -2px  2px 0 var(--outline-color),
+       2px  2px 0 var(--outline-color);
   }
 }

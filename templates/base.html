@@ -10,12 +10,9 @@
     {% tailwind_css %}
   </head>
 
-  <body class="bg-charcoal-black font-sans text-white leading-relaxed tracking-normal flex flex-col min-h-screen">
+  <body class="font-sans text-white leading-relaxed tracking-normal flex flex-col min-h-screen">
 
-    {% comment %} Animated gradient background behind everything {% endcomment %}
-    <div class="absolute inset-0 bg-gradient-to-br from-ember-red via-burnt-orange to-fiery-yellow bg-size-200 animate-gradientMove -z-10"></div>
-
-    <nav class="relative z-20 bg-ash-gray text-white shadow-lg">
+    <nav class="bg-ash-gray text-white shadow-lg">
       <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         <a href="/" class="text-2xl font-bold text-molten-gold">Ember Table</a>
         <ul class="flex space-x-6">
@@ -27,17 +24,17 @@
       </div>
     </nav>
 
-    {% include 'includes/alerts.html' %}
+    <!-- {% include 'includes/alerts.html' %} -->
 
-    <main class="flex-grow relative z-10 bg-charcoal-black">
+    <main>
       {% block content %}
       <!-- Page-specific content -->
       {% endblock %}
     </main>
 
-    {% include 'includes/modals.html' %}
+    <!-- {% include 'includes/modals.html' %} -->
 
-    <footer class="bg-ash-gray sticky top-[100vh] text-center p-6 mt-auto relative z-10">
+    <footer class="bg-ash-gray text-center p-6 mt-auto">
       <p class="text-sm text-white">&copy; {{ year|default:"2025" }} Ember Table. All rights reserved.</p>
     </footer>
 
