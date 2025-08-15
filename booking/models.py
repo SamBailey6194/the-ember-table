@@ -43,7 +43,9 @@ class Booking(models.Model):
     status = models.CharField(
         max_length=12, choices=STATUS_CHOICES, default='pending'
         )
-    table = models.ForeignKey(Table, on_delete=models.CASCADE)
+    table = models.ForeignKey(
+        Table, on_delete=models.SET_NULL, null=True, blank=True
+        )
     reference_code = models.UUIDField(
         default=uuid.uuid4, editable=False, unique=True
         )

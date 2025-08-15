@@ -1,10 +1,36 @@
 {% extends "base.html" %}
-
 {% block content %}
 
-<div class="container mx-auto bg-charcoal-black text-molten-gold p-4">
-  <h1>Welcome to The Ember Table</h1>
-  <p>Explore our seasonal menus and book a table today.</p>
-</div>
+<section class="relative bg-gradient-to-br from-ember-red via-burnt-orange to-fiery-yellow bg-size-200 animate-gradientMove">
+  <div class="mx-auto px-6 py-20 text-center">
+    <h1 class="text-5xl md:text-6xl font-bold text-charcoal-black mb-6">
+      Welcome to <span class="text-molten-gold">Ember Table</span>
+    </h1>
+    <p class="text-lg md:text-xl text-charcoal-black mb-8 max-w-2xl mx-auto">
+      Where warmth meets flavour – book your seat for an unforgettable dining experience.
+    </p>
+    <a href="{% url 'booking:booking_page' %}" 
+       class="bg-molten-gold text-charcoal-black px-8 py-3 rounded-lg font-semibold shadow-lg hover:bg-fiery-yellow transition-colors">
+      Book Now
+    </a>
+  </div>
+</section>
+
+<section class="mx-auto px-6 py-16">
+  <div class="mx-auto px-6 grid md:grid-cols-3 gap-8">
+      <div class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition">
+          <h3 class="text-xl font-bold text-molten-gold mb-3">Fresh Ingredients</h3>
+          <p>Locally sourced produce, prepared fresh every day to bring you the best flavours.</p>
+      </div>
+      <div class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition">
+          <h3 class="text-xl font-bold text-molten-gold mb-3">Warm Atmosphere</h3>
+          <p>Our dining space blends comfort and elegance for the perfect meal setting.</p>
+      </div>
+      <div class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition">
+          <h3 class="text-xl font-bold text-molten-gold mb-3">Expert Chefs</h3>
+          <p>Passionate about flavour, our chefs create dishes to ignite your senses.</p>
+      </div>
+  </div>
+</section>
   
 {% endblock %}

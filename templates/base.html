@@ -10,36 +10,36 @@
     {% tailwind_css %}
   </head>
 
-  <body class="bg-charcoal-black font-sans text-white leading-relaxed tracking-normal min-h-screen">
-    <div class="mx-auto">
-      
-      <nav class="bg-ash-gray shadow-md mb-6">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-          <a href="/" class="text-xl font-semibold text-white hover:underline">Ember Table</a>
-          <div class="space-x-4">
-          {% if user.is_authenticated %}
-            <a href="/dashboard/" class="text-white hover:underline">Dashboard</a>
-            <a href="/accounts/logout/" class="text-white hover:underline">Logout</a>
-          {% else %}
-            <a href="/accounts/login/" class=" text-white hover:underline">Login</a>
-            <a href="/accounts/signup/" class="text-white hover:underline">Register</a>
-          {% endif %}
-          </div>
-        </div>
-      </nav>
+  <body class="bg-charcoal-black font-sans text-white leading-relaxed tracking-normal flex flex-col min-h-screen">
 
-      {# Alerts for success/error/info messages #}
-      {% include 'includes/alerts.html' %}
+    {% comment %} Animated gradient background behind everything {% endcomment %}
+    <div class="absolute inset-0 bg-gradient-to-br from-ember-red via-burnt-orange to-fiery-yellow bg-size-200 animate-gradientMove -z-10"></div>
 
-      {# Main content block for child templates to fill in #}
-      <main>
-        {% block content %}
-        <!-- Page-specific content goes here -->
-        {% endblock %}
-      </main>
+    <nav class="relative z-20 bg-ash-gray text-white shadow-lg">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="/" class="text-2xl font-bold text-molten-gold">Ember Table</a>
+        <ul class="flex space-x-6">
+          <li><a href="#" class="hover:text-fiery-yellow transition-colors">Home</a></li>
+          <li><a href="#" class="hover:text-fiery-yellow transition-colors">Menu</a></li>
+          <li><a href="#" class="hover:text-fiery-yellow transition-colors">Bookings</a></li>
+          <li><a href="#" class="hover:text-fiery-yellow transition-colors">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
 
-      {# Modals (hidden by default, activated via JS) #}
-      {% include 'includes/modals.html' %}
-    </div>
+    {% include 'includes/alerts.html' %}
+
+    <main class="flex-grow relative z-10 bg-charcoal-black">
+      {% block content %}
+      <!-- Page-specific content -->
+      {% endblock %}
+    </main>
+
+    {% include 'includes/modals.html' %}
+
+    <footer class="bg-ash-gray sticky top-[100vh] text-center p-6 mt-auto relative z-10">
+      <p class="text-sm text-white">&copy; {{ year|default:"2025" }} Ember Table. All rights reserved.</p>
+    </footer>
+
   </body>
 </html>
