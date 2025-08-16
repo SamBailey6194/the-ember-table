@@ -68,4 +68,8 @@
       -2px  2px 0 var(--outline-color),
        2px  2px 0 var(--outline-color);
   }
+
+  .active {
+    @apply text-fiery-yellow underline font-bold;
+  }
 }

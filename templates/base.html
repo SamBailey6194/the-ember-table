@@ -16,10 +16,43 @@
       <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         <a href="/" class="text-2xl font-bold text-molten-gold">Ember Table</a>
         <ul class="flex space-x-6">
-          <li><a href="#" class="hover:text-fiery-yellow transition-colors">Home</a></li>
-          <li><a href="#" class="hover:text-fiery-yellow transition-colors">Menus</a></li>
-          <li><a href="#" class="hover:text-fiery-yellow transition-colors">Bookings</a></li>
-          <li><a href="#" class="hover:text-fiery-yellow transition-colors">Contact</a></li>
+          <li>
+            <a href="{% url 'home' %}"
+            class="hover:text-fiery-yellow hover:underline transition-colors {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+            aria-current="{% if request.resolver_match.url_name == 'home' %}page{% endif %}">
+            Home
+            </a>
+          </li>
+          <li><a href="{% url 'menus:menu_list' %}"
+            class="hover:text-fiery-yellow hover:underline transition-colors {% if request.resolver_match.url_name == 'menu_list' %}active{% endif %}"
+            aria-current="{% if request.resolver_match.url_name == 'menu_list' %}page{% endif %}">Menus</a></li>
+          <li><a href="{% url 'booking:booking_page' %}"
+            class="hover:text-fiery-yellow hover:underline transition-colors {% if request.resolver_match.url_name == 'booking_page' %}active{% endif %}"
+            aria-current="{% if request.resolver_match.url_name == 'booking_page' %}page{% endif %}">Bookings</a></li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+              <a class="nav-link {% if request.resolver_match.url_name == 'members_dashboard' %}active{% endif %}"
+                href="{% url 'members_dashboard' %}">
+                {{ user.username }}
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+              <a class="nav-link {% if request.resolver_match.url_name == 'members_info' %}active{% endif %}"
+                href="{% url 'members_info' %}">
+                Members
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+          </li>
+          {% endif %}
         </ul>
       </div>
     </nav>
@@ -34,8 +67,24 @@
 
     <!-- {% include 'includes/modals.html' %} -->
 
-    <footer class="bg-ash-gray text-center p-6 mt-auto">
-      <p class="text-sm text-white">&copy; {{ year|default:"2025" }} Ember Table. All rights reserved.</p>
+    <footer class="bg-ash-gray text-white mt-auto">
+      <div class="max-w-7xl mx-auto px-6 pt-6 pb-6 grid md:grid-cols-2 text-center">
+        <div>
+        <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+          <div class="grid md:grid-cols-2">
+            <div>
+              <p>Address: 123 Ember Street<br>Chesham, Buckinghamshire,<br>HP5 1AA</p>
+            </div>
+            <div>
+              <p class="mt-2">Email: <a href="mailto:info@embertable.com" class="underline hover:text-fiery-yellow">info@embertable.com</a></p>
+              <p>Phone: <a href="tel:+441494123456" class="underline hover:text-fiery-yellow">01494 123456</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center md:justify-center items-center mt-4 md:mt-0">
+          <p>&copy; {{ year|default:"2025" }} Ember Table. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
 
   </body>

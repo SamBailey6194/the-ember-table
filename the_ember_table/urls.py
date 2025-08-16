@@ -24,5 +24,5 @@ urlpatterns = [
     path('menus/', include('menus.urls')),
     path('summernote/', include('django_summernote.urls')),
     path("__reload__/", include("django_browser_reload.urls")),
-    path('', include('core.urls'), name='home'),
+    path('', include('core.urls')),
 ]
