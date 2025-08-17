@@ -64,22 +64,6 @@ def make_booking(request):
     return render(request, 'booking/make_booking.html', {})
 
 
-def manage_booking(request):
-    if request.method == 'POST':
-        form = CancelBookingForm(request.POST)
-        if form.is_valid():
-            booking = Booking.objects.get(
-                reference_code=form.cleaned_data['reference_code']
-                )
-            booking.status = 'cancelled'
-            booking.save()
-            messages.success(request, 'Your booking has been cancelled.')
-            return redirect('booking:booking_cancelled')
-    else:
-        form = CancelBookingForm()
-    return render(request, 'booking/manage_booking.html', {'form': form})
-
-
 def booking_cancelled(request):
     return render(request, 'booking/booking_cancelled.html')
 

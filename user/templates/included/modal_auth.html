@@ -1,0 +1,33 @@
+{# Sign Up Modal #}
+<input type="checkbox" id="signup-modal" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box rounded-2xl relative max-w-md mx-auto">
+    <h3 class="text-2xl font-bold mb-4">Sign Up</h3>
+    <form method="post" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+        {{ signup_form.as_p }}
+        <div class="flex justify-end mt-4 gap-2">
+            <button type="submit" class="btn bg-molten-gold text-charcoal-black hover:bg-charcoal-black hover:text-molten-gold">Sign Up</button>
+            <label for="signup-modal" class="btn btn-outline">Cancel</label>
+        </div>
+    </form>
+  </div>
+  <label class="modal-backdrop" for="signup-modal"></label>
+</div>
+
+{# Login Modal #}
+<input type="checkbox" id="login-modal" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box rounded-2xl relative max-w-md mx-auto">
+    <h3 class="text-2xl font-bold mb-4">Login</h3>
+    <form method="post" action="{% url 'account_login' %}">
+        {% csrf_token %}
+        {{ login_form.as_p }}
+        <div class="flex justify-end mt-4 gap-2">
+            <button type="submit" class="btn bg-molten-gold text-charcoal-black hover:bg-charcoal-black hover:text-molten-gold">Login</button>
+            <label for="login-modal" class="btn btn-outline">Cancel</label>
+        </div>
+    </form>
+  </div>
+  <label class="modal-backdrop" for="login-modal"></label>
+</div>
