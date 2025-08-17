@@ -74,14 +74,17 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-LOGIN_REDIRECT_URL = '/members/'
+LOGIN_REDIRECT_URL = '/members/dashboard/'
+ACCOUNT_SIGNUP_REDIRECT_URL = '/members/dashboard/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
 ACCOUNT_LOGIN_METHOD = {'email', 'username'}
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_RATE_LIMITS = ['login_failed']
+ACCOUNT_RATE_LIMITS = {
+    'login_failed': "5/10m",
+    }
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {

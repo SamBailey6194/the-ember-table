@@ -1,7 +1,7 @@
 <!-- Login Modal -->
 <dialog id="login-modal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md rounded-lg p-6 shadow-lg bg-charcoal-black text-white">
     <h3 class="text-4xl font-bold text-molten-gold mb-6 text-center">Login</h3>
-    <form method="post" action="{% url 'account_login' %}" class="space-y-3">
+    <form method="post" action="{% url 'user:custom_login' %}" class="space-y-3">
         {% csrf_token %}
         <div>
             <input type="text" name="login" placeholder="Username or Email" class="input input-bordered w-full" required />
@@ -33,7 +33,7 @@
 <!-- Signup Modal -->
 <dialog id="signup-modal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md rounded-lg p-6 shadow-lg bg-charcoal-black text-white">
     <h3 class="text-4xl font-bold text-molten-gold mb-6 text-center">Sign Up</h3>
-    <form method="post" action="{% url 'account_signup' %}" class="space-y-3">
+    <form method="post" action="{% url 'user:custom_signup' %}" class="space-y-3">
         {% csrf_token %}
         <div>
             <input type="text" name="username" placeholder="Username" class="input input-bordered w-full" required />
