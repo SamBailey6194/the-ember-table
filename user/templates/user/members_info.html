@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="relative overflow-hidden">
+    {% comment %} Animated ember gradient behind everything {% endcomment %}
+    <div class="absolute inset-0 bg-fire-gradient bg-size-200 animate-gradientMove -z-20"></div>
+
+    <div class="relative max-w-4xl mx-auto py-16 px-6 text-center prose">
+        <h1 class="text-4xl font-bold mb-6">Members Benefits</h1>
+        <p class="text-lg mb-8">
+            Become a member to enjoy exclusive deals and manage your bookings online.
+        </p>
+
+        <div class="flex flex-col md:flex-row justify-center gap-6 mb-8">
+            <label for="auth-modal" class="btn btn-primary btn-lg cursor-pointer">
+                Sign Up / Login
+            </label>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-lg prose">
+            <h2 class="text-2xl font-semibold mb-4">Member Benefits:</h2>
+            <ul class="list-disc list-inside space-y-2">
+                <li>View and manage your bookings online</li>
+                <li>Access exclusive deals and promotions</li>
+                <li>Receive updates and reminders for upcoming reservations</li>
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}

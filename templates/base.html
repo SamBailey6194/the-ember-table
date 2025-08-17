@@ -32,7 +32,7 @@
           {% if user.is_authenticated %}
           <li class="nav-item">
               <a class="nav-link {% if request.resolver_match.url_name == 'members_dashboard' %}active{% endif %}"
-                href="{% url 'members_dashboard' %}">
+                href="{% url 'user:members_dashboard' %}">
                 {{ user.username }}
               </a>
           </li>
@@ -42,16 +42,13 @@
           {% else %}
           <li class="nav-item">
               <a class="nav-link {% if request.resolver_match.url_name == 'members_info' %}active{% endif %}"
-                href="{% url 'members_info' %}">
+                href="{% url 'user:members_info' %}">
                 Members
               </a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-          </li>
+            <a href="#authModal" class="nav-link">Login / Register</a>
+          </li> 
           {% endif %}
         </ul>
       </div>

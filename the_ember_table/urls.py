@@ -23,6 +23,7 @@ urlpatterns = [
     path('booking/', include('booking.urls')),
     path('menus/', include('menus.urls')),
     path('summernote/', include('django_summernote.urls')),
+    path('members/', include('user.urls')),
     path("__reload__/", include("django_browser_reload.urls")),
     path('', include('core.urls')),
 ]

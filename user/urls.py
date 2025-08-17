@@ -1,10 +1,12 @@
 from django.urls import path
 from . import views
 
+app_name = 'user'
+
 urlpatterns = [
-    path('members/', views.members_info, name='members_info'),
+    path('', views.members_info, name='members_info'),
     path(
-        'members/dashboard/',
+        'dashboard/',
         views.members_dashboard,
         name='members_dashboard'
         ),

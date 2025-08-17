@@ -69,6 +69,15 @@
        2px  2px 0 var(--outline-color);
   }
 
+  .text-sm-outline-shadow {
+    --outline-color: white;
+    text-shadow:
+      -1px -1px 0 var(--outline-color),
+       1px -1px 0 var(--outline-color),
+      -1px  1px 0 var(--outline-color),
+       1px  1px 0 var(--outline-color);
+  }
+
   .active {
     @apply text-fiery-yellow underline font-bold;
   }

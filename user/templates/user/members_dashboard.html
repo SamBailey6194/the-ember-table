@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-fire-gradient bg-size-200 animate-gradientMove -z-20"></div>
+
+    <div class="mx-auto px-4 py-20 text-center relative z-10">
+        <h1 class="text-6xl md:text-6xl font-bold mb-6 text-charcoal-black">
+            Welcome, 
+            <span class="text-molten-gold text-outline-shadow" style="--outline-color: var(--color-charcoal-black)">
+                {{ user.username }}
+            </span>
+        </h1>
+        <p class="text-lg md:text-xl text-charcoal-black mb-8 max-w-2xl mx-auto">
+            Down below you can manage your bookings.
+        </p>
+    </div>
+</section>
+
+<section class="py-12">
+    <div class="mx-auto px-4 lg:px-20 xl:px-28 2xl:px-48 gap-8">
+        <h2 class="text-4xl font-bold text-molten-gold mb-3 text-center">Your bookings</h2>
+
+        {% if bookings %}
+        <div class="grid md:grid-cols-3 gap-8">
+            {% for booking in bookings %}
+            <div class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col">
+                <div class="flex-grow">
+                    <h3 class="text-xl font-bold text-molten-gold mb-3">
+                        Booking on {{ booking.date }} at {{ booking.time|time:"H:i" }}
+                    </h3>
+                    <p class="mb-2"><span class="font-semibold">Party size:</span> {{ booking.party_size }}</p>
+                    <p class="mb-2">
+                        <span class="font-semibold">Status:</span> {{ booking.get_status_display }}
+                    </p>
+                </div>
+                <form method="post" class="mt-4 flex justify-center space-x-3">
+                    {% csrf_token %}
+                    <input type="hidden" name="reference_code" value="{{ booking.reference_code }}">
+                    <button type="submit" class="btn btn-sm text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black shadow-lg">
+                        Cancel Booking
+                    </button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="flex justify-center">
+            <div class="max-w-md w-full text-center bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition">
+                <h3 class="text-2xl font-semibold text-molten-gold mb-2">No bookings yet</h3>
+                <p class="text-white mb-6">You haven’t made any bookings. Reserve your table today!</p>
+                <a href="{% url 'booking:booking_page' %}" class="btn text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg">
+                    Book Now
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
