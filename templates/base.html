@@ -30,18 +30,18 @@
             class="hover:text-fiery-yellow hover:underline transition-colors {% if request.resolver_match.url_name == 'booking_page' %}active{% endif %}"
             aria-current="{% if request.resolver_match.url_name == 'booking_page' %}page{% endif %}">Bookings</a></li>
           {% if user.is_authenticated %}
-          <li class="nav-item">
-              <a class="nav-link {% if request.resolver_match.url_name == 'members_dashboard' %}active{% endif %}"
+          <li>
+              <a class="hover:text-fiery-yellow hover:underline transition-colors {% if request.resolver_match.url_name == 'members_dashboard' %}active{% endif %}"
                 href="{% url 'user:members_dashboard' %}">
                 {{ user.username }}
               </a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+          <li>
+              <label for="logout-modal" class="hover:text-fiery-yellow hover:underline transition-colors cursor-pointer">Logout</label>
           </li>
           {% else %}
-          <li class="nav-item">
-              <a class="nav-link {% if request.resolver_match.url_name == 'members_info' %}active{% endif %}"
+          <li>
+              <a class="hover:text-fiery-yellow hover:underline transition-colors cursor-pointer {% if request.resolver_match.url_name == 'members_info' %}active{% endif %}"
                 href="{% url 'user:members_info' %}">
                 Members
               </a>
@@ -59,7 +59,7 @@
       {% endblock %}
     </main>
 
-    <!-- {% include 'includes/modals.html' %} -->
+    {% include 'includes/modals.html' %}
 
     <footer class="bg-ash-gray text-white mt-auto">
       <div class="max-w-7xl mx-auto px-6 pt-6 pb-6 grid md:grid-cols-2 text-center">

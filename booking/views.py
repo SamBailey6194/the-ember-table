@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.utils.dateparse import parse_date
-from .forms import CancelBookingForm
 from .models import Booking, Table, Customer
 
 
