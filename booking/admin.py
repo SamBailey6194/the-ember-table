@@ -2,10 +2,14 @@ from django.contrib import admin
 from .models import Booking, Customer, Table
 
 
-# Register your models here
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ['id', 'username', 'email', 'phone', 'is_guest']
+    list_display = [
+        'id', 'user', 'email', 'phone', 'customer_fname', 'customer_lname'
+        ]
+    search_fields = [
+        'user__username', 'customer_fname', 'customer_lname', 'email'
+        ]
 
 
 @admin.register(Table)
@@ -23,8 +27,8 @@ class BookingAdmin(admin.ModelAdmin):
         'party_size',
         'status',
         'table'
-        ]
+    ]
     list_filter = ['status', 'date']
     search_fields = [
-        'reference_code', 'customer__username__username', 'customer__email'
+        'reference_code', 'customer__user__username', 'customer__email'
         ]
