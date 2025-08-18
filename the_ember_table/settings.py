@@ -48,21 +48,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.twitter',
     'cloudinary_storage',
     'django_summernote',
     'cloudinary',
-    'behave_django',
     'tailwind',
     'django_browser_reload',
     'booking',
     'core',
-    'menus',
     'theme',
     'user',
 ]
@@ -71,35 +63,7 @@ SITE_ID = 1
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
 ]
-
-LOGIN_REDIRECT_URL = '/members/dashboard/'
-ACCOUNT_SIGNUP_REDIRECT_URL = '/members/dashboard/'
-ACCOUNT_LOGOUT_REDIRECT_URL = '/'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
-ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
-ACCOUNT_LOGIN_METHOD = {'email', 'username'}
-ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
-ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_RATE_LIMITS = {
-    'login_failed': "5/10m",
-    }
-
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': ['profile', 'email'],
-        'AUTH_PARAMS': {'access_type': 'online'},
-    },
-    'facebook': {
-        'METHOD': 'oauth2',
-        'SCOPE': ['email'],
-        'FIELDS': ['email', 'name'],
-    },
-    'twitter': {
-        'SCOPE': ['email'],
-    },
-}
 
 TAILWIND_APP_NAME = 'theme'
 
@@ -118,9 +82,6 @@ MIDDLEWARE = [
 
     # django_browser_reload to auto reload browser
     'django_browser_reload.middleware.BrowserReloadMiddleware',
-
-    # allauth middleware
-    'allauth.account.middleware.AccountMiddleware'
 ]
 
 ROOT_URLCONF = 'the_ember_table.urls'

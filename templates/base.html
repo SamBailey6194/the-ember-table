@@ -27,12 +27,6 @@
             </a>
           </li>
           <li>
-            <a href="{% url 'menus:menu_list' %}"
-              class="hover:text-fiery-yellow hover:underline transition-colors {% if request.resolver_match.url_name == 'menu_list' %}active{% endif %}">
-              Menus
-            </a>
-          </li>
-          <li>
             <a href="{% url 'booking:booking_page' %}"
               class="hover:text-fiery-yellow hover:underline transition-colors {% if request.resolver_match.url_name == 'booking_page' %}active{% endif %}">
               Bookings
@@ -47,7 +41,9 @@
             </a>
           </li>
           <li>
-            <label data-open-logout class="hover:text-fiery-yellow hover:underline transition-colors cursor-pointer">Logout</label>
+            <button type="button" data-open-logout class="hover:text-fiery-yellow hover:underline transition-colors">
+                Logout
+            </button>
           </li>
           {% else %}
           <li>
@@ -73,9 +69,6 @@
       <ul id="mobile-menu" class="hidden md:hidden bg-ash-gray px-4 pt-4 pb-6 space-y-3">
         <li>
           <a href="{% url 'home' %}" class="block hover:text-fiery-yellow">Home</a>
-        </li>
-        <li>
-          <a href="{% url 'menus:menu_list' %}" class="block hover:text-fiery-yellow">Menus</a>
         </li>
         <li>
           <a href="{% url 'booking:booking_page' %}" class="block hover:text-fiery-yellow">Bookings</a>

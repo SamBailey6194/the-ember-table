@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% block content %}
+
+<section class="relative overflow-hidden">
+  {% comment %} Animated ember gradient behind everything {% endcomment %}
+  <div
+    class="absolute inset-0 bg-fire-gradient bg-size-200 animate-gradientMove -z-20"
+  ></div>
+  <div class="mx-auto mt-4 px-4 py-20 text-center relative z-10">
+    <h1 class="text-5xl md:text-6xl font-bold text-charcoal-black mb-6">
+      Book 
+      <span
+        class="text-molten-gold text-outline-shadow"
+        style="--outline-color: var(--color-charcoal-black)"
+        >Now</span
+      >
+    </h1>
+    <p class="text-lg md:text-xl text-charcoal-black mb-8 max-w-2xl mx-auto">
+      Once you’re signed up and logged in, you can quickly check availability and secure your booking in just a few clicks!
+    </p>
+
+    {% if user.is_authenticated %}
+    <label href="{% url 'booking:booking_page' %}" class="btn text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg">
+        Check availability
+    </label>
+    {% else %}
+
+    {% include "includes/auth_buttons.html" with extra_classes="mt-4" next_url=request.get_full_path %}
+
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

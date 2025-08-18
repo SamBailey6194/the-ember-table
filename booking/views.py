@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.utils.dateparse import parse_date
@@ -5,8 +6,12 @@ from .models import Booking, Table, Customer
 
 
 # Create your views here.
+
 def booking_page(request):
-    return render(request, 'booking/booking.html')
+    context = {
+        'booking_page_url': reverse('booking:booking_page')
+    }
+    return render(request, 'booking/booking_page.html', context)
 
 
 def search_slots(request):

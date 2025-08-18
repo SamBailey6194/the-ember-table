@@ -5,10 +5,9 @@ import uuid
 
 # Create models here
 class Customer(models.Model):
-    username = models.OneToOneField(
-        User, on_delete=models.CASCADE, null=True, blank=True
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE
         )
-    is_guest = models.BooleanField(default=True)
     phone = models.CharField(max_length=20)
     email = models.EmailField()
     customer_fname = models.CharField(max_length=100)

@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Open login modal
   document.querySelectorAll(".login-btn").forEach(btn => {
     btn.addEventListener("click", () => {
+      const nextUrl = btn.dataset.next || "/";
+      const loginNextInput = loginModal.querySelector("input[name='next']");
+      if (loginNextInput) loginNextInput.value = nextUrl;
       loginModal.showModal();
     });
   });
@@ -17,6 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Open signup modal
   document.querySelectorAll(".signup-btn").forEach(btn => {
     btn.addEventListener("click", () => {
+      const nextUrl = btn.dataset.next || "/";
+      const signUpNextInput = signupModal.querySelector("input[name='next']");
+      if (signUpNextInput) signUpNextInput.value = nextUrl;
       signupModal.showModal();
     });
   });

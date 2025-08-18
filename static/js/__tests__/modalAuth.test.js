@@ -10,7 +10,7 @@ describe('Modal Auth JS', () => {
     let html;
 
     beforeEach(() => {
-        html = fs.readFileSync(path.resolve(__dirname, 'user/templates/included/modal_auth_fixture.html'), 'utf8');
+        html = fs.readFileSync(path.resolve(__dirname, 'templates/includes/modal_auth_fixture.html'), 'utf8');
         document.documentElement.innerHTML = html;
         require('static/js/modalAuth.js');
     });

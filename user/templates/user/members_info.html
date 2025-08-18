@@ -5,7 +5,7 @@
     class="absolute inset-0 bg-fire-gradient bg-size-200 animate-gradientMove -z-20"
   ></div>
 
-  <div class="relative max-w-4xl mx-auto py-16 px-6 text-center prose">
+  <div class="relative max-w-4xl mx-auto mt-6 py-16 px-6 text-center prose">
     <h1 class="text-5xl md:text-6xl font-bold mb-6 text-charcoal-black">
       Members
       <span
@@ -18,20 +18,8 @@
       Become a member to enjoy exclusive deals and manage your bookings online.
     </p>
 
-    <div class="flex flex-col md:flex-row justify-center gap-6 mb-8">
-      <label
-        for="signup-modal"
-        class="signup-btn btn text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black shadow-lg"
-      >
-        Sign Up
-      </label>
-      <label
-        for="login-modal"
-        class="login-btn btn text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black shadow-lg"
-      >
-        Login
-      </label>
-    </div>
+    {% include "includes/auth_buttons.html" with extra_classes="mt-4" %}
+
   </div>
 </section>
 
@@ -45,27 +33,16 @@
     <div class="flex justify-center">
       <div
         class="max-w-md w-full text-center bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition"
-      >
+        >
         <ul class="list-disc list-inside space-y-3 mb-6">
           <li>Unlock priority booking and skip the waitlist</li>
           <li>Enjoy members-only offers and special discounts</li>
           <li>Get tailored reminders so you never miss a reservation</li>
           <li>Be the first to know about new menus and events</li>
         </ul>
-        <div class="flex flex-col md:flex-row justify-center gap-6 mb-8">
-          <label
-            for="signup-modal"
-            class="signup-btn btn text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black shadow-lg"
-          >
-            Sign Up
-          </label>
-          <label
-            for="login-modal"
-            class="login-btn btn text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black shadow-lg"
-          >
-            Login
-          </label>
-        </div>
+
+        {% include "includes/auth_buttons.html" with extra_classes="mt-4" next_url='dashboard_url' %}
+
       </div>
     </div>
   </div>
