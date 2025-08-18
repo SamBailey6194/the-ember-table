@@ -31,38 +31,38 @@
 </section>
 
 <section class="relative overflow-hidden mx-auto py-10 px-10">
-    <div class="mx-auto px-4 lg:px-20 xl:px-28 2xl:px-48 grid md:grid-cols-3 gap-8">
-        <div class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition">
-            <h3 class="text-xl font-bold text-molten-gold mb-3">Fresh Ingredients</h3>
-            <p>Savour the freshest, locally sourced produce, lovingly prepared each day to delight your taste buds, ensuring every bite bursts with natural flavours and seasonal freshness that will leave you wanting more.</p>
+  <div class="mx-auto px-4 lg:px-20 xl:px-28 2xl:px-48">
+    {% if user.is_authenticated %}
+    <div class="grid md:grid-cols-2">
+      <div class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col">
+        <div class="flex-grow">
+          <h3 class="text-xl font-bold text-molten-gold mb-3">Check Availability</h3>
+          <p>View real-time table availability and reserve your preferred slot quickly and easily. Click below to check now!</p>
         </div>
-        <div class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition">
-            <h3 class="text-xl font-bold text-molten-gold mb-3">Warm Atmosphere</h3>
-            <p>Our dining space blends comfort and elegance, creating a warm and inviting atmosphere that sets the stage for the perfect meal, whether you’re enjoying a casual lunch or a special evening out.</p>
+        <label for="check-availability-modal" class="btn w-32 mx-auto mt-3 text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg cursor-pointer">
+          Check Now
+        </label>
+      </div>
+      <div class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col">
+        <div class="flex-grow">
+          <h3 class="text-xl font-bold text-molten-gold mb-3">Manage Booking</h3>
+          <p>Access your bookings, update or cancel your reservations, and manage your account efficiently through your Members Dashboard.</p>
         </div>
-        <div class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition">
-            <h3 class="text-xl font-bold text-molten-gold mb-3">Expert Chefs</h3>
-            <p>Passionate about flavour and presentation, our chefs craft every dish with precision and care, combining the finest ingredients with creativity to ignite your senses and provide a memorable culinary experience each time you visit.</p>
-        </div>
-        <div class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col">
-            <div class="flex-grow">
-                <h3 class="text-xl font-bold text-molten-gold mb-3">Booking</h3>
-                <p>If you’d like to secure a table for your visit, our booking page provides full availability and options to reserve your preferred time, making it quick and easy to plan a memorable meal with family, friends, or colleagues.</p>
-            </div>
-            <a href="{% url 'booking:booking_page' %}" class="btn w-32 mx-auto mt-3 text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg">
-                Book Now
-            </a>
-        </div>
-        <div class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col">
-            <div class="flex-grow">
-                <h3 class="text-xl font-bold text-molten-gold mb-3">Members Club</h3>
-                <p>Join our Members Club to access exclusive deals, manage your bookings effortlessly through your account, and enjoy special perks and experiences designed to make every visit exceptional. Sign up using the button below and start enjoying the benefits today.</p>
-            </div>
-            <a href="{% url 'booking:booking_page' %}" class="btn w-32 mx-auto mt-3 text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg">
-                Members
-            </a>
-        </div>
+        <a href="{% url 'user:members_dashboard' %}" class="btn w-32 mx-auto mt-3 text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg">
+          Dashboard
+        </a>
+      </div>
     </div>
+    {% else %}
+    <div class="flex justify-center">
+      <div class="max-w-md w-full text-center bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition">
+          <h3 class="text-2xl font-semibold text-molten-gold mb-2">Members Club</h3>
+          <p class="mb-6">Join our Members Club to access exclusive deals, manage your bookings, and enjoy special perks designed to make every visit exceptional. Sign up or login below to start enjoying the benefits today.</p>
+        {% include "includes/auth_buttons.html" with extra_classes="mt-3" next_url=request.get_full_path %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
 </section>
 
 {% endblock %}
