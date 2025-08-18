@@ -102,7 +102,7 @@ def members_dashboard(request):
     Private dashboard for logged-in members with booking cancellation.
     """
     try:
-        customer = Customer.objects.get(username=request.user)
+        customer = Customer.objects.get(user=request.user)
         bookings = Booking.objects.filter(customer=customer)
     except Customer.DoesNotExist:
         bookings = []

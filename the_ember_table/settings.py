@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'tailwind',
     'django_browser_reload',
+    'widget_tweaks',
     'booking',
     'core',
     'theme',

@@ -19,9 +19,13 @@
     </p>
 
     {% if user.is_authenticated %}
-    <label href="{% url 'booking:booking_page' %}" class="btn text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg">
-        Check availability
-    </label>
+    <button 
+          type="button"
+          class="btn w-32 mx-auto mt-3 text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg"
+          onclick="document.getElementById('make-booking-modal').showModal()"
+        >
+          Book
+        </button>
     {% else %}
 
     {% include "includes/auth_buttons.html" with extra_classes="mt-4" next_url=request.get_full_path %}
@@ -36,15 +40,15 @@
     <div class="grid md:grid-cols-2 gap-8">
       <div class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col">
         <div class="flex-grow">
-          <h3 class="text-xl font-bold text-molten-gold mb-3">Check Availability</h3>
-          <p>View real-time table availability and reserve your preferred slot quickly and easily. Click below to check now!</p>
+          <h3 class="text-xl font-bold text-molten-gold mb-3">Book a Table</h3>
+          <p>Reserve your preferred time and table quickly and easily using our booking form below.</p>
         </div>
         <button 
-            id="check-availability-btn"
-            type="button"
-            class="btn w-32 mx-auto mt-3 text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg"
+          type="button"
+          class="btn w-32 mx-auto mt-3 text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg"
+          onclick="document.getElementById('make-booking-modal').showModal()"
         >
-            Check Now
+          Book
         </button>
       </div>
       <div class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col">
@@ -67,9 +71,7 @@
     </div>
     {% endif %}
 
-    {% include "includes/search_slots_modal.html" %}
     {% include "includes/make_booking_modal.html" %}
-    {% include "includes/booking_cancelled_modal.html" %}
     {% include "includes/success_modal.html" %}
   </div>
 </section>
