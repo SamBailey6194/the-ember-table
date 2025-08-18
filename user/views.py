@@ -15,7 +15,7 @@ def members_info(request):
     """
     context = {
         'dashboard_url': reverse('user:members_dashboard'),
-        'next_url': request.GET.get('next', request.path)  # dynamic next
+        'next_url': request.GET.get('next', request.path)
     }
     return render(request, 'user/members_info.html', context)
 

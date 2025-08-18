@@ -1,0 +1,21 @@
+<dialog id="make-booking-modal" class="modal">
+  <form method="post" class="modal-box">
+    {% csrf_token %}
+    <h3 class="font-bold text-lg mb-4">Make a Booking</h3>
+
+    <input type="date" name="date" required class="input input-bordered w-full mb-2">
+    <input type="time" name="time" required class="input input-bordered w-full mb-2">
+    <input type="number" name="guests" min="1" required class="input input-bordered w-full mb-2">
+    
+    <select name="table_id" class="select select-bordered w-full mb-2">
+      {% for table in tables %}
+        <option value="{{ table.id }}">Table {{ table.number }} (Capacity {{ table.capacity }})</option>
+      {% endfor %}
+    </select>
+
+    <div class="modal-action">
+      <button type="submit" class="btn btn-primary">Book</button>
+      <button type="button" class="btn btn-ghost" onclick="document.getElementById('make-booking-modal').close()">Cancel</button>
+    </div>
+  </form>
+</dialog>
