@@ -2,6 +2,7 @@ from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from django.http import JsonResponse
 from .models import Booking, Customer
 from .forms import MakeBookingForm, UpdateBookingForm
@@ -46,45 +47,51 @@ def make_booking(request):
 
 @login_required
 def booking_cancelled(request):
-    return render(request, 'include/booking_cancelled.html')
+    return render(request, 'include/booking_cancelled_modal.html')
 
 
 @login_required
-def update_booking(request):
-    """
-    Handles updating a booking's date, time, or party size for a logged-in
-    member.
-    """
+@require_POST
+def cancel_booking(request):
+    reference_code = request.POST.get('reference_code')
+    try:
+        booking = Booking.objects.get(
+            reference_code=reference_code, customer=request.user.customer
+        )
+        booking.status = 'cancelled'
+        booking.save()
+        messages.success(request, "Booking cancelled successfully")
+    except Booking.DoesNotExist:
+        messages.error(request, "Invalid booking reference")
+    return redirect('user:members_dashboard')
+
+
+@login_required
+def update_booking(request, booking_id):
     try:
         customer = Customer.objects.get(user=request.user)
     except Customer.DoesNotExist:
-        messages.error(request, "Customer not found")
-        return redirect('user:members_info')
+        return JsonResponse({'error': 'Customer not found'}, status=404)
+
+    try:
+        booking = Booking.objects.get(id=booking_id, customer=customer)
+    except Booking.DoesNotExist:
+        return JsonResponse({'error': 'Booking not found'}, status=404)
 
     if request.method == "POST":
-        form = UpdateBookingForm(request.POST)
+        form = UpdateBookingForm(request.POST, instance=booking)
         if form.is_valid():
-            code = form.cleaned_data['reference_code']
-            try:
-                booking = Booking.objects.get(
-                    reference_code=code, customer=customer
-                    )
-                booking.date = form.cleaned_data.get('date', booking.date)
-                booking.time = form.cleaned_data.get('time', booking.time)
-                booking.party_size = form.cleaned_data.get(
-                    'party_size', booking.party_size
-                    )
+            form.save()
+            return JsonResponse(
+                {'success': True, 'reference_code': booking.reference_code}
+                )
+        else:
+            return JsonResponse(
+                {'error': 'Invalid form data', 'errors': form.errors},
+                status=400
+                )
 
-                booking.save()
-                messages.success(request, "Booking updated successfully")
-                return redirect('user:members_dashboard')
-
-            except Booking.DoesNotExist:
-                form.add_error('reference_code', 'Invalid booking code')
-    else:
-        form = UpdateBookingForm()
-
-    return render(request, 'user/member_dashbaord.html', {'form': form})
+    return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
 @login_required

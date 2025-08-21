@@ -7,8 +7,6 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-red-600: oklch(57.7% 0.245 27.325);
-    --color-green-600: oklch(62.7% 0.194 149.214);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -2589,6 +2587,9 @@
   .mt-auto {
     margin-top: auto;
   }
+  .mb-1 {
+    margin-bottom: calc(var(--spacing) * 1);
+  }
   .mb-2 {
     margin-bottom: calc(var(--spacing) * 2);
   }
@@ -3036,6 +3037,11 @@
     margin-block-start: calc(calc(var(--spacing) * 3) * var(--tw-space-y-reverse));
     margin-block-end: calc(calc(var(--spacing) * 3) * calc(1 - var(--tw-space-y-reverse)));
   }
+  :where(.space-y-4 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 4) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 4) * calc(1 - var(--tw-space-y-reverse)));
+  }
   :where(.space-x-3 > :not(:last-child)) {
     --tw-space-x-reverse: 0;
     margin-inline-start: calc(calc(var(--spacing) * 3) * var(--tw-space-x-reverse));
@@ -3182,14 +3188,8 @@
   .text-charcoal-black {
     color: var(--color-charcoal-black);
   }
-  .text-green-600 {
-    color: var(--color-green-600);
-  }
   .text-molten-gold {
     color: var(--color-molten-gold);
-  }
-  .text-red-600 {
-    color: var(--color-red-600);
   }
   .text-secondary {
     color: var(--color-secondary);
@@ -3288,6 +3288,11 @@
     --btn-fg: var(--color-secondary-content);
   }
   @media (hover: hover) {
+    .hover\:bg-charcoal-black:hover {
+      background-color: var(--color-charcoal-black);
+    }
+  }
+  @media (hover: hover) {
     .hover\:bg-molten-gold:hover {
       background-color: var(--color-molten-gold);
     }
@@ -3300,6 +3305,11 @@
   @media (hover: hover) {
     .hover\:text-fiery-yellow:hover {
       color: var(--color-fiery-yellow);
+    }
+  }
+  @media (hover: hover) {
+    .hover\:text-molten-gold:hover {
+      color: var(--color-molten-gold);
     }
   }
   @media (hover: hover) {

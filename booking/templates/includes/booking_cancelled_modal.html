@@ -1,9 +1,15 @@
+
 <dialog id="booking-cancelled-modal" class="modal">
   <div class="modal-box">
-    <h3 class="font-bold text-lg mb-4">Booking Cancelled</h3>
-    <p>Your booking has been cancelled successfully.</p>
+    <h3 class="font-bold text-lg mb-4">Cancel Booking</h3>
+    <p>Are you sure you want to cancel this booking?</p>
     <div class="modal-action">
-      <button type="button" class="btn btn-primary" onclick="document.getElementById('booking-cancelled-modal').close()">OK</button>
+      <form method="post" action="{% url 'booking:cancel_booking' %}">
+        {% csrf_token %}
+        <input type="hidden" name="reference_code" value="">
+        <button type="submit" class="btn w-32 bg-ash-gray hover:bg-molten-gold hover:text-charcoal">Cancel</button>
+        <button type="button" class="btn w-32 bg-ash-gray hover:bg-molten-gold hover:text-charcoal">Close</button>
+      </form>
     </div>
   </div>
 </dialog>

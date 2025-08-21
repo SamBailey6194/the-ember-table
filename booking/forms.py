@@ -46,13 +46,24 @@ class CancelBookingForm(forms.Form):
         return code
 
 
-class UpdateBookingForm(forms.Form):
-    reference_code = forms.UUIDField(
-        error_messages={'invalid': 'Invalid reference code'}
-    )
-    date = forms.DateField(required=False)
-    time = forms.TimeField(required=False)
-    party_size = forms.IntegerField(required=False)
+class UpdateBookingForm(forms.ModelForm):
+    reference_code = forms.UUIDField(widget=forms.HiddenInput())
+
+    class Meta:
+        model = Booking
+        fields = ['date', 'time', 'party_size']
+        widgets = {
+            'date': forms.DateInput(attrs={
+                'type': 'date', 'class': 'input input-bordered w-full mb-2'
+                }),
+            'time': forms.TimeInput(attrs={
+                'type': 'time', 'class': 'input input-bordered w-full mb-2'
+                }),
+            'party_size': forms.NumberInput(attrs={
+                'class': 'input input-bordered w-full mb-2', 'min': 1,
+                'max': 20
+                }),
+        }
 
     def clean_reference_code(self):
         code = self.cleaned_data['reference_code']

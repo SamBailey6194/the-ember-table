@@ -28,22 +28,39 @@
                     <h3 class="text-xl font-bold text-molten-gold mb-3">
                         Booking on {{ booking.date }} at {{ booking.time|time:"H:i" }}
                     </h3>
-                    <p class="mb-2"><span class="text-molten-gold font-semibold">Party Size:</span> {{ booking.party_size }}</p>
                     <p class="mb-2">
-                        <span class="text-molten-gold font-semibold">Status:</span> {{ booking.get_status_display }}
+                        <span class="text-molten-gold font-semibold">Party Size:</span>
+                        {{ booking.party_size }}
                     </p>
                     <p class="mb-2">
-                        <span class="text-molten-gold font-semibold">Reference:</span><br><span class="italic">{{ booking.reference_code }}</span>
+                        <span class="text-molten-gold font-semibold">Status:</span>
+                        {{ booking.get_status_display }}
+                    </p>
+                    <p class="mb-2">
+                        <span class="text-molten-gold font-semibold">Reference:</span><br>
+                        <span class="italic">{{ booking.reference_code }}</span>
                     </p>
                 </div>
-                <form method="post" class="mt-4 flex justify-center space-x-3">
-                    {% csrf_token %}
-                    <input type="hidden" name="reference_code" value="{{ booking.reference_code }}">
-                    <button type="submit" class="btn btn-sm text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black shadow-lg">
-                        Cancel Booking
+                <div class="actions mt-4 flex justify-center space-x-3">
+                    <button type="button"
+                            class="btn text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black shadow-lg"
+                            data-open-cancel data-ref="{{ booking.reference_code }}">
+                        Cancel
                     </button>
-                </form>
+
+                    <button type="button"
+                            class="btn text-charcoal-black bg-molten-gold hover:bg-charcoal-black hover:text-molten-gold shadow-lg update-btn"
+                            data-booking-id="{{ booking.id }}"
+                            data-date="{{ booking.date }}"
+                            data-time="{{ booking.time }}"
+                            data-party-size="{{ booking.party_size }}"
+                            data-reference="{{ booking.reference_code }}">
+                        Update
+                    </button>
+                </div>
             </div>
+            {% include "includes/booking_cancelled_modal.html" %}
+            {% include "includes/booking_update_modal.html" %}
             {% endfor %}
         </div>
         {% else %}
@@ -57,8 +74,6 @@
             </div>
         </div>
         {% endif %}
-        {% include "includes/booking_cancelled_modal.html" %}
-        {% include "includes/booking_update_modal.html" %}
     </div>
 </section>
 {% endblock %}
