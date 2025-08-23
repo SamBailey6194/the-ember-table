@@ -51,8 +51,8 @@
                     <button type="button"
                             class="btn text-charcoal-black bg-molten-gold hover:bg-charcoal-black hover:text-molten-gold shadow-lg update-btn"
                             data-booking-id="{{ booking.id }}"
-                            data-date="{{ booking.date }}"
-                            data-time="{{ booking.time }}"
+                            data-date="{{ booking.date|date:'Y-m-d' }}"
+                            data-time="{{ booking.time|time:'H:i' }}"
                             data-party-size="{{ booking.party_size }}"
                             data-reference="{{ booking.reference_code }}">
                         Update

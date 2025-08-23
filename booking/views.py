@@ -56,13 +56,28 @@ def cancel_booking(request):
     reference_code = request.POST.get('reference_code')
     try:
         booking = Booking.objects.get(
-            reference_code=reference_code, customer=request.user.customer
+            reference_code=reference_code,
+            customer=request.user.customer
         )
         booking.status = 'cancelled'
         booking.save()
+
+        if request.headers.get("x-requested-with") == "XMLHttpRequest":
+            return JsonResponse({
+                "success": True,
+                "reference_code": reference_code,
+                "status": booking.get_status_display(),
+            })
+
         messages.success(request, "Booking cancelled successfully")
     except Booking.DoesNotExist:
+        if request.headers.get("x-requested-with") == "XMLHttpRequest":
+            return JsonResponse(
+                {"success": False, "error": "Invalid booking reference"},
+                status=404
+            )
         messages.error(request, "Invalid booking reference")
+
     return redirect('user:members_dashboard')
 
 
@@ -84,14 +99,17 @@ def update_booking(request, booking_id):
             form.save()
             return JsonResponse(
                 {'success': True, 'reference_code': booking.reference_code}
-                )
+            )
         else:
             return JsonResponse(
                 {'error': 'Invalid form data', 'errors': form.errors},
                 status=400
-                )
-
-    return JsonResponse({'error': 'Invalid request'}, status=400)
+            )
+    else:
+        form = UpdateBookingForm(instance=booking)
+        return render(request, "include/booking_update_modal.html", {
+            "form": form, "booking": booking
+            })
 
 
 @login_required
