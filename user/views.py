@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from booking.models import Customer, Booking
-from booking.forms import CancelBookingForm
+from booking.forms import CancelBookingForm, UpdateBookingForm
 from django.shortcuts import resolve_url
 
 
@@ -80,9 +80,7 @@ def custom_login(request):
             messages.error(request, "Invalid credentials")
             return redirect(resolve_url(next_url))
 
-    return redirect(
-        resolve_url(request.POST.get('next') or reverse('user:members_info'))
-        )
+    return redirect(reverse('user:members_info'))
 
 
 @login_required
@@ -99,30 +97,23 @@ def custom_logout(request):
 @login_required
 def members_dashboard(request):
     """
-    Private dashboard for logged-in members with booking cancellation.
+    Private dashboard for logged-in members showing all bookings.
+    Any update or cancellation is handled in their respective views,
+    with messages displayed on redirect.
     """
     try:
         customer = Customer.objects.get(user=request.user)
-        bookings = Booking.objects.filter(customer=customer)
+        bookings = Booking.objects.filter(customer=customer).order_by(
+            'date', 'time'
+            )
     except Customer.DoesNotExist:
         bookings = []
 
-    cancel_form = CancelBookingForm(request.POST or None)
-
-    if request.method == 'POST' and cancel_form.is_valid():
-        code = cancel_form.cleaned_data['reference_code']
-        try:
-            booking = Booking.objects.get(
-                reference_code=code, customer=customer
-                )
-            booking.status = 'cancelled'
-            booking.save()
-        except Booking.DoesNotExist:
-            cancel_form.add_error('reference_code', 'Invalid booking code.')
-
-        return redirect('user:members_dashboard')
+    cancel_form = CancelBookingForm()
+    update_form = UpdateBookingForm()
 
     return render(request, 'user/members_dashboard.html', {
         'bookings': bookings,
         'cancel_form': cancel_form,
+        'update_form': update_form,
     })

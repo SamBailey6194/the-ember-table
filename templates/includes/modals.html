@@ -3,7 +3,7 @@
     <h3 class="text-4xl font-bold text-molten-gold mb-6 text-center">Login</h3>
     <form method="post" action="{% url 'user:custom_login' %}" class="space-y-3">
         {% csrf_token %}
-        <input type="hidden" name="next" value="">
+        <input type="hidden" name="next" value="{{ next_url }}">
         <div>
             <input type="text" name="login" placeholder="Username or Email" class="input input-bordered w-full" required />
         </div>
@@ -36,7 +36,7 @@
     <h3 class="text-4xl font-bold text-molten-gold mb-6 text-center">Sign Up</h3>
     <form method="post" action="{% url 'user:custom_signup' %}" class="space-y-3">
         {% csrf_token %}
-        <input type="hidden" name="next" value="">
+        <input type="hidden" name="next" value="{{ next_url }}">
         <div>
             <input type="text" name="username" placeholder="Username" class="input input-bordered w-full" required />
         </div>
@@ -77,14 +77,14 @@
 
     <div class="flex justify-center gap-4">
         <!-- Cancel Button -->
-        <button id="close-logout" class="btn w-32 bg-molten-gold text-charcoal-black">
+        <button id="close-logout" class="btn w-32 bg-ash-gray hover:bg-molten-gold hover:text-charcoal-black shadow-lg">
             Cancel
         </button>
 
         <!-- Logout Form -->
         <form method="post" action="{% url 'user:custom_logout' %}" class="text-center">
             {% csrf_token %}
-            <button type="submit" class="btn w-32 bg-molten-gold text-charcoal-black">
+            <button type="submit" class="btn w-32 bg-ash-gray hover:bg-molten-gold hover:text-charcoal-black shadow-lg">
                 Logout
             </button>
         </form>

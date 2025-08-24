@@ -42,8 +42,11 @@ class MakeBookingForm(forms.ModelForm):
 
     def clean_time(self):
         selected_time = self.cleaned_data['time']
-        if selected_time < dt_time(hour=12) or selected_time > dt_time(hour=22):
-            raise forms.ValidationError("Booking time must be between 10:00 and 22:00.")
+        if selected_time < dt_time(hour=12) or selected_time > dt_time(
+                hour=22):
+            raise forms.ValidationError(
+                "Booking time must be between 10:00 and 22:00."
+                )
         return selected_time
 
 
@@ -92,6 +95,9 @@ class UpdateBookingForm(forms.ModelForm):
 
     def clean_time(self):
         selected_time = self.cleaned_data['time']
-        if selected_time < dt_time(hour=12) or selected_time > dt_time(hour=22):
-            raise forms.ValidationError("Booking time must be between 10:00 and 22:00.")
+        if selected_time < dt_time(hour=12) or selected_time > dt_time(
+                hour=22):
+            raise forms.ValidationError(
+                "Booking time must be between 10:00 and 22:00."
+                )
         return selected_time

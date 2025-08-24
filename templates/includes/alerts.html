@@ -1,3 +1,14 @@
-<div class="alert alert-success" role="alert">
-  {{ message }}
-</div>
+{% if messages %}
+    <div class="space-y-2">
+        {% for message in messages %}
+            <div class="alert 
+                        {% if message.tags == 'success' %}alert-success{% endif %}
+                        {% if message.tags == 'error' %}alert-error{% endif %}
+                        {% if message.tags == 'warning' %}alert-warning{% endif %}
+                        {% if message.tags == 'info' %}alert-info{% endif %}
+                        shadow-lg rounded-xl">
+                <span>{{ message }}</span>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}

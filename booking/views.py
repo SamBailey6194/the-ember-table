@@ -3,8 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-from django.http import JsonResponse
-from .models import Booking, Customer
+from .models import Booking
 from .forms import MakeBookingForm, UpdateBookingForm
 
 
@@ -30,15 +29,14 @@ def make_booking(request):
             booking = form.save(commit=False)
             booking.customer = request.user.customer
             booking.save()
-
-            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-                return JsonResponse(
-                    {'reference_code': str(booking.reference_code)}
-                    )
-
-            return redirect(
-                'booking:success', reference_code=booking.reference_code
+            messages.success(
+                request,
+                f"Booking {booking.reference_code} created successfully"
                 )
+            return redirect('booking:booking_page')
+        else:
+            messages.error(request, "Invalid booking data")
+            return redirect('booking:booking_page')
     else:
         form = MakeBookingForm()
 
@@ -56,26 +54,12 @@ def cancel_booking(request):
     reference_code = request.POST.get('reference_code')
     try:
         booking = Booking.objects.get(
-            reference_code=reference_code,
-            customer=request.user.customer
-        )
+            reference_code=reference_code, customer=request.user.customer
+            )
         booking.status = 'cancelled'
         booking.save()
-
-        if request.headers.get("x-requested-with") == "XMLHttpRequest":
-            return JsonResponse({
-                "success": True,
-                "reference_code": reference_code,
-                "status": booking.get_status_display(),
-            })
-
         messages.success(request, "Booking cancelled successfully")
     except Booking.DoesNotExist:
-        if request.headers.get("x-requested-with") == "XMLHttpRequest":
-            return JsonResponse(
-                {"success": False, "error": "Invalid booking reference"},
-                status=404
-            )
         messages.error(request, "Invalid booking reference")
 
     return redirect('user:members_dashboard')
@@ -84,32 +68,32 @@ def cancel_booking(request):
 @login_required
 def update_booking(request, booking_id):
     try:
-        customer = Customer.objects.get(user=request.user)
-    except Customer.DoesNotExist:
-        return JsonResponse({'error': 'Customer not found'}, status=404)
-
-    try:
-        booking = Booking.objects.get(id=booking_id, customer=customer)
+        booking = Booking.objects.get(
+            id=booking_id, customer=request.user.customer
+            )
     except Booking.DoesNotExist:
-        return JsonResponse({'error': 'Booking not found'}, status=404)
+        messages.error(request, "Booking not found")
+        return redirect('user:members_dashboard')
 
-    if request.method == "POST":
+    if request.method == 'POST':
         form = UpdateBookingForm(request.POST, instance=booking)
         if form.is_valid():
             form.save()
-            return JsonResponse(
-                {'success': True, 'reference_code': booking.reference_code}
-            )
+            messages.success(
+                request,
+                f"Booking {booking.reference_code} updated successfully"
+                )
         else:
-            return JsonResponse(
-                {'error': 'Invalid form data', 'errors': form.errors},
-                status=400
-            )
+            messages.error(request, "Invalid data. Please check your input.")
+        return redirect('user:members_dashboard')
     else:
         form = UpdateBookingForm(instance=booking)
-        return render(request, "include/booking_update_modal.html", {
-            "form": form, "booking": booking
-            })
+
+    return render(
+        request,
+        'include/booking_update_modal.html',
+        {'form': form, 'booking': booking}
+        )
 
 
 @login_required
