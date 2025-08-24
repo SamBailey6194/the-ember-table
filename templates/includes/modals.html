@@ -3,7 +3,7 @@
     <h3 class="text-4xl font-bold text-molten-gold mb-6 text-center">Login</h3>
     <form method="post" action="{% url 'user:custom_login' %}" class="space-y-3">
         {% csrf_token %}
-        <input type="hidden" name="next" value="{{ next_url }}">
+        <input type="hidden" name="next" value="{{ next_url|default:dashboard_url }}">
         <div>
             <input type="text" name="login" placeholder="Username or Email" class="input input-bordered w-full" required />
         </div>

@@ -15,7 +15,7 @@ def members_info(request):
     """
     context = {
         'dashboard_url': reverse('user:members_dashboard'),
-        'next_url': request.GET.get('next', request.path)
+        'next_url': request.GET.get('next', reverse('user:members_dashboard'))
     }
     return render(request, 'user/members_info.html', context)
 
@@ -75,10 +75,10 @@ def custom_login(request):
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
-            return redirect(resolve_url(next_url))
+            return redirect(next_url)
         else:
             messages.error(request, "Invalid credentials")
-            return redirect(resolve_url(next_url))
+            return redirect(next_url)
 
     return redirect(reverse('user:members_info'))
 
@@ -103,7 +103,10 @@ def members_dashboard(request):
     """
     try:
         customer = Customer.objects.get(user=request.user)
-        bookings = Booking.objects.filter(customer=customer).order_by(
+        bookings = Booking.objects.filter(
+            customer=customer,
+            status__in=['pending', 'confirmed', 'unavailable']
+        ).order_by(
             'date', 'time'
             )
     except Customer.DoesNotExist:

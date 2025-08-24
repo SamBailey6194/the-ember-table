@@ -57,6 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    if (updateForm) {
+        updateForm.addEventListener('submit', () => {
+            updateModal.close();
+        });
+    }
+
     const updateCancelBtn = document.getElementById('update-cancel-btn');
     if (updateCancelBtn) {
         updateCancelBtn.addEventListener('click', () => updateModal.close());

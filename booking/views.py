@@ -89,11 +89,7 @@ def update_booking(request, booking_id):
     else:
         form = UpdateBookingForm(instance=booking)
 
-    return render(
-        request,
-        'include/booking_update_modal.html',
-        {'form': form, 'booking': booking}
-        )
+    return redirect('user:members_dashboard')
 
 
 @login_required
