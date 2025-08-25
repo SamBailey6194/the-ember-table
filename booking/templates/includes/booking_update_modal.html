@@ -1,28 +1,57 @@
+{# Update booking modal form #}
 <dialog id="update-booking-modal" class="modal">
-    <div class="modal-box">
-        <h3 class="font-bold text-lg mb-4">Update Booking</h3>
-        <form id="update-booking-form" method="post" action="{% url 'booking:update' booking.id %}">
-            {% csrf_token %}
-            <input type="hidden" name="reference_code" value="">
-            <input type="hidden" name="booking_id" value="">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg mb-4">Update Booking</h3>
+    <form
+      id="update-booking-form"
+      method="post"
+      action="{% url 'booking:update' booking.id %}"
+    >
+      {% csrf_token %}
+      <input type="hidden" name="reference_code" value="" />
+      <input type="hidden" name="booking_id" value="" />
 
-            <label class="block mb-2">Date:</label>
-            <input type="date" name="date" class="input input-bordered w-full mb-4" value="">
+      <label class="block mb-2">Date:</label>
+      <input
+        type="date"
+        name="date"
+        class="input input-bordered w-full mb-4"
+        value=""
+      />
 
-            <label class="block mb-2">Time:</label>
-            <input type="time" name="time" class="input input-bordered w-full mb-4" value="">
+      <label class="block mb-2">Time:</label>
+      <input
+        type="time"
+        name="time"
+        class="input input-bordered w-full mb-4"
+        value=""
+      />
 
-            <label class="block mb-2">Party Size:</label>
-            <input type="number" name="party_size" min="1" max="20" class="input input-bordered w-full mb-4" value="">
+      <label class="block mb-2">Party Size:</label>
+      <input
+        type="number"
+        name="party_size"
+        min="1"
+        max="20"
+        class="input input-bordered w-full mb-4"
+        value=""
+      />
 
-            <div class="modal-action">
-                <button type="submit" class="btn w-32 bg-ash-gray hover:bg-molten-gold hover:text-charcoal">
-                    Update
-                </button>
-                <button type="button" class="btn w-32 bg-ash-gray hover:bg-molten-gold hover:text-charcoal" id="update-cancel-btn">
-                    Close
-                </button>
-            </div>
-        </form>
-    </div>
+      <div class="modal-action">
+        <button
+          type="submit"
+          class="btn w-32 bg-ash-gray hover:bg-molten-gold hover:text-charcoal"
+        >
+          Update
+        </button>
+        <button
+          type="button"
+          class="btn w-32 bg-ash-gray hover:bg-molten-gold hover:text-charcoal"
+          id="update-cancel-btn"
+        >
+          Close
+        </button>
+      </div>
+    </form>
+  </div>
 </dialog>

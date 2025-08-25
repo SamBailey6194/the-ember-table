@@ -1,4 +1,7 @@
-{% extends "base.html" %} {% block content %}
+{# Members info page for non authenticated users #}
+{% extends "base.html" %}
+{% block content %}
+{# Top section of page #}
 <section class="relative overflow-hidden">
   {% comment %} Animated ember gradient behind everything {% endcomment %}
   <div
@@ -18,11 +21,12 @@
       Become a member to enjoy exclusive deals and manage your bookings online.
     </p>
 
+    {% comment %} Load the sign up and login buttons from auth_buttons.html {% endcomment %}
     {% include "includes/auth_buttons.html" with extra_classes="mt-4" %}
-
   </div>
 </section>
 
+{# Advertise the members benefits #}
 <section class="py-12">
   <div
     class="mx-auto px-4 lg:px-20 xl:px-28 2xl:px-48 flex flex-col items-center"
@@ -33,7 +37,7 @@
     <div class="flex justify-center">
       <div
         class="max-w-md w-full text-center bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition"
-        >
+      >
         <ul class="list-disc list-inside space-y-3 mb-6">
           <li>Unlock priority booking and skip the waitlist</li>
           <li>Enjoy members-only offers and special discounts</li>
@@ -41,8 +45,8 @@
           <li>Be the first to know about new menus and events</li>
         </ul>
 
+        {% comment %} Load the sign up and login buttons from auth_buttons.html {% endcomment %}
         {% include "includes/auth_buttons.html" with extra_classes="mt-4" next_url='dashboard_url' %}
-
       </div>
     </div>
   </div>

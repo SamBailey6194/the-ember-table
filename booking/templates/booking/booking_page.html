@@ -1,5 +1,7 @@
-{% extends "base.html" %} {% block content %}
-
+{# Booking page #}
+{% extends "base.html" %}
+{% block content %} 
+{# Top section of booking page #}
 <section class="relative overflow-hidden">
   {% comment %} Animated ember gradient behind everything {% endcomment %}
   <div
@@ -7,7 +9,7 @@
   ></div>
   <div class="mx-auto mt-4 px-4 py-20 text-center relative z-10">
     <h1 class="text-5xl md:text-6xl font-bold text-charcoal-black mb-6">
-      Book 
+      Book
       <span
         class="text-molten-gold text-outline-shadow"
         style="--outline-color: var(--color-charcoal-black)"
@@ -15,35 +17,53 @@
       >
     </h1>
     <p class="text-lg md:text-xl text-charcoal-black mb-8 max-w-2xl mx-auto">
-      Once you’re signed up and logged in, you can quickly check availability and secure your booking in just a few clicks!
+      Once you’re signed up and logged in, you can quickly check availability
+      and secure your booking in just a few clicks!
     </p>
 
-    {% if user.is_authenticated %}
-    <button 
-          type="button"
-          class="btn w-32 mx-auto mt-3 text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg"
-          onclick="document.getElementById('make-booking-modal').showModal()"
-        >
-          Book
-        </button>
-    {% else %}
+    {% if user.is_authenticated %} 
+    {% comment %} 
+    Booking button only shown once
+    a user is logged in and opens bookign form 
+    {% endcomment %}
+    <button
+      type="button"
+      class="btn w-32 mx-auto mt-3 text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg"
+      onclick="document.getElementById('make-booking-modal').showModal()"
+    >
+      Book
+    </button>
+    {% else %} 
+
+    {% comment %} If user isn't logged in load
+    the sign up and login buttons from auth_buttons.html
+    {% endcomment %}
 
     {% include "includes/auth_buttons.html" with extra_classes="mt-4" next_url=request.get_full_path %}
-
     {% endif %}
   </div>
 </section>
 
+{# Bottom section of booking page that is dynamic #}
 <section class="relative overflow-hidden mx-auto py-10 px-10">
   <div class="mx-auto px-4 lg:px-20 xl:px-28 2xl:px-48">
     {% if user.is_authenticated %}
+    {% comment %} 
+    If user is logged in show the booking and manage booking buttons
+    {% endcomment %}
     <div class="grid md:grid-cols-2 gap-8">
-      <div class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col">
+      {% comment %} Booking card that encourages users to book {% endcomment %}
+        <div
+        class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col"
+      >
         <div class="flex-grow">
           <h3 class="text-xl font-bold text-molten-gold mb-3">Book a Table</h3>
-          <p>Reserve your preferred time and table quickly and easily using our booking form below.</p>
+          <p>
+            Reserve your preferred time and table quickly and easily using our
+            booking form below.
+          </p>
         </div>
-        <button 
+        <button
           type="button"
           class="btn w-32 mx-auto mt-3 text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg"
           onclick="document.getElementById('make-booking-modal').showModal()"
@@ -51,26 +71,51 @@
           Book
         </button>
       </div>
-      <div class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col">
+      {% comment %} Manage booking card that takes user to list of their bookings {% endcomment %}
+      <div
+        class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col"
+      >
         <div class="flex-grow">
-          <h3 class="text-xl font-bold text-molten-gold mb-3">Manage Booking</h3>
-          <p>Access your bookings, update or cancel your reservations, and manage your account efficiently through your Members Dashboard.</p>
+          <h3 class="text-xl font-bold text-molten-gold mb-3">
+            Manage Booking
+          </h3>
+          <p>
+            Access your bookings, update or cancel your reservations, and manage
+            your account efficiently through your Members Dashboard.
+          </p>
         </div>
-        <a href="{% url 'user:members_dashboard' %}" class="btn w-32 mx-auto mt-3 text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg">
+        <a
+          href="{% url 'user:members_dashboard' %}"
+          class="btn w-32 mx-auto mt-3 text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg"
+        >
           Dashboard
         </a>
       </div>
     </div>
     {% else %}
+    {% comment %} 
+    If user isn't logged in show the sign up and login buttons
+    {% endcomment %}
     <div class="flex justify-center">
-      <div class="max-w-md w-full text-center bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition">
-          <h3 class="text-2xl font-semibold text-molten-gold mb-2">Members Club</h3>
-          <p class="mb-6">Join our Members Club to access exclusive deals, manage your bookings, and enjoy special perks designed to make every visit exceptional. Sign up or login below to start enjoying the benefits today.</p>
+      <div
+        class="max-w-md w-full text-center bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition"
+      >
+        <h3 class="text-2xl font-semibold text-molten-gold mb-2">
+          Members Club
+        </h3>
+        <p class="mb-6">
+          Join our Members Club to access exclusive deals, manage your bookings,
+          and enjoy special perks designed to make every visit exceptional. Sign
+          up or login below to start enjoying the benefits today.
+        </p>
+        {% comment %} If user isn't logged in load
+        the sign up and login buttons from auth_buttons.html
+        {% endcomment %}
         {% include "includes/auth_buttons.html" with extra_classes="mt-3" next_url=request.get_full_path %}
       </div>
     </div>
     {% endif %}
-
+    {% comment %} Links template to the booking and success modals {% endcomment %}
     {% include "includes/make_booking_modal.html" %}
     {% include "includes/success_modal.html" %}
   </div>
