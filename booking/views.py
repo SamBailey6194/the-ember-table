@@ -62,18 +62,16 @@ def make_booking(request):
             booking = form.save(commit=False)
             booking.customer = request.user.customer
             booking.save()
-            messages.success(
-                request,
-                f"Booking {booking.reference_code} created successfully"
+            return redirect(
+                'booking:success', reference_code=booking.reference_code
                 )
-            return redirect('booking:booking_page')
         else:
             messages.error(request, "Invalid booking data")
             return redirect('booking:booking_page')
     else:
         form = MakeBookingForm()
 
-    return render(request, 'include/make_booking_modal.html', {'form': form})
+    return render(request, 'includes/make_booking_modal.html', {'form': form})
 
 
 @login_required
@@ -91,7 +89,7 @@ def booking_cancelled(request):
     **Template:**
     :template:`include/booking_cancelled_modal.html`
     """
-    return render(request, 'include/booking_cancelled_modal.html')
+    return render(request, 'includes/booking_cancelled_modal.html')
 
 
 @login_required
@@ -185,6 +183,7 @@ def success(request, reference_code):
     **Template:**
     :template:`include/success_modal.html`
     """
-    return render(request, 'include/success_modal.html', {
-        'reference_code': reference_code
+    return render(request, 'booking/booking_page.html', {
+        'reference_code': reference_code,
+        'show_success_modal': True,
     })

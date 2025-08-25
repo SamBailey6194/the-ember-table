@@ -6,14 +6,15 @@
   <h3 class="text-2xl font-bold mb-4 text-center text-molten-gold">
     Booking Successful!
   </h3>
-  <p class="text-center mb-6">Your booking has been confirmed.</p>
+  <p class="text-center mb-6">Your booking has been sent to the restaurant.
+  <br>They will confirm if it is available.</p>
   <p class="text-center font-semibold mb-6">
     Reference Code: <span class="text-molten-gold">{{ reference_code }}</span>
   </p>
   <div class="text-center">
     <a
       href="{% url 'user:members_dashboard' %}"
-      class="btn bg-ash-gray hover:bg-molten-gold hover:text-charcoal-black w-32"
+      class="btn mx-2 bg-ash-gray hover:bg-molten-gold hover:text-charcoal-black w-32"
     >
       Manage
     </a>
