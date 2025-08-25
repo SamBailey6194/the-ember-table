@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login, logout, get_backends
+from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -11,7 +11,17 @@ from django.shortcuts import resolve_url
 
 def members_info(request):
     """
-    Page showing member info with login/signup modals.
+    Renders the members info page showing login and signup buttons.
+    When clicked they load the signup and login modals.
+
+    **Context**
+    ``dashboard_url``
+        The URL of :view:`user.members_dashboard` for redirection after login.
+    ``next_url``
+        The `next` URL parameter if provided, otherwise the dashboard.
+
+    **Template:**
+    :template:`user/members_info.html`
     """
     context = {
         'dashboard_url': reverse('user:members_dashboard'),
@@ -22,8 +32,17 @@ def members_info(request):
 
 def custom_signup(request):
     """
-    Handle signup from modal with validation.
-    Redirects to 'next' if provided, otherwise dashboard.
+    Handles user signup from a modal form.
+
+    Validates passwords and checks username availability.
+    On success, creates a :model:`auth.User` and logs them in.
+    Redirects to `next` if provided, otherwise to the dashboard.
+
+    **Context**
+    None (all handled internally)
+
+    **Template:**
+    Redirect only (no direct template rendering).
     """
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -46,24 +65,25 @@ def custom_signup(request):
             username=username, email=email, password=password1
             )
 
-        backend = get_backends()[0]
-        login(
-            request, user, backend=f"{backend.__module__}.{
-                backend.__class__.__name__
-                }"
-            )
-
+        login(request, user)
         return redirect(resolve_url(next_url))
 
-    return redirect(
-        resolve_url(request.POST.get('next') or reverse('user:members_info'))
-        )
+    return redirect(reverse('user:members_info'))
 
 
 def custom_login(request):
     """
-    Handle login from modal.
-    Redirects to 'next' if provided, otherwise dashboard.
+    Handles user login from a modal form.
+
+    Authenticates :model:`auth.User` with provided credentials.
+    Redirects to `next` if provided, otherwise the dashboard.
+    On failure, flashes error messages and redirects back.
+
+    **Context**
+    None (all handled internally)
+
+    **Template:**
+    Redirect only (no direct template rendering).
     """
     if request.method == 'POST':
         username = request.POST.get('login')
@@ -86,8 +106,18 @@ def custom_login(request):
 @login_required
 def custom_logout(request):
     """
-    Logs out the user.
-    Redirects to 'next' if provided, otherwise home page.
+    A protected view for only those who are logged in.
+
+    Logs out the current user.
+
+    If `POST`, invalidates the session.
+    Redirects to `next` if provided, otherwise home.
+
+    **Context**
+    None
+
+    **Template:**
+    Redirect only (no direct template rendering).
     """
     if request.method == 'POST':
         logout(request)
@@ -97,9 +127,25 @@ def custom_logout(request):
 @login_required
 def members_dashboard(request):
     """
-    Private dashboard for logged-in members showing all bookings.
-    Any update or cancellation is handled in their respective views,
-    with messages displayed on redirect.
+    A protected view for only those who are logged in.
+
+    Displays the private dashboard for logged-in members.
+
+    Shows all :model:`booking.Booking` objects for the logged-in
+    :model:`booking.Customer`, excluding cancelled bookings.
+    Provides :form:`booking.CancelBookingForm` and
+    :form:`booking.UpdateBookingForm` for inline actions.
+
+    **Context**
+    ``bookings``
+        A queryset of the user’s active bookings.
+    ``cancel_form``
+        An instance of :form:`booking.CancelBookingForm`.
+    ``update_form``
+        An instance of :form:`booking.UpdateBookingForm`.
+
+    **Template:**
+    :template:`user/members_dashboard.html`
     """
     try:
         customer = Customer.objects.get(user=request.user)
