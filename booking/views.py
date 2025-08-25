@@ -62,11 +62,27 @@ def make_booking(request):
             booking = form.save(commit=False)
             booking.customer = request.user.customer
             booking.save()
-            return redirect(
-                'booking:success', reference_code=booking.reference_code
-                )
+            messages.success(
+                request,
+                "Booking Successful!<br>"
+                "<br>"
+                f"Reference Code: {booking.reference_code}.<br>"
+                "<br>"
+                "Your booking has been sent to the restaurant.<br>"
+                "They will confirm availability.<br>"
+                "<br>"
+                "You can manage your bookings on your dashboard."
+            )
+            return redirect('user:members_dashboard')
         else:
-            messages.error(request, "Invalid booking data")
+            messages.error(
+                request,
+                "Please ensure your date and time are future dates and "
+                "times.<br>"
+                "<br>"
+                "We also only allow up to a maximum of 20 people for party "
+                "size."
+                )
             return redirect('booking:booking_page')
     else:
         form = MakeBookingForm()
@@ -165,25 +181,3 @@ def update_booking(request, booking_id):
         form = UpdateBookingForm(instance=booking)
 
     return redirect('user:members_dashboard')
-
-
-@login_required
-def success(request, reference_code):
-    """
-    A protected view for only those who are logged in.
-
-    Renders a success modal after booking confirmation.
-
-    Displays the given booking reference code.
-
-    **Context**
-    ``reference_code``
-        The reference code of the successfully created/updated booking.
-
-    **Template:**
-    :template:`include/success_modal.html`
-    """
-    return render(request, 'booking/booking_page.html', {
-        'reference_code': reference_code,
-        'show_success_modal': True,
-    })

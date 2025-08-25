@@ -62,6 +62,10 @@ def custom_signup(request):
             )
 
         login(request, user)
+        messages.success(request, f"Welcome {user.username}!<br>"
+                         "<br"
+                         "You can manage your bookings in the dashboard or "
+                         "make another booking.")
         return redirect(resolve_url(next_url))
 
     return redirect(reverse('user:members_info'))
@@ -91,9 +95,17 @@ def custom_login(request):
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
+            messages.success(
+                request,
+                f"Welcome back {user.username}!<br>"
+                "<br>"
+                "You can manage your bookings in the dashboard or make "
+                "another booking."
+                )
             return redirect(next_url)
         else:
-            messages.error(request, "Invalid credentials")
+            messages.error(request, "Invalid credentials. Please check your "
+                           "username and password.")
             return redirect(next_url)
 
     return redirect(reverse('user:members_info'))
@@ -117,6 +129,7 @@ def custom_logout(request):
     """
     if request.method == 'POST':
         logout(request)
+        messages.success(request, "You have successfully logged out.")
     return redirect('/')
 
 

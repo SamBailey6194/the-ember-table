@@ -145,9 +145,6 @@
         {% endif %}
       </ul>
     </nav>
-
-    {% comment %} Linking templates to the alerts.html {% endcomment %} 
-    {% include 'includes/alerts.html' %} 
     
     {# Main section that extends to the other pages #}
     <main>
@@ -202,9 +199,10 @@
     </footer>
 
     {# Link to js files #}
+    <script src="{% static 'js/alert.js' %}"></script>
     <script src="{% static 'js/bookingModals.js' %}"></script>
     <script src="{% static 'js/navbar.js' %}"></script>
     <script src="{% static 'js/modalAuth.js' %}"></script>
-    
+
   </body>
 </html>
