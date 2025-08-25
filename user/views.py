@@ -15,19 +15,15 @@ def members_info(request):
     When clicked they load the signup and login modals.
 
     **Context**
-    ``dashboard_url``
-        The URL of :view:`user.members_dashboard` for redirection after login.
-    ``next_url``
-        The `next` URL parameter if provided, otherwise the dashboard.
+    Provided globally by ``global_modal_urls``:
+    - ``dashboard_url`` → The URL of :view:`user.members_dashboard`.
+    - ``next_url`` → The `next` URL parameter if provided, otherwise the
+        dashboard.
 
     **Template:**
     :template:`user/members_info.html`
     """
-    context = {
-        'dashboard_url': reverse('user:members_dashboard'),
-        'next_url': request.GET.get('next', reverse('user:members_dashboard'))
-    }
-    return render(request, 'user/members_info.html', context)
+    return render(request, 'user/members_info.html')
 
 
 def custom_signup(request):
