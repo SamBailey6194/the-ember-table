@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Get modal elements
+  /**
+   * Authentication modals: login & signup
+   * - Each modal can be opened, closed, or switched between.
+   * - The `next` field is dynamically set so users return to the correct page after login/signup.
+   */
   const loginModal = document.getElementById("login-modal");
   const signupModal = document.getElementById("signup-modal");
   const closeLoginBtn = document.getElementById("close-login");
