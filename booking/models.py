@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
 import uuid
 
 
@@ -8,14 +9,23 @@ class Customer(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE
         )
-    phone = models.CharField(max_length=20)
+    phone = models.CharField(
+        max_length=15,
+        validators=[
+            RegexValidator(
+                regex=r'(^0\d{10}$)|(^\+?\d{7,15}$)',
+                message="Enter a valid UK 11-digit number "
+                "or an international number starting with +",
+            )
+        ]
+        )
     email = models.EmailField()
     customer_fname = models.CharField(max_length=100)
     customer_lname = models.CharField(max_length=100)
 
     def __str__(self):
-        if self.username:
-            return f'{self.username.username}'
+        if self.user:
+            return f'{self.user.username}'
         return f'{self.customer_fname} {self.customer_lname} (Guest)'
 
 

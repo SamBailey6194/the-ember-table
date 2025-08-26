@@ -41,7 +41,17 @@
             <input type="text" name="username" placeholder="Username" class="input input-bordered w-full" required />
         </div>
         <div>
+            <input type="text" name="customer_fname" placeholder="First Name" class="input input-bordered w-full" required />
+        </div>
+        <div>
+            <input type="text" name="customer_lname" placeholder="Last Name" class="input input-bordered w-full" required />
+        </div>
+        <div>
             <input type="email" name="email" placeholder="Email" class="input input-bordered w-full" required />
+        </div>
+        <div>
+            <input type="tel" name="phone" placeholder="Phone Number" pattern="(^0\d{10}$)|(^\+?\d{7,15}$)"
+            title="Enter a UK 11-digit number starting with 0, or an international number with +" class="input input-bordered w-full" required />
         </div>
         <div>
             <input type="password" name="password1" placeholder="Password" class="input input-bordered w-full" required />

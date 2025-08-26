@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from booking.models import Customer, Booking
 from booking.forms import CancelBookingForm, UpdateBookingForm
 from django.shortcuts import resolve_url
@@ -31,7 +32,10 @@ def custom_signup(request):
     Handles user signup from a modal form.
 
     Validates passwords and checks username availability.
-    On success, creates a :model:`auth.User` and logs them in.
+    On success:
+        - creates a :model:`auth.User`
+        - creates a :model:`booking.Customer`
+        - logs them in.
     Redirects to `next` if provided, otherwise to the dashboard.
 
     **Context**
@@ -42,7 +46,10 @@ def custom_signup(request):
     """
     if request.method == 'POST':
         username = request.POST.get('username')
-        email = request.POST.get('email')
+        first_name = request.POST.get('customer_fname') or ""
+        last_name = request.POST.get('customer_lname') or ""
+        email = request.POST.get('email') or ""
+        phone = request.POST.get('phone') or ""
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
         next_url = request.POST.get('next') or reverse(
@@ -58,12 +65,33 @@ def custom_signup(request):
             return redirect(resolve_url(next_url))
 
         user = User.objects.create_user(
-            username=username, email=email, password=password1
+            username=username,
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            password=password1
             )
+
+        customer = Customer(
+            user=user,
+            customer_fname=first_name,
+            customer_lname=last_name,
+            email=email,
+            phone=phone
+        )
+        try:
+            customer.full_clean()
+            customer.save()
+        except ValidationError as e:
+            user.delete()
+            messages.error(request, f"Invalid phone number: {
+                e.message_dict.get('phone', e)}"
+                )
+            return redirect(resolve_url(next_url))
 
         login(request, user)
         messages.success(request, f"Welcome {user.username}!<br>"
-                         "<br"
+                         "<br>"
                          "You can manage your bookings in the dashboard or "
                          "make another booking.")
         return redirect(resolve_url(next_url))

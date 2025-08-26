@@ -66,6 +66,9 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
+LOGIN_URL = "/members/custom-login/"
+LOGIN_URL_REDIRECT = "/members/dashboard/"
+
 TAILWIND_APP_NAME = 'theme'
 
 MIDDLEWARE = [
