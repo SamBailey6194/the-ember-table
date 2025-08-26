@@ -1,0 +1,1 @@
+web: gunicorn the_ember_table.wsgi --log-file -
