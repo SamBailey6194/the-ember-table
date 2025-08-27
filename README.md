@@ -61,7 +61,7 @@ Below are the features for the website and at the end is listed any features tha
 
     ![Screen Navbar unauthenticated User](docs/images/screen_navbar_unauthenticated.png)
 
-    ![Screen Navbar authenticated User](XXX)
+    ![Screen Navbar authenticated User](docs/images/screen_navbar_authenticated.png)
 
   - __Mobile Navbar__
 
@@ -81,15 +81,17 @@ Below are the features for the website and at the end is listed any features tha
 
     ![Mobile Navbar unauthenticated User](docs/images/mobile_navbar_dropdown_unauthenticated.png)
 
-    ![Mobile Navbar authenticated User](XXX)
+    ![Mobile Navbar authenticated User](docs/images/mobile_navbar_dropdown_authenticated.png)
 
   - __Logout Form Modal__
 
-    - This
+    - When the user clicks logout a logout modal appears asking them to confirm.
+    - If they click Cancel it closes and they stay on the same page.
+    - If they click Logout they are logged out and the homepage is loaded with a success message.
     
-    ![Logout Form Modal](XXX)
+    ![Logout Form Modal](docs/images/logout_confirm_modal.png)
 
-    ![Logout Success Modal](XXX)
+    ![Logout Success Modal](docs/images/logout_success.png)
 
 - __Footer__
 
@@ -131,10 +133,11 @@ Below are the features for the website and at the end is listed any features tha
     - When the user is unauthenticated it has the Sign Up and Login buttons.
     - Sign Up button opens the Sign Up modal.
     - Login button opens the Login modal.
+    - When the user is authenticated you see a book button, when clicked opens the booking form modal.
     
     ![Bookings Header unauthenticated user](docs/images/bookings_header.png)
 
-    ![Bookings Header authenticated user](XXX)
+    ![Bookings Header authenticated user](docs/images/bookings_header_authenticated.png)
 
   - __Bookings Body__
 
@@ -142,20 +145,26 @@ Below are the features for the website and at the end is listed any features tha
     - When the user is unauthenticated it has the Sign Up and Login buttons.
     - Sign Up button opens the Sign Up modal.
     - Login button opens the Login modal.
+    - When the user is authenticated you see two cards one for booking and one for the members dashboard.
+    - Booking one has a book button, when clicked opens the booking form modal.
+    - Members dashboard one has a Dashboard button, when clicked takes them to their dashboard showing their bookings.
     
     ![Bookings Body unauthenticated user](docs/images/bookings_body.png)
 
-    ![Bookings Body authenticated user](XXX)
+    ![Bookings Body authenticated user](docs/images/bookings_body_authenticated.png)
 
   - __Bookings Form Modal__
 
-    - This
+    - The form has three fields required, date, time and party size.
+    - The username, first name, last name, email and phone number is assigned knowing the user is logged in
+    - If any of the fields are not filled it it shows an error askign them to fill it in
+    - If the form is submitted fully filled out, but the date is a passed date and/or the time is not between 12pm and 10pm and/or the party size is below 1 or above 20 an error message is displayed and they need to open the form again.
     
-    ![Bookings Form Modal](XXX)
+    ![Bookings Form Modal](docs/images/booking_form_modal.png)
 
-    ![Bookings Success Modal](XXX)
+    ![Bookings Success Modal](docs/images/booking_form_success.png)
 
-    ![Bookings Error Modal](XXX)
+    ![Bookings Error Modal](docs/images/booking_form_error.png)
 
 - __Members__
 
@@ -168,7 +177,7 @@ Below are the features for the website and at the end is listed any features tha
     
     ![Members Header unauthenticated user](docs/images/members_header_unauthenticated.png)
 
-    ![Members Header authenticated user](XXX)
+    ![Members Header authenticated user](docs/images/members_header_authenticated.png)
 
   - __Members Body__
 
@@ -176,50 +185,63 @@ Below are the features for the website and at the end is listed any features tha
     - When the user is unauthenticated it has the Sign Up and Login buttons.
     - Sign Up button opens the Sign Up modal.
     - Login button opens the Login modal.
+    - If the user is authenticated with no bookings the card displayed is one to encourage them to book, clicking book now takes them to the booking page.
+    - If the user is authenticated with bookings that are not cancelled each booking is displayed on an individual card with the date, time, party size and the uuid generated reference code.
+    - Each card also has a cancel and update button.
+    - Clicking cancel opens a cancel confirmation modal.
+    - Clicking update opens a update form modal with the date, time and party size pre filled out.
     
     ![Members Body unauthenticated user](docs/images/members_body_unauthenticated.png)
 
-    ![Members Body authenticated user with no bookings](XXX)
+    ![Members Body authenticated user with no bookings](docs/images/dashboard_authenticated_without_bookings.png)
 
-    ![Members Body authenticated user with bookings](XXX)
+    ![Members Body authenticated user with bookings](docs/images/dashboard_authenticated_has_bookings.png)
 
   - __Cancel Form Modal__
 
-    - This
+    - Displays a modal with a Yes and No.
+    - If yes clicked and the booking can be found in the database a success message is shown, the dashboard is reloaded and the cancelled booking is removed from the list of bookings.
+    - If no clicked the modal closes and the user sees all their bookings again.
     
-    ![Cancel Form Modal](XXX)
+    ![Cancel Form Modal](docs/images/cancel_form_modal.png)
 
-    ![Cancel Success Modal](XXX)
+    ![Cancel Success Modal](docs/images/cancel_success.png)
 
   - __Update Form Modal__
 
-    - This
+    - Displays a modal with the date, time and party size of the linked booking for the user to edit
+    - Buttons update and close are at the bottom.
+    - If they attempt to change the date, time or party size to a value not allowed they won't being to submit the form.
+    - Clicking update will reload dashboard and show a success message.
     
-    ![Update Form Modal](XXX)
+    ![Update Form Modal](docs/images/update_booking_modal.png)
 
-    ![Update Success Modal](XXX)
-
-    ![Update Error Modal](XXX)
+    ![Update Success Modal](docs/images/update_success.png)
 
   - __Sign Up Form Modal__
 
-    - This
+    - A form with username, first name, last name, email, phone, password and confirm password appears.
+    - All fields must be filled out correctly e.g. if the email doesn't have a @ and url.com it won't be valid.
+    - If the username is taken an error message displays.
+    - If the form is filled out correctly and username is not taken they see a success message and the page reloads.
     
-    ![Sign Up Form Modal](XXX)
+    ![Sign Up Form Modal](docs/images/signup_form_modal.png)
 
-    ![Sign Up Success Modal](XXX)
+    ![Sign Up Success Modal](docs/images/signup_success.png)
 
-    ![Sign Up Error Modal](XXX)
+    ![Sign Up Error Modal](docs/images/signup_error.png)
 
   - __Login Form Modal__
 
-    - This
+    - This form opens and asks for username or email and the password linked to it.
+    - If credentials match what is in the database a success message appears and user is logged in on reloaded page.
+    - If credentials do not match what is in the database an error message appears and user is not logged in on reloaded page.
     
-    ![Login Form Modal](XXX)
+    ![Login Form Modal](docs/images/login_form_modal.png)
 
-    ![Login Success Modal](XXX)
+    ![Login Success Modal](docs/images/login_success.png)
 
-    ![Login Error Modal](XXX)
+    ![Login Error Modal](docs/images/login_error.png)
 
 ### Features Left to Implement
 
