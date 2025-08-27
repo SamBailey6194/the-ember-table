@@ -279,11 +279,13 @@ Please note for the Jest testing there was a need to create html fixture files a
 
 ### Validator Testing 
 
-- Page Speed Insight 
+- Page Speed Insights
+  - You can click the link to see the results from 27th August in the evening.
+  - You can switch between the mobile and desktop results as well.
 
-  - Homepage Mobile
+    - [Homepage results](https://pagespeed.web.dev/analysis/https-the-ember-table-92576ef1108c-herokuapp-com/ew7y38rf5i?form_factor=mobile)
 
-  ![Lighthouse - Homepage](XXX)
+    - []
 
 - HTML
   - No errors were returned when passing through the official W3C Validator, see images below for each page.
