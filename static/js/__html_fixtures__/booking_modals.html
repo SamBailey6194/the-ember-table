@@ -1,0 +1,71 @@
+<!-- Cancel Booking Modal -->
+<dialog id="booking-cancelled-modal" class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg mb-4">Cancel Booking</h3>
+    <p>Are you sure you want to cancel this booking?</p>
+    <div class="modal-action">
+      <form method="post" action="/booking/cancel/">
+        <input type="hidden" name="reference_code" value="" />
+        <button type="submit" class="btn w-32">Yes</button>
+        <button type="button" class="btn w-32" id="close-cancel-btn">No</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<!-- Update Booking Modal -->
+<dialog id="update-booking-modal" class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg mb-4">Update Booking</h3>
+    <form id="update-booking-form" method="post" action="/booking/update/1/">
+      <input type="hidden" name="reference_code" value="" />
+      <input type="hidden" name="booking_id" value="" />
+
+      <label>Date:</label>
+      <input type="date" name="date" value="" />
+
+      <label>Time:</label>
+      <input type="time" name="time" value="" />
+
+      <label>Party Size:</label>
+      <input type="number" name="party_size" min="1" max="20" value="" />
+
+      <div class="modal-action">
+        <button type="submit" class="btn w-32">Update</button>
+        <button type="button" class="btn w-32" id="update-cancel-btn">Close</button>
+      </div>
+    </form>
+  </div>
+</dialog>
+
+<!-- Make Booking Modal -->
+<dialog id="make-booking-modal" class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg mb-4">Make Booking</h3>
+    <form id="make-booking-form" method="post" action="/booking/make/">
+      <label>Date:</label>
+      <input type="date" name="date" value="" />
+
+      <label>Time:</label>
+      <input type="time" name="time" value="" />
+
+      <label>Party Size:</label>
+      <input type="number" name="party_size" min="1" max="20" value="" />
+
+      <div class="modal-action">
+        <button type="submit" class="btn w-32">Book</button>
+        <button type="button" class="btn w-32" id="make-cancel-btn">Close</button>
+      </div>
+    </form>
+  </div>
+</dialog>
+
+<!-- Buttons to trigger modals -->
+<button data-ref="12345">Cancel Booking Trigger</button>
+<button class="update-btn"
+        data-booking-id="1"
+        data-reference="ABC123"
+        data-date="2025-08-28"
+        data-time="12:00"
+        data-party-size="4">Update Booking Trigger</button>
+<button onclick="document.getElementById('make-booking-modal').showModal()">Make Booking Trigger</button>
