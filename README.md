@@ -257,6 +257,12 @@ Below are the features for the website and at the end is listed any features tha
 - Provide analytics and reporting for the restaurant to see their customers, how many are users v guests, which menus are more popular, and other KPIs the restaurant wants
 - In the future possibly using AJAX to make some of the form submissions to be more robust
 
+## Lessons Learnt
+
+- For better TDD and BDD focus on writing the relevant tests for that sprint first.
+- Focus on what the project needs first and add extra elements later, e.g I focused on menus too early as shown by commits.
+- Commit more often and more regularly to have concise commit messages.
+
 ## Testing 
 
 The website has been manually and automatically tested.
@@ -271,7 +277,9 @@ Please note for the Jest testing there was a need to create html fixture files a
 
 ### Fixed Bugs
 
-- C
+There were plenty of bugs fixed throughout, however I forgot to keep track of all of them, below are the ones I can remember looking at the commit messages.
+
+- 
 
 ### Unfixed Bugs
 
@@ -291,19 +299,27 @@ Please note for the Jest testing there was a need to create html fixture files a
     - [Members Page Results](https://pagespeed.web.dev/analysis/https-the-ember-table-92576ef1108c-herokuapp-com-members/oevejtur5a?form_factor=mobile)
 
 - HTML
-  - No errors were returned when passing through the official W3C Validator, see images below for each page.
+  - A warning to do with a header without a heading appeared, but that heading is dynamic for the dynamic messages.
 
     - Homepage
       
-    ![W3C validator - Homepage](XXX)
+    ![W3C validator - Homepage](docs/images/homepage_w3.png)
 
-    - Booking Page
+    - Booking Page Unauthenticated User
       
-    ![W3C validator - Booking Page](XXX)
+    ![W3C validator - Booking Page](docs/images/booking_page_unauthenticated_w3.png)
 
-    - Members Page
+    - Booking Page Authenticated User
       
-    ![W3C validator - Members](XXX)
+    ![W3C validator - Booking Page](docs/images/booking_page_authenticated_w3.png)
+
+    - Members Page Unauthenticated User
+      
+    ![W3C validator - Members](docs/images/members_page_unauthenticated_w3.png)
+
+    - Members Page Authenticated User
+      
+    ![W3C validator - Members](docs/images/members_page_authenticated_w3.png)
 
 - CSS
   - Due to using Django-Tailwind the Jigsaw validator had errors. 
