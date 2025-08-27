@@ -262,6 +262,7 @@ Below are the features for the website and at the end is listed any features tha
 - For better TDD and BDD focus on writing the relevant tests for that sprint first.
 - Focus on what the project needs first and add extra elements later, e.g I focused on menus too early as shown by commits.
 - Commit more often and more regularly to have concise commit messages.
+- Note down in the README the bugs and how I fixed them as they come up to help for future development.
 
 ## Testing 
 
@@ -279,7 +280,17 @@ Please note for the Jest testing there was a need to create html fixture files a
 
 There were plenty of bugs fixed throughout, however I forgot to keep track of all of them, below are the ones I can remember looking at the commit messages.
 
-- 
+- HTML not showing properly due to not having a core app with a home.html file, only had a base.html file
+- When adding custom colours to style.css in the theme/static_src/src I didn't run python manage.py tailwind build and python manage.py tailwind start after they were added into the HTML, as tailwind only compiles the classes used in the style.css linked to the html.
+- Using grid from Tailwind to evenly spread out the cards on different pages as flexbox wasn't giving the look I wanted
+- Use more modern DaisyUI Dialog rather than checkbox which meant each button had to be changed to be button element in HTML not label and input elements for checkbox
+- Add dataset.next to modalAuth.js so that the login and signup buttons load you back to the page you logged in or signed up from
+- Make update and cancel buttons dynamic using js to link them to the booking card they are associated with whereas button to open make booking form is inline as it doesn't need to be as dynamic
+- Change success modal to be included in the in built messages in Django that show a dynamic messaged modal using json to manipulate the html elements by id.
+- Used context_processors.py to create global urls to redirect the login and sign up forms to the correct page once filled out
+- Used regex validation from Django to make the phone number field take only numbers with a focus first approach for UK numbers, but allow international in case a tourist wants to sign up
+
+I am certain there are more but can't remember off the top of my head.
 
 ### Unfixed Bugs
 
