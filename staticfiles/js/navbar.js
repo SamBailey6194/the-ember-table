@@ -3,7 +3,7 @@
  * - Toggles mobile menu visibility.
  * - Handles logout confirmation modal.
  */
-const burgerBtn = document.getElementById('burger-btn');
+const burgerBtn = document.getElementById('menu-toggle');
 const mobileMenu = document.getElementById('mobile-menu');
 const logoutModal = document.getElementById('logout-modal');
 const openLogoutBtns = document.querySelectorAll('[data-open-logout]');

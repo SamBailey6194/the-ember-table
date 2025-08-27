@@ -25,7 +25,7 @@ beforeEach(() => {
 
 describe('navbar.js', () => {
     test('Burger menu toggles mobile menu visibility', () => {
-        const burgerBtn = document.getElementById('burger-btn');
+        const burgerBtn = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
 
         expect(mobileMenu.classList.contains('hidden')).toBe(true);

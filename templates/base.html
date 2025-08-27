@@ -1,4 +1,5 @@
-{# Base template with navbar and footer #} {% load static tailwind_tags %}
+{# Base template with navbar and footer #}
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,8 +7,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    {% comment %} Link to tailwind css file {% endcomment %} {%
-    tailwind_preload_css %} {% tailwind_css %}
+    <meta name="description" content="The Ember Table offers an intuitive and 
+    seamless restaurant booking experience. Reserve tables, manage bookings, 
+    and enjoy hassle-free dining with our user-friendly platform." />
+    {% comment %} Link to tailwind css file {% endcomment %} 
+    {% tailwind_preload_css %} {% tailwind_css %}
   </head>
 
   <body
@@ -78,7 +82,8 @@
 
         {% comment %} Mobile burger menu {% endcomment %}
         <div class="md:hidden flex items-center">
-          <button id="burger-btn" class="btn btn-ghost btn-square">
+          <button id="menu-toggle" class="btn btn-ghost btn-square" 
+          aria-label="Open navigation menu">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6 text-molten-gold"

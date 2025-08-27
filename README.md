@@ -267,18 +267,19 @@ You can see the Django testing table [here](docs/markdowns/automateddjangotestin
 
 You can see the Jest testing table [here](docs/markdowns/automatedjstesting.md).
 
+Please note for the Jest testing there was a need to create html fixture files as Jest doesn't always read the Django dynamic structure.
+
 ### Fixed Bugs
 
 - C
 
 ### Unfixed Bugs
 
-- C
+- None
 
 ### Validator Testing 
 
-- Lighthouse Score
-  - Below you can see my lighthouse scores tested on Chrome Incognito Mode
+- Page Speed Insight 
 
   - Homepage Mobile
 
