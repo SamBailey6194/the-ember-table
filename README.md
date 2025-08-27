@@ -4,7 +4,33 @@
 
 The decision to make this website is due to the user stories found [here](docs/markdowns/userstories.md).
 
-![Responsive Mockup](xxx)
+You can also see how the user stories were made into sprints [here](docs/markdowns/plannedsprints.md).
+
+As we progressed in the project some of the sprints were skipped due to time. You can see more in [Features](#features) section, especially [Features Left to Implement](#features-left-to-implement).
+
+The design and layout is due to the wireframes shown below:
+
+![Homepage Wireframe](docs/images/home_page.png)
+
+![Menus Wireframe](docs/images/current_menus.png)
+
+![Bookings Wireframe](docs/images/booking.png)
+
+![Guest Booking Wireframe](docs/images/guest_booking_form.png)
+
+![Login Wireframe](docs/images/login.png)
+
+![Table Booking Wireframe](docs/images/table_booking.png)
+
+Alongside the user stories, sprints and wireframes ERDs were made and a logic flow chart.
+
+![ERDs](docs/images/erds.png)
+
+![Logic Flow Chart](docs/images/logic_flow_chart.jpg)
+
+As you venture to look at the [Features](#features) you will notice some design choices, logic flow and relationships between the database tables were changed while the project was being made.
+
+I would usually put a Am I Responsive screenshot here. However, it wasn't loading the image correctly and even when tested with the Django Blog walkthrough project it wouldn't load the images properly. Due to time constraints I couldn't look into this further.
 
 ## Features 
 
@@ -12,13 +38,182 @@ Below are the features for the website and at the end is listed any features tha
 
 ### Existing Features
 
-- __Home Page__
+- __Navbar__
 
-  - __Header__
+  - The navbar is dynamic for mobile and non mobile views.
+  - The navbar is also dynamic depending on if a user is authenticated or not.
+
+  - __Screen Navbar__
+
+    - Unauthenticated User View
+      - On wider screens you can see the Logo, Home, Bookings and Members in the Navbar.
+      - The page the user is on is underlined and made bold to indicate the page the user is on.
+
+    - Authenticated User View
+      - On wider screens you can see the Logo, Home, Bookings, Username and Logout in the Navbar.
+      - The page the user is on is underlined and made bold to indicate the page the user is on.
+
+    - General
+      - When clicking the Logo you will be redirected to the homepage.
+      - When clicking Home, Bookings, Members or Username you are loaded onto the relevant page you clicked.
+        - For the username you are loaded onto the members dashboard.
+      - For logout you see the logout modal to confirm you want to logout.
+
+    ![Screen Navbar unauthenticated User](docs/images/screen_navbar_unauthenticated.png)
+
+    ![Screen Navbar authenticated User](XXX)
+
+  - __Mobile Navbar__
+
+    - General
+      - On mobile screens you can see the Logo and a burger menu.
+      - When clicking the Logo you will be redirected to the homepage.
+      - When clicking the burger menu you see a dropdown with the pages available and is dynamic if the user is authenticated or not.
+      - For logout you see the logout modal to confirm you want to logout.
+
+    - Unauthenticated User View Dropdown
+      - On wider screens you can see the Home, Bookings and Members in the Dropdown Navbar.
+    
+    - Authenticated User View Dropdown
+      - On mobile screens you can see the Home, Bookings, Username and Logout in the Dropdown Navbar.
+
+    ![Mobile Navbar](docs/images/mobile_navbar_unauthenticated.png)
+
+    ![Mobile Navbar unauthenticated User](docs/images/mobile_navbar_dropdown_unauthenticated.png)
+
+    ![Mobile Navbar authenticated User](XXX)
+
+  - __Logout Form Modal__
 
     - This
     
-    ![Homepage Header](XXX)
+    ![Logout Form Modal](XXX)
+
+    ![Logout Success Modal](XXX)
+
+- __Footer__
+
+  - In the footer you have the address and contact information with the copyright info the the side on wider screens.
+  - On mobile screens they stack on top of each other.
+  - Clicking the email or phone will take the user to their mailing app or phone app.
+
+  ![Screen Footer](docs/images/screen_footer.png)
+
+  ![Mobile Footer](docs/images/mobile_footer.png)
+
+- __Homepage__
+
+  - __Homepage Header__
+
+    - The animated background is written using Tailwind CSS, this is used for consistency across all pages in the header
+    - It welcomes the user to the site with the name of the restaurant in the header
+    - A small tagline to make the user excited about visiting the restaurant
+    - A Book Now button that links to the bookings page
+    
+    ![Homepage Header](docs/images/homepage_header.png)
+
+  - __Homepage Body__
+
+    - The body has two sections, first section is three cards and the second one is two cards.
+    - Section 1 with the three cards all describe the appeal to attending the restaurant, they are side by side on wider screens and on narrower screens they stack on top of each other.
+    - Section 2 with the two cards are showing how you book and the benefits of being a member.
+    - Book card has a Book Now button that takes the user to the bookings page.
+    - Members card has a Members button that takes them to the members page. 
+    
+    ![Homepage Body](docs/images/homepage_body.png)
+
+- __Bookings__
+
+  - __Bookings Header__
+
+    - The background is again the animated background.
+    - Encourages the user to sign up or login to make a booking.
+    - When the user is unauthenticated it has the Sign Up and Login buttons.
+    - Sign Up button opens the Sign Up modal.
+    - Login button opens the Login modal.
+    
+    ![Bookings Header unauthenticated user](docs/images/bookings_header.png)
+
+    ![Bookings Header authenticated user](XXX)
+
+  - __Bookings Body__
+
+    - Encourages the user to join the members club.
+    - When the user is unauthenticated it has the Sign Up and Login buttons.
+    - Sign Up button opens the Sign Up modal.
+    - Login button opens the Login modal.
+    
+    ![Bookings Body unauthenticated user](docs/images/bookings_body.png)
+
+    ![Bookings Body authenticated user](XXX)
+
+  - __Bookings Form Modal__
+
+    - This
+    
+    ![Bookings Form Modal](XXX)
+
+    ![Bookings Success Modal](XXX)
+
+    ![Bookings Error Modal](XXX)
+
+- __Members__
+
+  - __Members Header__
+
+    - This
+    
+    ![Members Header unauthenticated user](XXX)
+
+    ![Members Header authenticated user](XXX)
+
+  - __Members Body__
+
+    - This
+    
+    ![Members Body unauthenticated user](XXX)
+
+    ![Members Body authenticated user with no bookings](XXX)
+
+    ![Members Body authenticated user with bookings](XXX)
+
+  - __Cancel Form Modal__
+
+    - This
+    
+    ![Cancel Form Modal](XXX)
+
+    ![Cancel Success Modal](XXX)
+
+  - __Update Form Modal__
+
+    - This
+    
+    ![Update Form Modal](XXX)
+
+    ![Update Success Modal](XXX)
+
+    ![Update Error Modal](XXX)
+
+  - __Sign Up Form Modal__
+
+    - This
+    
+    ![Sign Up Form Modal](XXX)
+
+    ![Sign Up Success Modal](XXX)
+
+    ![Sign Up Error Modal](XXX)
+
+  - __Login Form Modal__
+
+    - This
+    
+    ![Login Form Modal](XXX)
+
+    ![Login Success Modal](XXX)
+
+    ![Login Error Modal](XXX)
 
 ### Features Left to Implement
 
