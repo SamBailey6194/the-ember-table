@@ -8,7 +8,7 @@ All tests were executed and passed successfully.
 
 ## Backend Unit Tests
 
-### Forms
+### Booking Forms
 
 #### Make Booking Form
 
@@ -35,7 +35,7 @@ All tests were executed and passed successfully.
 | 3    | Submit with past date                             | Validation error raised | Pass        |
 | 4    | Submit with invalid time (outside 12–22)          | Validation error raised | Pass        |
 
-### Models
+### Booking Models
 
 #### Customer
 
@@ -59,7 +59,7 @@ All tests were executed and passed successfully.
 | 2    | Check default status                      | Booking status defaults to `pending`                       | Pass        |
 | 3    | Check `reference_code`                    | Automatically generated unique UUID                        | Pass        |
 
-### Views
+### Booking Views
 
 #### Booking Page
 
@@ -91,3 +91,42 @@ All tests were executed and passed successfully.
 | 1    | POST valid data                | Booking updated, success message               | Pass        |
 | 2    | POST invalid data              | Error message displayed                        | Pass        |
 | 3    | Access non-existent booking ID | Error message “Booking not found” and redirect | Pass        |
+
+### User Views
+
+#### Members Info
+
+| Step | Action             | Outcome                                    | Pass / Fail |
+| ---- | ----------------- | ------------------------------------------ | ----------- |
+| 1    | GET request        | Renders members info page with correct template | Pass        |
+
+#### Custom Signup
+
+| Step | Action                                     | Outcome                                                                 | Pass / Fail |
+| ---- | ----------------------------------------- | ----------------------------------------------------------------------- | ----------- |
+| 1    | POST valid data                            | User and linked Customer created, success message shown, redirects      | Pass        |
+| 2    | POST with password mismatch               | User not created, error message shown                                    | Pass        |
+| 3    | POST with existing username               | User not created, error message shown                                    | Pass        |
+| 4    | GET request                               | Redirects to members info page                                           | Pass        |
+
+#### Custom Login
+
+| Step | Action                    | Outcome                                                       | Pass / Fail |
+| ---- | ------------------------- | ------------------------------------------------------------- | ----------- |
+| 1    | POST valid credentials     | User authenticated, success message shown, redirects          | Pass        |
+| 2    | POST invalid credentials   | User not authenticated, error message shown, redirects        | Pass        |
+| 3    | GET request                | Redirects to members info page                                 | Pass        |
+
+#### Custom Logout
+
+| Step | Action            | Outcome                                         | Pass / Fail |
+| ---- | ---------------- | ----------------------------------------------- | ----------- |
+| 1    | POST request      | User logged out, success message shown, redirects to home | Pass        |
+| 2    | GET request       | Redirects to home without logging out          | Pass        |
+
+#### Members Dashboard
+
+| Step | Action                                      | Outcome                                                       | Pass / Fail |
+| ---- | ------------------------------------------ | ------------------------------------------------------------- | ----------- |
+| 1    | GET request as authenticated user          | Renders dashboard template, provides bookings, cancel and update forms | Pass        |
+| 2    | GET request as user without Customer       | Renders dashboard template with empty bookings list           | Pass        |
