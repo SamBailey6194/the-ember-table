@@ -161,17 +161,23 @@ Below are the features for the website and at the end is listed any features tha
 
   - __Members Header__
 
-    - This
+    - Encourages the user to join the members club.
+    - When the user is unauthenticated it has the Sign Up and Login buttons.
+    - Sign Up button opens the Sign Up modal.
+    - Login button opens the Login modal.
     
-    ![Members Header unauthenticated user](XXX)
+    ![Members Header unauthenticated user](docs/images/members_header_unauthenticated.png)
 
     ![Members Header authenticated user](XXX)
 
   - __Members Body__
 
-    - This
+    - Encourages the user to join the members club.
+    - When the user is unauthenticated it has the Sign Up and Login buttons.
+    - Sign Up button opens the Sign Up modal.
+    - Login button opens the Login modal.
     
-    ![Members Body unauthenticated user](XXX)
+    ![Members Body unauthenticated user](docs/images/members_body_unauthenticated.png)
 
     ![Members Body authenticated user with no bookings](XXX)
 
