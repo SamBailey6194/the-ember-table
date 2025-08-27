@@ -1,6 +1,6 @@
-# Automated Tests
+# Automated Django Tests
 
-This document outlines the automated backend tests written for the Django Apps using Django’s TestCase.
+This document outlines the automated backend tests written for the Booking and User Apps using Django’s TestCase.
 
 All tests were executed and passed successfully.
 
