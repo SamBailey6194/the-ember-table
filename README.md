@@ -245,11 +245,27 @@ Below are the features for the website and at the end is listed any features tha
 
 ### Features Left to Implement
 
-- Make
+- Create a menu page that displays all menus that are active which can be controlled in the summer note admin area
+- Allow guest users to make a booking
+- Add a dropdown field where user can select the menu when booking
+- Send an email when a user signs up to confirm their email
+- Allow users to sign up using social media logins e.g. Gmail, Facebook, Twitter, etc
+- Before submitting booking have a search available slots function
+- Send confirmation email using utils.py and send_mail Django function when a user makes a booking, cancels a booking or they or the restaurant updates a booking
+- Create a mobile app for users to have
+- Have a deposit payment for special menus booking
+- Provide analytics and reporting for the restaurant to see their customers, how many are users v guests, which menus are more popular, and other KPIs the restaurant wants
+- In the future possibly using AJAX to make some of the form submissions to be more robust
 
 ## Testing 
 
-The website has been tested;
+The website has been manually and automatically tested.
+
+You can see the manual testing table [here](docs/markdowns/manueltesting.md).
+
+You can see the Django testing table [here]().
+
+You can see the Jest testing table [here]().
 
 ### Fixed Bugs
 
@@ -257,8 +273,7 @@ The website has been tested;
 
 ### Unfixed Bugs
 
-- Varying performance score on Lighthouse Mobile due to LCP and Render Blocking
-  - The scores cary from in the 60s to the 90s
+- C
 
 ### Validator Testing 
 
@@ -284,7 +299,7 @@ The website has been tested;
 
 ## Deployment
 
-The app deployed via Heroku [here](XXX) following the below steps
+The app deployed via Heroku [here](https://the-ember-table-92576ef1108c.herokuapp.com/) following the below steps.
 
 ### Version Notes
 Before going to Heroku make sure the .python-version is at the correct version.
@@ -304,21 +319,35 @@ To do the above follow below:
    1. If the dependency or module is an older version add =="version"
 3. Then type pip freeze > requirements.txt or pip3 freeze > requirements.txt to update requirements.txt
 
+Before the final commit please ensure you have done the below:
+
+1. Migrate everything in case there is something you have missed
+   1. Do this by doing python manage.py makemigrations or python3 manage.py makemigrations
+   2. Then type python manage.py migrate or python3 manage.py migrate
+2. You will also want to ensure the tailwind style.css has been built properly
+   1. Run python manage.py tailwind build or python3 manage.py tailwind build
+   2. Then run python manage.py tailwind start or python3 manage.py tailwind start
+3. After this you will need to collect all the static files by running python manage.py collectstatic or python3 manage.py collectstatic
+
 ### Creating the Heroku App
 To create the app Heroku was used. In Heroku two buildpacks were needed and were accessed from the _Settings_ tab in Heroku. After adding the individual buildpacks the settings were saved. The two packs used and their ordering is as follows:
 
-1. `heroku/python`
+1. `heroku/node.js`
+2. `heroku/python`
 
-Then X config vars were needed and were created by going to _Settings_ tab in Heroku and scrolling down to _Config Var_ section. After each individual config var was added the settings were saved Then the following config vars were created: 
+Then four config vars were needed and were created by going to _Settings_ tab in Heroku and scrolling down to _Config Var_ section. After each individual config var was added the settings were saved Then the following config vars were created: 
 
-1. O
+1. CLOUDINARY_URL - currently no images, but added for future features like menus
+2. DATABASE_URL
+3. NPM_CONFIG_PRODUCTION - for Django-Tailwind
+4. SECRET_KEY
 
 Then the GitHub repository was connected by following the below steps:
 
 1. Go to _Deploy_ section
 2. Select GitHub as the deployment method
 3. Confirm we wanted to connect GitHub
-4. Then search for the ultimate_battleships repository and connected it
+4. Then search for the the-ember-table repository and connected it
 5. Then in Manual deploy, select the main branch and click Deploy Branch, this should then deploy the app
 
 ## Cloning
@@ -341,16 +370,14 @@ If you aren't on windows please google how to get a GitHub repository stored loc
  
 ## Credits 
 
-Below are my credits for where I got inspiration for some of the code, where the content came from and where media is from.
+Below are my credits for where I got inspiration for some of the code and content
 
-### Code
-
-- T
-
-### Content 
-
-- T
-
-### Media
-
-- M
+- After google searching using Tailwind with Dajngo I came [Django-Tialwind docs](https://django-tailwind.readthedocs.io/en/latest/installation.html#)
+- On the documentation it also mentions Tailwind Plugins such as DaisyUI, Tailwind Forms and Tailwind Typography
+- Using [Tailwind docs](https://tailwindcss.com/) and [DaisyUI Docs](https://daisyui.com/docs/install/) I learnt the basics of using Tailwind and DaisyUI especially the [responsive navbar](https://daisyui.com/components/navbar/) and using [Dialog for modals](https://daisyui.com/components/modal/) along with dynamic JS.
+- Using Django docs to find how to use UUID and validation
+- My mentor mentioned the use of things like @login_required within Dajngo to help protect the views as well
+- Helping me understand context processors and how to use globally I followed this [blog](https://medium.com/@akifonder/elevate-your-django-templates-with-context-processors-a-step-by-step-guide-9fc16faac4a5)
+- Potential use of AJAX for future implementation inspiration was found from [here](https://www.geeksforgeeks.org/python/handling-ajax-request-in-django/)
+- Reading the Django docs I came across send_mail for future implementation this could be used to send future emails as shown [here](https://docs.djangoproject.com/en/5.2/topics/email/)
+- Majority of the enticing paragraphs and phrasing on the website has been generated using ChatGPT
