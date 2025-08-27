@@ -282,10 +282,13 @@ Please note for the Jest testing there was a need to create html fixture files a
 - Page Speed Insights
   - You can click the link to see the results from 27th August in the evening.
   - You can switch between the mobile and desktop results as well.
+  - The tests were only run for the unauthenticated users.
 
-    - [Homepage results](https://pagespeed.web.dev/analysis/https-the-ember-table-92576ef1108c-herokuapp-com/ew7y38rf5i?form_factor=mobile)
+    - [Homepage results](https://pagespeed.web.dev/analysis/https-the-ember-table-92576ef1108c-herokuapp-com/26tbjwcyd1?form_factor=mobile)
 
-    - []
+    - [Booking Page Results](https://pagespeed.web.dev/analysis/https-the-ember-table-92576ef1108c-herokuapp-com-booking/0s5f3v7zy7?form_factor=mobile)
+
+    - [Members Page Results](https://pagespeed.web.dev/analysis/https-the-ember-table-92576ef1108c-herokuapp-com-members/oevejtur5a?form_factor=mobile)
 
 - HTML
   - No errors were returned when passing through the official W3C Validator, see images below for each page.
@@ -294,11 +297,42 @@ Please note for the Jest testing there was a need to create html fixture files a
       
     ![W3C validator - Homepage](XXX)
 
+    - Booking Page
+      
+    ![W3C validator - Booking Page](XXX)
+
+    - Members Page
+      
+    ![W3C validator - Members](XXX)
+
 - CSS
-  - Put CSS through Autoprefixer to ensure it works on all browsers
-  - No errors were found when passing through the official Jigsaw validator, see links below.
+  - Due to using Django-Tailwind the Jigsaw validator had errors. 
+  - All errors were to do with the @layer, @property and so forth. Therefore, I deemed it was all valid.
   
-   ![(Jigsaw) validator 1](XXX)
+   ![(Jigsaw) validator 1](docs/images/jigsaw_css_1.png)
+
+   ![(Jigsaw) validator 2](docs/images/jigsaw_css_2.png)
+
+- JS
+  - No errors were returned when passing through the official JS Hint, see images below for each page.
+
+    - Alert JS
+      
+    ![JS Hint - Alert](docs/images/alet_js_hint.png)
+
+    - Booking Modals JS
+      
+    ![JS Hint - Booking Modal 1](docs/images/booking_modals_js_hint.png)
+
+    ![JS Hint - Booking Modal 2](docs/images/booking_modals_js_hint_2.png)
+
+    - Modal Auth JS
+
+    ![JS Hint - Login and Sign Up Modals](docs/images/login_signup_js_hint.png)
+
+    - Navbar JS
+      
+    ![JS Hint - Navbar](docs/images/navbar_js_hint.png)
 
 ## Deployment
 

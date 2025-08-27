@@ -4,12 +4,12 @@
 <html lang="en">
   <head>
     <title>{% block title %}The Ember Table{% endblock %}</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="The Ember Table offers an intuitive and 
     seamless restaurant booking experience. Reserve tables, manage bookings, 
-    and enjoy hassle-free dining with our user-friendly platform." />
+    and enjoy hassle-free dining with our user-friendly platform.">
     {% comment %} Link to tailwind css file {% endcomment %} 
     {% tailwind_preload_css %} {% tailwind_css %}
   </head>
@@ -31,7 +31,6 @@
             <a
               href="{% url 'home' %}"
               class="hover:text-fiery-yellow hover:underline transition-colors {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
-              aria-current="{% if request.resolver_match.url_name == 'home' %}page{% endif %}"
             >
               Home
             </a>
@@ -169,7 +168,7 @@
           <div class="grid md:grid-cols-2">
             <div>
               <p>
-                Address: 123 Ember Street<br />Chesham, Buckinghamshire,<br />HP5
+                Address: 123 Ember Street<br>Chesham, Buckinghamshire,<br>HP5
                 1AA
               </p>
             </div>

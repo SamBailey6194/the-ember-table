@@ -5,10 +5,10 @@
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next_url|default:dashboard_url }}">
         <div>
-            <input type="text" name="login" placeholder="Username or Email" class="input input-bordered w-full" required />
+            <input type="text" name="login" placeholder="Username or Email" class="input input-bordered w-full" required>
         </div>
         <div>
-            <input type="password" name="password" placeholder="Password" class="input input-bordered w-full" required />
+            <input type="password" name="password" placeholder="Password" class="input input-bordered w-full" required>
         </div>
         <div class="flex justify-center">
             <button type="submit" class="btn w-30 bg-ash-gray hover:bg-molten-gold hover:text-charcoal-black shadow-lg">
@@ -38,26 +38,26 @@
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next_url|default:dashboard_url }}">
         <div>
-            <input type="text" name="username" placeholder="Username" class="input input-bordered w-full" required />
+            <input type="text" name="username" placeholder="Username" class="input input-bordered w-full" required>
         </div>
         <div>
-            <input type="text" name="customer_fname" placeholder="First Name" class="input input-bordered w-full" required />
+            <input type="text" name="customer_fname" placeholder="First Name" class="input input-bordered w-full" required>
         </div>
         <div>
-            <input type="text" name="customer_lname" placeholder="Last Name" class="input input-bordered w-full" required />
+            <input type="text" name="customer_lname" placeholder="Last Name" class="input input-bordered w-full" required>
         </div>
         <div>
-            <input type="email" name="email" placeholder="Email" class="input input-bordered w-full" required />
+            <input type="email" name="email" placeholder="Email" class="input input-bordered w-full" required>
         </div>
         <div>
             <input type="tel" name="phone" placeholder="Phone Number" pattern="(^0\d{10}$)|(^\+?\d{7,15}$)"
-            title="Enter a UK 11-digit number starting with 0, or an international number with +" class="input input-bordered w-full" required />
+            title="Enter a UK 11-digit number starting with 0, or an international number with +" class="input input-bordered w-full" required>
         </div>
         <div>
-            <input type="password" name="password1" placeholder="Password" class="input input-bordered w-full" required />
+            <input type="password" name="password1" placeholder="Password" class="input input-bordered w-full" required>
         </div>
         <div>
-            <input type="password" name="password2" placeholder="Confirm Password" class="input input-bordered w-full" required />
+            <input type="password" name="password2" placeholder="Confirm Password" class="input input-bordered w-full" required>
         </div>
         <div class="flex justify-center">
             <button type="submit" class="btn w-30 bg-ash-gray hover:bg-molten-gold hover:text-charcoal-black shadow-lg">
@@ -96,6 +96,7 @@
                 Logout
             </button>
         </form>
+    </div>
 </dialog>
 
 {# Dynamic messages modals #}
