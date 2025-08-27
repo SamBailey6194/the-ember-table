@@ -111,12 +111,21 @@
           the button below and start enjoying the benefits today.
         </p>
       </div>
+      {% if user.is_authenticated %}
       <a
-        href="{% url 'booking:booking_page' %}"
+        href="{% url 'user:members_dashboard' %}"
         class="btn w-32 mx-auto mt-3 text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg"
       >
         Members
       </a>
+      {% else %}
+      <a
+        href="{% url 'user:members_info' %}"
+        class="btn w-32 mx-auto mt-3 text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg"
+      >
+        Members
+      </a>
+      {% endif %}
     </div>
   </div>
 </section>

@@ -192,7 +192,7 @@ This document outlines the testing done to check the website works, both fronten
 
 ### Update Modal
 
-Follow [Booking Form Modal](booking-form-modal)
+Follow [Booking Form Modal](#booking-form-modal)
 | Action | Outcome | Pass / Fail |
 | ----- | ----- | ----- |
 | If all information is valid | Form submits and booking is updated, success message shown and update is shown in the dashboard view | Pass |

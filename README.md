@@ -289,6 +289,7 @@ There were plenty of bugs fixed throughout, however I forgot to keep track of al
 - Change success modal to be included in the in built messages in Django that show a dynamic messaged modal using json to manipulate the html elements by id.
 - Used context_processors.py to create global urls to redirect the login and sign up forms to the correct page once filled out
 - Used regex validation from Django to make the phone number field take only numbers with a focus first approach for UK numbers, but allow international in case a tourist wants to sign up
+- Add if user.is_authenticated to members button on homepage to ensure it loads the correct members page
 
 I am certain there are more but can't remember off the top of my head.
 
