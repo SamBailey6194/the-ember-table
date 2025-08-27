@@ -308,6 +308,7 @@ Please note for the Jest testing there was a need to create html fixture files a
 - CSS
   - Due to using Django-Tailwind the Jigsaw validator had errors. 
   - All errors were to do with the @layer, @property and so forth. Therefore, I deemed it was all valid.
+  - Due to using Dajngo-Tailwind I did not use the auto prefixer.
   
    ![(Jigsaw) validator 1](docs/images/jigsaw_css_1.png)
 

@@ -8,8 +8,8 @@
       action="{% url 'booking:update' booking.id %}"
     >
       {% csrf_token %}
-      <input type="hidden" name="reference_code" value="" />
-      <input type="hidden" name="booking_id" value="" />
+      <input type="hidden" name="reference_code" value="">
+      <input type="hidden" name="booking_id" value="">
 
       <label class="block mb-2">Date:</label>
       <input
@@ -17,7 +17,7 @@
         name="date"
         class="input input-bordered w-full mb-4"
         value=""
-      />
+      >
 
       <label class="block mb-2">Time:</label>
       <input
@@ -25,7 +25,7 @@
         name="time"
         class="input input-bordered w-full mb-4"
         value=""
-      />
+      >
 
       <label class="block mb-2">Party Size:</label>
       <input
@@ -35,7 +35,7 @@
         max="20"
         class="input input-bordered w-full mb-4"
         value=""
-      />
+      >
 
       <div class="modal-action">
         <button
