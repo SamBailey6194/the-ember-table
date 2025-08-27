@@ -263,7 +263,7 @@ The website has been manually and automatically tested.
 
 You can see the manual testing table [here](docs/markdowns/manueltesting.md).
 
-You can see the Django testing table [here]().
+You can see the Django testing table [here](docs/markdowns/automateddjangotesting.md).
 
 You can see the Jest testing table [here]().
 
