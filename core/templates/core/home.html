@@ -1,29 +1,21 @@
-{# Homepage #}
 {% extends "base.html" %}
 {% block content %}
+
 {# Top section of homepage #}
 <section class="relative overflow-hidden">
-  {% comment %} Animated ember gradient behind everything {% endcomment %}
-  <div
-    class="absolute inset-0 bg-fire-gradient bg-size-200 animate-gradientMove -z-20"
-  ></div>
+  <div class="absolute inset-0 bg-fire-gradient bg-size-200 animate-gradientMove z-0"></div>
+
   <div class="mx-auto mt-4 px-4 py-20 text-center relative z-10">
-    <h1 class="text-5xl md:text-6xl font-bold text-charcoal-black mb-6">
+    <h1 class="text-5xl md:text-6xl font-bold mb-6 text-[var(--ember-base)]">
       Welcome to
-      <span
-        class="text-molten-gold text-outline-shadow"
-        style="--outline-color: var(--color-charcoal-black)"
-        >Ember Table</span
-      >
+      <span class="text-[var(--ember-highlight)] text-outline-shadow" style="--outline-color: var(--ember-base)">Ember
+        Table</span>
     </h1>
-    <p class="text-lg md:text-xl text-charcoal-black mb-8 max-w-2xl mx-auto">
-      Where warmth meets flavour – book your seat for an unforgettable dining
-      experience.
+    <p class="text-lg md:text-xl text-[var(--ember-base)] mb-8 max-w-2xl mx-auto">
+      Where warmth meets flavour – book your seat for an unforgettable dining experience.
     </p>
-    <a
-      href="{% url 'booking:booking_page' %}"
-      class="btn text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg"
-    >
+    <a href="{% url 'booking:booking_page' %}"
+      class="btn text-[var(--ember-highlight)] bg-[var(--ember-base)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] font-semibold shadow-lg">
       Book Now
     </a>
   </div>
@@ -32,101 +24,81 @@
 {# Middle section of homepage explaining the restaurant #}
 <section class="relative overflow-hidden mx-auto py-10 px-10">
   {% comment %} Responsive grid for the three cards {% endcomment %}
-  <div
-    class="mx-auto px-4 lg:px-20 xl:px-28 2xl:px-48 grid md:grid-cols-3 gap-8"
-  >
+  <div class="mx-auto px-4 lg:px-20 xl:px-28 2xl:px-48 grid md:grid-cols-3 gap-8">
     {% comment %} Card advertising the ingredients are fresh {% endcomment %}
-    <div
-      class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition"
-    >
-      <h3 class="text-xl font-bold text-molten-gold mb-3">Fresh Ingredients</h3>
+    <div class="bg-[var(--ember-neutral)] p-6 rounded-lg shadow-md hover:shadow-xl transition">
+      <h3 class="text-xl font-bold text-[var(--ember-highlight)] mb-3">Fresh Ingredients</h3>
       <p>
-        Savour the freshest, locally sourced produce, lovingly prepared each day
-        to delight your taste buds, ensuring every bite bursts with natural
-        flavours and seasonal freshness that will leave you wanting more.
+        Savour the freshest, locally sourced produce, lovingly prepared each day to delight your taste buds, ensuring
+        every bite bursts with natural flavours and seasonal freshness that will leave you wanting more.
       </p>
     </div>
+
     {% comment %} Card advertising the warm atmosphere {% endcomment %}
-    <div
-      class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition"
-    >
-      <h3 class="text-xl font-bold text-molten-gold mb-3">Warm Atmosphere</h3>
+    <div class="bg-[var(--ember-neutral)] p-6 rounded-lg shadow-md hover:shadow-xl transition">
+      <h3 class="text-xl font-bold text-[var(--ember-highlight)] mb-3">Warm Atmosphere</h3>
       <p>
-        Our dining space blends comfort and elegance, creating a warm and
-        inviting atmosphere that sets the stage for the perfect meal, whether
-        you’re enjoying a casual lunch or a special evening out.
+        Our dining space blends comfort and elegance, creating a warm and inviting atmosphere that sets the stage for
+        the perfect meal, whether you’re enjoying a casual lunch or a special evening out.
       </p>
     </div>
+
     {% comment %} Card advertising the fact they have expert chefs {% endcomment %}
-    <div
-      class="bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition"
-    >
-      <h3 class="text-xl font-bold text-molten-gold mb-3">Expert Chefs</h3>
+    <div class="bg-[var(--ember-neutral)] p-6 rounded-lg shadow-md hover:shadow-xl transition">
+      <h3 class="text-xl font-bold text-[var(--ember-highlight)] mb-3">Expert Chefs</h3>
       <p>
-        Passionate about flavour and presentation, our chefs craft every dish
-        with precision and care, combining the finest ingredients with
-        creativity to ignite your senses and provide a memorable culinary
-        experience each time you visit.
+        Passionate about flavour and presentation, our chefs craft every dish with precision and care, combining the
+        finest ingredients with creativity to ignite your senses and provide a memorable culinary experience each time
+        you visit.
       </p>
     </div>
   </div>
 </section>
 
-{# Bottom section containing the book page links and members link page #}
+
+{# Bottom section linking to booking and members page #}
 <section class="relative overflow-hidden mx-auto py-10 px-10">
-  {% comment %} Responsive grid for the two cards {% endcomment %}
-  <div
-    class="mx-auto px-4 lg:px-20 xl:px-28 2xl:px-48 grid grid-cols-1 md:grid-cols-2 gap-8"
-  >
-    {% comment %} Card that links to booking page {% endcomment %}
-    <div
-      class="bg-ash-gray w-full p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col"
-    >
+  <div class="mx-auto px-4 lg:px-20 xl:px-28 2xl:px-48 grid grid-cols-1 md:grid-cols-2 gap-8">
+
+    {% comment %} Booking card {% endcomment %}
+    <div class="bg-[var(--ember-neutral)] w-full p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col">
       <div class="flex-grow">
-        <h3 class="text-xl font-bold text-molten-gold mb-3">Booking</h3>
+        <h3 class="text-xl font-bold text-[var(--ember-highlight)] mb-3">Booking</h3>
         <p>
-          If you’d like to secure a table for your visit, our booking page
-          provides full availability and options to reserve your preferred time,
-          making it quick and easy to plan a memorable meal with family,
-          friends, or colleagues.
+          If you’d like to secure a table for your visit, our booking page provides full availability and options to
+          reserve your preferred time, making it quick and easy to plan a memorable meal with family, friends, or
+          colleagues.
         </p>
       </div>
-      <a
-        href="{% url 'booking:booking_page' %}"
-        class="btn w-32 mx-auto mt-3 text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg"
-      >
+      <a href="{% url 'booking:booking_page' %}"
+        class="btn w-32 mx-auto mt-3 text-[var(--ember-highlight)] bg-[var(--ember-base)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] font-semibold shadow-lg">
         Book Now
       </a>
     </div>
-    {% comment %} Card that links to member page {% endcomment %}
-    <div
-      class="bg-ash-gray w-full p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col"
-    >
+
+    {% comment %} Members card {% endcomment %}
+    <div class="bg-[var(--ember-neutral)] w-full p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col">
       <div class="flex-grow">
-        <h3 class="text-xl font-bold text-molten-gold mb-3">Members Club</h3>
+        <h3 class="text-xl font-bold text-[var(--ember-highlight)] mb-3">Members Club</h3>
         <p>
-          Join our Members Club to access exclusive deals, manage your bookings
-          effortlessly through your account, and enjoy special perks and
-          experiences designed to make every visit exceptional. Sign up using
-          the button below and start enjoying the benefits today.
+          Join our Members Club to access exclusive deals, manage your bookings effortlessly through your account, and
+          enjoy special perks and experiences designed to make every visit exceptional. Sign up using the button below
+          and start enjoying the benefits today.
         </p>
       </div>
       {% if user.is_authenticated %}
-      <a
-        href="{% url 'user:members_dashboard' %}"
-        class="btn w-32 mx-auto mt-3 text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg"
-      >
+      <a href="{% url 'user:members_dashboard' %}"
+        class="btn w-32 mx-auto mt-3 text-[var(--ember-highlight)] bg-[var(--ember-base)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] font-semibold shadow-lg">
         Members
       </a>
       {% else %}
-      <a
-        href="{% url 'user:members_info' %}"
-        class="btn w-32 mx-auto mt-3 text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black font-semibold shadow-lg"
-      >
+      <a href="{% url 'user:members_info' %}"
+        class="btn w-32 mx-auto mt-3 text-[var(--ember-highlight)] bg-[var(--ember-base)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] font-semibold shadow-lg">
         Members
       </a>
       {% endif %}
     </div>
+
   </div>
 </section>
 

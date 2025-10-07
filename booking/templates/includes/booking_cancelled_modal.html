@@ -1,23 +1,18 @@
-{# Cancel booking modal form #}
 <dialog id="booking-cancelled-modal" class="modal">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg mb-4">Cancel Booking</h3>
-    <p>Are you sure you want to cancel this booking?</p>
-    <div class="modal-action">
-      <form method="post" action="{% url 'booking:cancel_booking' %}">
+  <div class="modal-box bg-[var(--ember-base)] text-white">
+    <h3 class="font-bold text-lg mb-4 text-[var(--ember-highlight)]">Cancel Booking</h3>
+    <p class="mb-4">Are you sure you want to cancel this booking?</p>
+    <div class="modal-action flex justify-center gap-4">
+      <form method="post" action="{% url 'booking:cancel_booking' %}" class="flex gap-4">
         {% csrf_token %}
         <input type="hidden" name="reference_code" value="">
-        <button
-          type="submit"
-          class="btn w-32 bg-ash-gray hover:bg-molten-gold hover:text-charcoal"
-        >
+        <button type="submit"
+          class="btn w-32 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
           Yes
         </button>
-        <button
-          type="button"
-          class="btn w-32 bg-ash-gray hover:bg-molten-gold hover:text-charcoal"
-          id="close-cancel-btn"
-        >
+        <button type="button"
+          class="btn w-32 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg"
+          id="close-cancel-btn">
           No
         </button>
       </form>

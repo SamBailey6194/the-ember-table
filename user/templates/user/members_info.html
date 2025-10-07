@@ -1,23 +1,19 @@
-{# Members info page for non authenticated users #}
 {% extends "base.html" %}
 {% block content %}
+
 {# Top section of page #}
 <section class="relative overflow-hidden">
   {% comment %} Animated ember gradient behind everything {% endcomment %}
-  <div
-    class="absolute inset-0 bg-fire-gradient bg-size-200 animate-gradientMove -z-20"
-  ></div>
+  <div class="absolute inset-0 bg-fire-gradient bg-size-200 animate-gradientMove z-0"></div>
 
   <div class="relative max-w-4xl mx-auto mt-6 py-16 px-6 text-center prose">
-    <h1 class="text-5xl md:text-6xl font-bold mb-6 text-charcoal-black">
+    <h1 class="text-5xl md:text-6xl font-bold mb-6 text-[var(--ember-base)]">
       Members
-      <span
-        class="text-molten-gold text-outline-shadow"
-        style="--outline-color: var(--color-charcoal-black)"
-        >Benefits</span
-      >
+      <span class="text-[var(--ember-highlight)] text-outline-shadow" style="--outline-color: var(--ember-base)">
+        Benefits
+      </span>
     </h1>
-    <p class="text-lg md:text-xl text-charcoal-black mb-8 max-w-2xl mx-auto">
+    <p class="text-lg md:text-xl text-[var(--ember-base)] mb-8 max-w-2xl mx-auto">
       Become a member to enjoy exclusive deals and manage your bookings online.
     </p>
 
@@ -28,17 +24,14 @@
 
 {# Advertise the members benefits #}
 <section class="py-12">
-  <div
-    class="mx-auto px-4 lg:px-20 xl:px-28 2xl:px-48 flex flex-col items-center"
-  >
-    <h2 class="text-4xl font-bold text-molten-gold mb-6 text-center">
+  <div class="mx-auto px-4 lg:px-20 xl:px-28 2xl:px-48 flex flex-col items-center">
+    <h2 class="text-4xl font-bold text-[var(--ember-highlight)] mb-6 text-center">
       Exclusive Member Benefits
     </h2>
     <div class="flex justify-center">
       <div
-        class="max-w-md w-full text-center bg-ash-gray p-6 rounded-lg shadow-md hover:shadow-xl transition"
-      >
-        <ul class="list-disc list-inside space-y-3 mb-6">
+        class="max-w-md w-full text-center bg-[var(--ember-neutral)] p-6 rounded-lg shadow-md hover:shadow-xl transition">
+        <ul class="list-disc list-inside space-y-3 mb-6 text-[var(--ember-base)]">
           <li>Unlock priority booking and skip the waitlist</li>
           <li>Enjoy members-only offers and special discounts</li>
           <li>Get tailored reminders so you never miss a reservation</li>
@@ -51,4 +44,5 @@
     </div>
   </div>
 </section>
+
 {% endblock %}

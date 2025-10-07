@@ -1,18 +1,14 @@
-{# Login and Sign Up Buttons to be reusable and more maintanable #}
+{# Login and Sign Up Buttons to be reusable and more maintainable #}
 <div class="flex flex-col md:flex-row justify-center gap-6 mb-8">
-  <button
-    type="button"
-    class="signup-btn btn text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black shadow-lg"
-    data-next="{{ next_url }}"
-  >
+  <button type="button"
+    class="signup-btn btn text-[var(--ember-accent)] bg-[var(--ember-base)] hover:bg-[var(--ember-accent)] hover:text-[var(--ember-base)] shadow-lg"
+    data-next="{{ next_url }}">
     Sign Up
   </button>
 
-  <button
-    type="button"
-    class="login-btn btn text-molten-gold bg-charcoal-black hover:bg-molten-gold hover:text-charcoal-black shadow-lg"
-    data-next="{{ next_url }}"
-  >
+  <button type="button"
+    class="login-btn btn text-[var(--ember-accent)] bg-[var(--ember-base)] hover:bg-[var(--ember-accent)] hover:text-[var(--ember-base)] shadow-lg"
+    data-next="{{ next_url }}">
     Login
   </button>
 </div>

@@ -1,57 +1,43 @@
-{# Make booking modal form #}
 {% load widget_tweaks %}
 
-<dialog
-  id="make-booking-modal"
-  class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md rounded-lg p-6 shadow-lg bg-charcoal-black text-white"
->
-  <h3 class="text-4xl font-bold text-molten-gold mb-6 text-center">
+<dialog id="make-booking-modal"
+  class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md rounded-lg p-6 shadow-lg bg-[var(--ember-base)] text-white">
+  <h3 class="text-4xl font-bold text-[var(--ember-highlight)] mb-6 text-center">
     Book a Table
   </h3>
 
-  <form
-    method="post"
-    action="{% url 'booking:make_booking' %}"
-    class="space-y-4"
-  >
+  <form method="post" action="{% url 'booking:make_booking' %}" class="space-y-4">
     {% csrf_token %}
     {{ form.non_field_errors }}
 
     <div>
-      <label for="{{ form.date.id_for_label }}" class="block mb-1 font-semibold"
-        >Date</label
-      >
+      <label for="{{ form.date.id_for_label }}" class="block mb-1 font-semibold text-[var(--ember-highlight)]">
+        Date
+      </label>
       {{ form.date|add_class:"input input-bordered w-full" }}
     </div>
 
     <div>
-      <label for="{{ form.time.id_for_label }}" class="block mb-1 font-semibold"
-        >Time</label
-      >
+      <label for="{{ form.time.id_for_label }}" class="block mb-1 font-semibold text-[var(--ember-highlight)]">
+        Time
+      </label>
       {{ form.time|add_class:"input input-bordered w-full" }}
     </div>
 
     <div>
-      <label
-        for="{{ form.party_size.id_for_label }}"
-        class="block mb-1 font-semibold"
-        >Party Size</label
-      >
+      <label for="{{ form.party_size.id_for_label }}" class="block mb-1 font-semibold text-[var(--ember-highlight)]">
+        Party Size
+      </label>
       {{ form.party_size|add_class:"input input-bordered w-full" }}
     </div>
 
     <div class="flex justify-center gap-4 mt-4">
-      <button
-        type="submit"
-        class="btn w-32 bg-ash-gray hover:bg-molten-gold hover:text-charcoal"
-      >
+      <button type="submit"
+        class="btn w-32 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
         Book
       </button>
-      <button
-        type="button"
-        onclick="document.getElementById('make-booking-modal').close()"
-        class="btn bg-ash-gray hover:bg-molten-gold hover:text-charcoal w-32"
-      >
+      <button type="button" onclick="document.getElementById('make-booking-modal').close()"
+        class="btn w-32 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
         Cancel
       </button>
     </div>

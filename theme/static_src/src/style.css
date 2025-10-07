@@ -14,41 +14,63 @@
 @source "../../../../**/*.{html,htm,py,js,jsx,ts,tsx}";
 
 @theme {
-  --color-ember-red: oklch(0.6345 0.1834 39.43);
-  --color-burnt-orange: oklch(0.5948 0.168676 45.4846);
-  --color-fiery-yellow: oklch(0.81 0.1525 73.74);
-  --color-ash-gray: oklch(0.5103 0 0);
-  --color-charcoal-black: oklch(0.2264 0 0);
-  --color-molten-gold: oklch(0.7665 0.1387 91.06);
-  --color-cool-dark-blue: oklch(0.177 0.120 259.5);
-  --color-cool-medium-blue: oklch(0.483 0.135 236.2);
-  --color-cool-light-blue: oklch(0.620 0.128 224.8);
-  --color-cool-sky-blue: oklch(0.780 0.130 218.0);
+  --ember-primary: oklch(0.5948 0.168676 45.4846);  
+  --ember-secondary: oklch(0.6345 0.1834 39.43);   
+  --ember-accent: oklch(0.81 0.1525 73.74);
+  --ember-neutral: oklch(0.5103 0 0);               
+  --ember-base: oklch(0.2264 0 0);                 
+  --ember-highlight: oklch(0.7665 0.1387 91.06); 
 }
+
+@media (prefers-color-scheme: dark){
+  @theme {
+    --ember-primary: oklch(0.6345 0.1834 39.43);
+    --ember-secondary: oklch(0.5948 0.168676 45.4846);
+    --ember-accent: oklch(0.81 0.1525 73.74);
+    --ember-neutral: oklch(0.5103 0 0);
+    --ember-base: oklch(0.2264 0 0);
+    --ember-highlight: oklch(0.7665 0.1387 91.06);
+  }
+}
+
+@layer base {
+  input,
+  textarea,
+  select {
+    background-color: var(--ember-neutral) !important;
+    color: #fff !important;
+    border-color: var(--ember-accent) !important;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--ember-base) !important;
+    opacity: 0.1;
+  }
+
+  [data-theme="light"] input[type="number"] {
+    color: #fff !important;
+  }
+
+  [data-theme="light"] input[type="number"] {
+    color: #fff !important;
+  }
+}
+
 
 @layer utilities {
   .bg-fire-gradient {
     background: linear-gradient(
       135deg,
-      var(--color-ember-red),
-      var(--color-burnt-orange),
-      var(--color-fiery-yellow),
-      var(--color-molten-gold)
-    );
-  }
-
-  .bg-cool-gradient {
-    background: linear-gradient(
-      135deg,
-      var(--color-cool-dark-blue),
-      var(--color-cool-medium-blue),
-      var(--color-cool-light-blue),
-      var(--color-cool-sky-blue)
+      var(--ember-primary),
+      var(--ember-secondary),
+      var(--ember-accent),
+      var(--ember-highlight)
     );
   }
 
   .bg-size-200 {
-    background-size: 200% 200%;
+    background-size: 200% 200% !important;
   }
 
   @keyframes gradientMove {
@@ -58,7 +80,7 @@
   }
 
   .animate-gradientMove {
-    animation: gradientMove 8s ease infinite;
+    animation: gradientMove 8s ease infinite !important;
   }
 
   .text-outline-shadow {
@@ -80,6 +102,8 @@
   }
 
   .active {
-    @apply text-fiery-yellow underline font-bold;
+    color: var(--ember-highlight);
+    text-decoration: underline;
+    font-weight: bold;
   }
 }

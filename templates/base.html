@@ -2,77 +2,59 @@
 {% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <title>{% block title %}The Ember Table{% endblock %}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="The Ember Table offers an intuitive and 
-    seamless restaurant booking experience. Reserve tables, manage bookings, 
-    and enjoy hassle-free dining with our user-friendly platform.">
-    {% comment %} Link to tailwind css file {% endcomment %} 
+      seamless restaurant booking experience. Reserve tables, manage bookings, 
+      and enjoy hassle-free dining with our user-friendly platform.">
+    {% comment %} Link to tailwind css file {% endcomment %}
     {% tailwind_preload_css %} {% tailwind_css %}
   </head>
 
-  <body
-    class="font-sans text-white leading-relaxed tracking-normal flex flex-col min-h-screen"
-  >
+  <body class="font-sans leading-relaxed tracking-normal flex flex-col min-h-screen
+            bg-[var(--ember-base)] text-white">
     {# Navbar #}
-    <nav class="bg-ash-gray text-white shadow-lg fixed w-full z-50">
-      <div
-        class="container mx-auto px-4 py-4 flex justify-between items-center"
-      >
+    <nav class="bg-[var(--ember-neutral)] text-[var(--ember-accent)] shadow-lg fixed w-full z-50">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         {% comment %} Logo {% endcomment %}
-        <a href="/" class="text-2xl font-bold text-molten-gold">Ember Table</a>
+        <a href="/" class="text-2xl font-bold text-[var(--ember-highlight)]">Ember Table</a>
 
         {% comment %} Desktop links {% endcomment %}
         <ul class="hidden md:flex space-x-6 items-center">
           <li>
-            <a
-              href="{% url 'home' %}"
-              class="hover:text-fiery-yellow hover:underline transition-colors {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
-            >
+            <a href="{% url 'home' %}"
+              class="hover:text-[var(--ember-accent)] hover:underline transition-colors {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
               Home
             </a>
           </li>
           <li>
-            <a
-              href="{% url 'booking:booking_page' %}"
-              class="hover:text-fiery-yellow hover:underline transition-colors {% if request.resolver_match.url_name == 'booking_page' %}active{% endif %}"
-            >
+            <a href="{% url 'booking:booking_page' %}"
+              class="hover:text-[var(--ember-accent)] hover:underline transition-colors {% if request.resolver_match.url_name == 'booking_page' %}active{% endif %}">
               Bookings
             </a>
           </li>
 
-          {% if user.is_authenticated %} 
-          {% comment %} 
-          If user is logged in show their username,
-          when clicked loads the users dashboard and logout button 
-          {% endcomment %}
+          {% if user.is_authenticated %}
           <li>
-            <a
-              href="{% url 'user:members_dashboard' %}"
-              class="hover:text-fiery-yellow hover:underline transition-colors {% if request.resolver_match.url_name == 'members_dashboard' %}active{% endif %}"
-            >
+            <a href="{% url 'user:members_dashboard' %}"
+              class="hover:text-[var(--ember-accent)] hover:underline transition-colors {% if request.resolver_match.url_name == 'members_dashboard' %}active{% endif %}">
               {{ user.username }}
             </a>
           </li>
           <li>
-            <button
-              type="button"
-              data-open-logout
-              class="hover:text-fiery-yellow hover:underline transition-colors"
-            >
+            <button type="button" data-open-logout
+              class="hover:text-[var(--ember-accent)] hover:underline transition-colors">
               Logout
             </button>
           </li>
-          {% else %} 
-          {% comment %} If user isn't logged in show members link {% endcomment %}
+          {% else %}
           <li>
-            <a
-              href="{% url 'user:members_info' %}"
-              class="hover:text-fiery-yellow hover:underline transition-colors {% if request.resolver_match.url_name == 'members_info' %}active{% endif %}"
-            >
+            <a href="{% url 'user:members_info' %}"
+              class="hover:text-[var(--ember-accent)] hover:underline transition-colors {% if request.resolver_match.url_name == 'members_info' %}active{% endif %}">
               Members
             </a>
           </li>
@@ -81,120 +63,73 @@
 
         {% comment %} Mobile burger menu {% endcomment %}
         <div class="md:hidden flex items-center">
-          <button id="menu-toggle" class="btn btn-ghost btn-square" 
-          aria-label="Open navigation menu">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6 text-molten-gold"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+          <button id="menu-toggle" class="btn btn-ghost btn-square" aria-label="Open navigation menu">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[var(--ember-highlight)]" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </div>
       </div>
 
       {% comment %} Mobile Links {% endcomment %}
-      <ul
-        id="mobile-menu"
-        class="hidden md:hidden bg-ash-gray px-4 pt-4 pb-6 space-y-3"
-      >
+      <ul id="mobile-menu"
+        class="hidden md:hidden bg-[var(--ember-primary)] px-4 pt-4 pb-6 space-y-3 text-[var(--ember-base)]">
         <li>
-          <a href="{% url 'home' %}" class="block hover:text-fiery-yellow"
-            >Home</a
-          >
+          <a href="{% url 'home' %}" class="block hover:text-[var(--ember-accent)]">Home</a>
         </li>
         <li>
-          <a
-            href="{% url 'booking:booking_page' %}"
-            class="block hover:text-fiery-yellow"
-            >Bookings</a
-          >
+          <a href="{% url 'booking:booking_page' %}" class="block hover:text-[var(--ember-accent)]">Bookings</a>
         </li>
 
         {% if user.is_authenticated %}
-        {% comment %} If user is logged in show
-        their username, when clicked loads the users dashboard and logout button
-        {% endcomment %}
         <li>
-          <a
-            href="{% url 'user:members_dashboard' %}"
-            class="block hover:text-fiery-yellow"
-            >{{ user.username }}</a
-          >
+          <a href="{% url 'user:members_dashboard' %}" class="block hover:text-[var(--ember-accent)]">{{ user.username
+            }}</a>
         </li>
         <li>
-          <label
-            data-open-logout
-            class="block hover:text-fiery-yellow cursor-pointer"
-            >Logout</label
-          >
+          <label data-open-logout class="block hover:text-[var(--ember-accent)] cursor-pointer">Logout</label>
         </li>
-        {% else %} 
-        {% comment %} If user isn't logged in show members link {% endcomment %}
+        {% else %}
         <li>
-          <a
-            href="{% url 'user:members_info' %}"
-            class="block hover:text-fiery-yellow"
-            >Members</a
-          >
+          <a href="{% url 'user:members_info' %}" class="block hover:text-[var(--ember-accent)]">Members</a>
         </li>
         {% endif %}
       </ul>
     </nav>
-    
+
     {# Main section that extends to the other pages #}
-    <main>
-      {% block content %} 
-      {% comment %} All templates their content here {% endcomment %} 
-      {% endblock %}
+    <main class="flex-grow">
+      {% block content %} {% endblock %}
     </main>
 
-    {% comment %} Linking to login, signup and logout modals in modals.html {% endcomment %}
-    {% include 'includes/modals.html' %} {# Footer #}
-    <footer class="bg-ash-gray text-white mt-auto">
-      <div
-        class="max-w-7xl mx-auto px-6 pt-6 pb-6 grid md:grid-cols-2 text-center"
-      >
+    {% include 'includes/modals.html' %}
+
+    {# Footer #}
+    <footer class="bg-[var(--ember-neutral)] text-white mt-auto">
+      <div class="max-w-7xl mx-auto px-6 pt-6 pb-6 grid md:grid-cols-2 text-center">
         <div>
           <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
           <div class="grid md:grid-cols-2">
             <div>
               <p>
-                Address: 123 Ember Street<br>Chesham, Buckinghamshire,<br>HP5
-                1AA
+                Address: 123 Ember Street<br>Chesham, Buckinghamshire,<br>HP5 1AA
               </p>
             </div>
             <div>
               <p class="mt-2">
                 Email:
-                <a
-                  href="mailto:info@embertable.com"
-                  class="underline hover:text-fiery-yellow"
-                  >info@embertable.com</a
-                >
+                <a href="mailto:info@embertable.com"
+                  class="underline hover:text-[var(--ember-accent)]">info@embertable.com</a>
               </p>
               <p>
                 Phone:
-                <a
-                  href="tel:+441494123456"
-                  class="underline hover:text-fiery-yellow"
-                  >01494 123456</a
-                >
+                <a href="tel:+441494123456" class="underline hover:text-[var(--ember-accent)]">01494 123456</a>
               </p>
             </div>
           </div>
         </div>
-        <div
-          class="flex justify-center md:justify-center items-center mt-4 md:mt-0"
-        >
+        <div class="flex justify-center md:justify-center items-center mt-4 md:mt-0">
           <p>
             &copy; {{ year|default:"2025" }} Ember Table. All rights reserved.
           </p>
@@ -209,4 +144,5 @@
     <script src="{% static 'js/modalAuth.js' %}"></script>
 
   </body>
+
 </html>
