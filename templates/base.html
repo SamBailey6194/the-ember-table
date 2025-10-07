@@ -84,8 +84,7 @@
 
         {% if user.is_authenticated %}
         <li>
-          <a href="{% url 'user:members_dashboard' %}" class="block hover:text-[var(--ember-accent)]">{{ user.username
-            }}</a>
+          <a href="{% url 'user:members_dashboard' %}" class="block hover:text-[var(--ember-accent)]">{{ user.username }}</a>
         </li>
         <li>
           <label data-open-logout class="block hover:text-[var(--ember-accent)] cursor-pointer">Logout</label>
