@@ -1,33 +1,35 @@
 {# Login modal #}
-<dialog id="login-modal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md rounded-lg p-6 shadow-lg bg-[var(--ember-base)]">
-    <h3 class="text-4xl font-bold text-[var(--ember-highlight)] mb-6 text-center">Login</h3>
-    <form method="post" action="{% url 'user:custom_login' %}" class="space-y-3">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ next_url|default:dashboard_url }}">
-        <div>
-            <input type="text" name="login" placeholder="Username or Email" class="input input-bordered w-full" required>
-        </div>
-        <div>
-            <input type="password" name="password" placeholder="Password" class="input input-bordered w-full" required>
-        </div>
-        <div class="flex justify-center">
-            <button type="submit" class="btn w-30 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
-                Login
+<dialog id="login-modal">
+    <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md rounded-lg p-6 bg-[var(--ember-base)] border-2 border-white">
+        <h3 class="text-4xl font-bold text-[var(--ember-highlight)] mb-6 text-center">Login</h3>
+        <form method="post" action="{% url 'user:custom_login' %}" class="space-y-3">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next_url|default:dashboard_url }}">
+            <div>
+                <input type="text" name="login" placeholder="Username or Email" class="input input-bordered w-full" required>
+            </div>
+            <div>
+                <input type="password" name="password" placeholder="Password" class="input input-bordered w-full" required>
+            </div>
+            <div class="flex justify-center">
+                <button type="submit" class="btn w-30 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
+                    Login
+                </button>
+            </div>
+        </form>
+
+        <p class="mt-3 mb-3 text-center text-white">If you aren't registered, please sign up here:</p>
+        <div class="text-center">
+            <button id="switch-to-signup" class="btn w-30 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
+                Sign Up
             </button>
         </div>
-    </form>
 
-    <p class="mt-3 mb-3 text-center text-white">If you aren't registered, please sign up here:</p>
-    <div class="text-center">
-        <button id="switch-to-signup" class="btn w-30 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
-            Sign Up
-        </button>
-    </div>
-
-    <div class="text-center mt-4">
-        <button id="close-login" class="btn w-30 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
-            Close
-        </button>
+        <div class="text-center mt-4">
+            <button id="close-login" class="btn w-30 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
+                Close
+            </button>
+        </div>
     </div>
 </dialog>
 
