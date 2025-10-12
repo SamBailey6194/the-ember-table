@@ -1,6 +1,6 @@
 {# Login modal #}
-<dialog id="login-modal">
-    <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md rounded-lg p-6 bg-[var(--ember-base)] border-2 border-white">
+<dialog id="login-modal" class="modal">
+    <div class="modal-box bg-[var(--ember-base)] text-white border-2 border-white">
         <h3 class="text-4xl font-bold text-[var(--ember-highlight)] mb-6 text-center">Login</h3>
         <form method="post" action="{% url 'user:custom_login' %}" class="space-y-3">
             {% csrf_token %}
@@ -34,80 +34,86 @@
 </dialog>
 
 {# Signup modal #}
-<dialog id="signup-modal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md rounded-lg p-6 shadow-lg bg-[var(--ember-base)]">
-    <h3 class="text-4xl font-bold text-[var(--ember-highlight)] mb-6 text-center">Sign Up</h3>
-    <form method="post" action="{% url 'user:custom_signup' %}" class="space-y-3">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ next_url|default:dashboard_url }}">
-        <div>
-            <input type="text" name="username" placeholder="Username" class="input input-bordered w-full" required>
-        </div>
-        <div>
-            <input type="text" name="customer_fname" placeholder="First Name" class="input input-bordered w-full" required>
-        </div>
-        <div>
-            <input type="text" name="customer_lname" placeholder="Last Name" class="input input-bordered w-full" required>
-        </div>
-        <div>
-            <input type="email" name="email" placeholder="Email" class="input input-bordered w-full" required>
-        </div>
-        <div>
-            <input type="tel" name="phone" placeholder="Phone Number" pattern="(^0\d{10}$)|(^\+?\d{7,15}$)" title="Enter a UK 11-digit number starting with 0, or an international number with +" class="input input-bordered w-full" required>
-        </div>
-        <div>
-            <input type="password" name="password1" placeholder="Password" class="input input-bordered w-full" required>
-        </div>
-        <div>
-            <input type="password" name="password2" placeholder="Confirm Password" class="input input-bordered w-full" required>
-        </div>
-        <div class="flex justify-center">
-            <button type="submit" class="btn w-30 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
-                Sign Up
+<dialog id="signup-modal" class="modal">
+    <div class="modal-box bg-[var(--ember-base)] text-white border-2 border-white">
+        <h3 class="text-4xl font-bold text-[var(--ember-highlight)] mb-6 text-center">Sign Up</h3>
+        <form method="post" action="{% url 'user:custom_signup' %}" class="space-y-3">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next_url|default:dashboard_url }}">
+            <div>
+                <input type="text" name="username" placeholder="Username" class="input input-bordered w-full" required>
+            </div>
+            <div>
+                <input type="text" name="customer_fname" placeholder="First Name" class="input input-bordered w-full" required>
+            </div>
+            <div>
+                <input type="text" name="customer_lname" placeholder="Last Name" class="input input-bordered w-full" required>
+            </div>
+            <div>
+                <input type="email" name="email" placeholder="Email" class="input input-bordered w-full" required>
+            </div>
+            <div>
+                <input type="tel" name="phone" placeholder="Phone Number" pattern="(^0\d{10}$)|(^\+?\d{7,15}$)" title="Enter a UK 11-digit number starting with 0, or an international number with +" class="input input-bordered w-full" required>
+            </div>
+            <div>
+                <input type="password" name="password1" placeholder="Password" class="input input-bordered w-full" required>
+            </div>
+            <div>
+                <input type="password" name="password2" placeholder="Confirm Password" class="input input-bordered w-full" required>
+            </div>
+            <div class="flex justify-center">
+                <button type="submit" class="btn w-30 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
+                    Sign Up
+                </button>
+            </div>
+        </form>
+
+        <p class="mt-3 mb-3 text-center text-white">If you are registered, please login here:</p>
+        <div class="text-center">
+            <button id="switch-to-login" class="btn w-30 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
+                Login
             </button>
         </div>
-    </form>
 
-    <p class="mt-3 mb-3 text-center text-white">If you are registered, please login here:</p>
-    <div class="text-center">
-        <button id="switch-to-login" class="btn w-30 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
-            Login
-        </button>
-    </div>
-
-    <div class="text-center mt-4">
-        <button id="close-signup" class="btn w-30 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
-            Close
-        </button>
+        <div class="text-center mt-4">
+            <button id="close-signup" class="btn w-30 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
+                Close
+            </button>
+        </div>
     </div>
 </dialog>
 
 {# Logout modal #}
-<dialog id="logout-modal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-sm rounded-lg p-6 shadow-lg bg-[var(--ember-base)]">
-    <h3 class="text-xl font-bold text-[var(--ember-highlight)] mb-4 text-center">Confirm Logout</h3>
-    <p class="text-center mb-6 text-white">Are you sure you want to log out?</p>
+<dialog id="logout-modal" class="modal">
+    <div class="modal-box bg-[var(--ember-base)] text-white border-2 border-white">
+        <h3 class="text-xl font-bold text-[var(--ember-highlight)] mb-4 text-center">Confirm Logout</h3>
+        <p class="text-center mb-6 text-white">Are you sure you want to log out?</p>
 
-    <div class="flex justify-center gap-4">
-        <button id="close-logout" class="btn w-32 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
-            Cancel
-        </button>
-
-        <form method="post" action="{% url 'user:custom_logout' %}" class="text-center">
-            {% csrf_token %}
-            <button type="submit" class="btn w-32 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
-                Logout
+        <div class="flex justify-center gap-4">
+            <button id="close-logout" class="btn w-32 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
+                Cancel
             </button>
-        </form>
+
+            <form method="post" action="{% url 'user:custom_logout' %}" class="text-center">
+                {% csrf_token %}
+                <button type="submit" class="btn w-32 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
+                    Logout
+                </button>
+            </form>
+        </div>
     </div>
 </dialog>
 
 {# Dynamic messages modal #}
-<dialog id="message-modal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md rounded-lg p-6 shadow-lg bg-[var(--ember-base)]">
-    <h3 id="message-title" class="text-4xl font-bold text-[var(--ember-highlight)] mb-4 text-center"></h3>
-    <p id="message-body" class="text-center mb-6 text-white" style="white-space: pre-line;"></p>
-    <div class="text-center">
-        <button id="close-message" class="btn w-30 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
-            Close
-        </button>
+<dialog id="message-modal" class="modal">
+    <div class="modal-box bg-[var(--ember-base)] text-white border-2 border-white">
+        <h3 id="message-title" class="text-4xl font-bold text-[var(--ember-highlight)] mb-4 text-center"></h3>
+        <p id="message-body" class="text-center mb-6 text-white" style="white-space: pre-line;"></p>
+        <div class="text-center">
+            <button id="close-message" class="btn w-30 bg-[var(--ember-neutral)] text-[var(--ember-highlight)] hover:bg-[var(--ember-highlight)] hover:text-[var(--ember-base)] shadow-lg">
+                Close
+            </button>
+        </div>
     </div>
 </dialog>
 

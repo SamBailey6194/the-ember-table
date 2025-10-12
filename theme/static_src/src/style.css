@@ -77,26 +77,44 @@
   }
 
   .text-outline-shadow {
-    --outline-color: white;
     text-shadow:
-      -2px -2px 0 var(--outline-color),
-       2px -2px 0 var(--outline-color),
-      -2px  2px 0 var(--outline-color),
-       2px  2px 0 var(--outline-color);
+      -4px -4px 4px var(--ember-base),
+      4px -4px 4px var(--ember-base),
+      -4px 4px 4px var(--ember-base),
+      4px 4px 4px var(--ember-base),
+      4px 0 4px var(--ember-base),
+      -4px 0 4px var(--ember-base),
+      0 4px 4px var(--ember-base),
+      0 -4px 4px var(--ember-base);
   }
 
   .text-sm-outline-shadow {
-    --outline-color: white;
     text-shadow:
-      -1px -1px 0 var(--outline-color),
-       1px -1px 0 var(--outline-color),
-      -1px  1px 0 var(--outline-color),
-       1px  1px 0 var(--outline-color);
+      -1px -1px 0 var(--ember-base),
+      1px -1px 0 var(--ember-base),
+      -1px  1px 0 var(--ember-base),
+      1px  1px 0 var(--ember-base);
   }
 
   .active {
     color: var(--ember-highlight);
     text-decoration: underline;
     font-weight: bold;
+  }
+
+  .modal[open],
+  .modal.modal-open,
+  .modal:target {
+    background-color: oklch(75% 0 0/0.4) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    backdrop-filter: blur(8px) !important;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .modal.modal-open,
+    .modal[open],
+    .modal:target {
+      background-color: oklch(75% 0 0/0.4) !important;
+    }
   }
 }
