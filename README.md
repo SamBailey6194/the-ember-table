@@ -34,7 +34,7 @@ I would usually put a Am I Responsive screenshot here. However, it wasn't loadin
 
 ## Features 
 
-Below are the features for the website and at the end is listed any features that weren't able to be implemented but would be with more time.
+Below are the features for the website and at the end is listed any features that weren't able to be implemented but would be with more time. Please note as this is a resubmission I have not changed the screenshots of the features as they are essentially the same with minor differences.
 
 ### Existing Features
 
@@ -259,10 +259,18 @@ Below are the features for the website and at the end is listed any features tha
 
 ## Lessons Learnt
 
+### First submission
+
 - For better TDD and BDD focus on writing the relevant tests for that sprint first.
 - Focus on what the project needs first and add extra elements later, e.g I focused on menus too early as shown by commits.
 - Commit more often and more regularly to have concise commit messages.
 - Note down in the README the bugs and how I fixed them as they come up to help for future development.
+  
+### For Resubmission
+
+- The CSS is different for light and dark modes. There are various ways you can ensure the light and dark modes look on brand.
+- Using media query with prefer-colot-scheme for dark as the standard will apply to light mode.
+- Using DaisyUI modal and modal-box is enough, you need to override the stylings if you want different stylings.
 
 ## Testing 
 
@@ -277,6 +285,8 @@ You can see the Jest testing table [here](docs/markdowns/automatedjstesting.md).
 Please note for the Jest testing there was a need to create html fixture files as Jest doesn't always read the Django dynamic structure.
 
 ### Fixed Bugs
+
+#### First submission
 
 There were plenty of bugs fixed throughout, however I forgot to keep track of all of them, below are the ones I can remember looking at the commit messages.
 
@@ -293,6 +303,10 @@ There were plenty of bugs fixed throughout, however I forgot to keep track of al
 
 I am certain there are more but can't remember off the top of my head.
 
+#### Resubmission
+
+- Use media query prefer-color-scheme: dark to set colours for dark mode to match light mode
+
 ### Unfixed Bugs
 
 - None
@@ -304,11 +318,11 @@ I am certain there are more but can't remember off the top of my head.
   - You can switch between the mobile and desktop results as well.
   - The tests were only run for the unauthenticated users.
 
-    - [Homepage results](https://pagespeed.web.dev/analysis/https-the-ember-table-92576ef1108c-herokuapp-com/26tbjwcyd1?form_factor=mobile)
+    - [Homepage results](https://pagespeed.web.dev/analysis/https-the-ember-table-92576ef1108c-herokuapp-com/s8qlxnqdti?form_factor=mobile)
 
-    - [Booking Page Results](https://pagespeed.web.dev/analysis/https-the-ember-table-92576ef1108c-herokuapp-com-booking/0s5f3v7zy7?form_factor=mobile)
+    - [Booking Page Results](https://pagespeed.web.dev/analysis/https-the-ember-table-92576ef1108c-herokuapp-com-booking/dlqckmc2nx?form_factor=mobile)
 
-    - [Members Page Results](https://pagespeed.web.dev/analysis/https-the-ember-table-92576ef1108c-herokuapp-com-members/oevejtur5a?form_factor=mobile)
+    - [Members Page Results](https://pagespeed.web.dev/analysis/https-the-ember-table-92576ef1108c-herokuapp-com-members-dashboard/avdgyziyxa?form_factor=mobile)
 
 - HTML
   - A warning to do with a header without a heading appeared, but that heading is dynamic for the dynamic messages.
